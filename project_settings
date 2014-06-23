@@ -1,0 +1,5 @@
+build_server_latest: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/api/json
+build_dir: build
+apk_url: http://app.mobcastdev.local/bbbooks
+apk_main_version: 1.3.1
+apk_config: production-debug
