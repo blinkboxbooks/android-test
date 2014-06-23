@@ -3,6 +3,18 @@ android-test
 
 android native app acceptance tests
 
+usage
+=====
+
+- Confirm location and password/username combination of debug.keystore calabash_settings
+- Confirm endpoint and project configurations in project_settings
+
+Typical usage
+```
+bundle install
+rake 
+rake android_run
+```
 project structure
 ================
 
