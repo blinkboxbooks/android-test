@@ -6,8 +6,10 @@ require 'json'
 conf = YAML.load_file("project_settings")
 desc "Get latest android APK"
 task :android_get do
-	FileUtils::mkdir_p conf['build_dir']
-
+	if File.directory?(conf['build_dir'])
+		`rm -rf #{conf['build_dir']}`
+	end
+	FileUtils::mkdir conf['build_dir']
 	#Jenkins specific build code / Replace with Teamcity URL and parsing	
 	result = JSON.parse(open(conf['build_server_latest']).read)	
 	if result["result"] != "SUCCESS"
