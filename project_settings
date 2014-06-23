@@ -3,3 +3,5 @@ build_dir: build
 apk_url: http://app.mobcastdev.local/bbbooks
 apk_main_version: 1.3.1
 apk_config: production-debug
+#EMULATOR | DEVICE
+device_selector: EMULATOR
