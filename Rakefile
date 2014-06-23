@@ -3,29 +3,34 @@ require 'yaml'
 require 'open-uri'
 require 'json'
 
-conf = YAML.load_file("project_settings")
+@conf = YAML.load_file("project_settings")
 desc "Get latest android APK"
-task :android_get do
-	if File.directory?(conf['build_dir'])
-		`rm -rf #{conf['build_dir']}`
+
+def relist_directory
+	@apks = Dir[@conf['build_dir'] + "/*.apk"]
+	if @apks.length == 0
+		puts "No APK's found in #{@conf['build_dir']} ..aborting"
+		exit 1
 	end
-	FileUtils::mkdir conf['build_dir']
+end
+
+task :android_get do
+	if File.directory?(@conf['build_dir'])
+		`rm -rf #{@conf['build_dir']}`
+	end
+	FileUtils::mkdir @conf['build_dir']
 	#Jenkins specific build code / Replace with Teamcity URL and parsing	
-	result = JSON.parse(open(conf['build_server_latest']).read)	
+	result = JSON.parse(open(@conf['build_server_latest']).read)	
 	if result["result"] != "SUCCESS"
 		puts "Last android CI build was not successful"
 		exit 1
 	end	
 	@build_number = result["number"]
 	#Download
-	path = "%s-%s-%s-%s.apk" % [conf['apk_url'],conf['apk_main_version'],@build_number,conf['apk_config']]	
+	path = "%s-%s-%s-%s.apk" % [@conf['apk_url'],@conf['apk_main_version'],@build_number,@conf['apk_@config']]	
 	`wget #{path}`
-	`mv *.apk #{conf['build_dir']}`
-	@apks = Dir[conf['build_dir'] + "/*.apk"]
-	if @apks.length == 0
-		puts "No APK's found in #{conf['build_dir']} ..aborting"
-		exit 1
-	end
+	`mv *.apk #{@conf['build_dir']}`
+	relist_directory
 end
 desc "builds and resigns the apk"
 task :android_sign do
@@ -38,7 +43,9 @@ task :android_install do
 end
 desc "Runs calabash android"
 task :android_run do
-	`calabash-android run #{@apks[0]}`
+	relist_directory
+	output = `calabash-android run #{@apks[0]}`
+	puts output
 end
 task :default do
 	Rake::Task["android_get"].invoke
