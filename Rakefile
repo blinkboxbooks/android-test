@@ -27,7 +27,8 @@ task :android_get do
 	end	
 	@build_number = result["number"]
 	#Download
-	path = "%s-%s-%s-%s.apk" % [@conf['apk_url'],@conf['apk_main_version'],@build_number,@conf['apk_@config']]	
+	path = "%s-%s-%s-%s.apk" % [@conf['apk_url'],@conf['apk_main_version'],@build_number,@conf['apk_config']]	
+	puts "Getting #{path}"
 	`wget #{path}`
 	`mv *.apk #{@conf['build_dir']}`
 	relist_directory
