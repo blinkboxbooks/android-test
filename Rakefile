@@ -27,12 +27,18 @@ task :android_get do
 		exit 1
 	end
 end
+desc "builds and resigns the apk"
 task :android_sign do
 	`calabash-android build #{@apks[0]}`
 	`calabash-android resign #{@apks[0]}`
 end
+desc "Installs the apk and test server"
 task :android_install do
 	`adb install #{@apks[0]}`
+end
+desc "Runs calabash android"
+task :android_run do
+	`calabash-android run #{@apks[0]}`
 end
 task :default do
 	Rake::Task["android_get"].invoke
