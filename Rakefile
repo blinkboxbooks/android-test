@@ -46,6 +46,9 @@ task :android_get do
 end
 desc "builds and resigns the apk"
 task :android_sign do
+	if File.directory?('test_servers')
+		`rm -rf test_servers`
+	end
 	`calabash-android build #{@apks[0]}`
 	`calabash-android resign #{@apks[0]}`
 end
