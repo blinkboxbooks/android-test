@@ -5,12 +5,14 @@ Before do
 	$dunit ||= false
 	return $dunit if $dunit              
 	#load configuration files
-	@environment = $testdata['test']['environment']
-	assert_not_nil(@environment,"Environment data was nil")
-	@auth = $testdata['environment'][@environment]['url']['auth']
-	assert_not_nil(@auth,"Auth data for selected environment was nil")
-	@host = $testdata['environment'][@environment]['qa']['host']
-	assert_not_nil(@host,"Host data for selected environment was nil")
+	assert_not_nil($testdata,"No test data found")
+	assert_not_nil($conf,"No conf data found")
+	@env = $testdata['test']['environment']
+	assert_not_nil(@env,"Environment data was nil")
+	@auth = $testdata['environment'][@env]['url']['auth']
+	assert_not_nil(@auth,"Auth data for selected env was nil")
+	@host = $testdata['environment'][@env]['qa']['host']
+	assert_not_nil(@host,"Host data for selected env was nil")
 	$dunit = true                           
 
 end

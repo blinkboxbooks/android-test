@@ -2,10 +2,11 @@ require 'fileutils'
 require 'yaml'
 require 'open-uri'
 require 'json'
-
 @conf = YAML.load_file("config/project_settings.yml")
-desc "Get latest android APK"
+@testdata = YAML.load_file("config/test_settings.yml")
+@environment = @testdata['test']['environment']
 
+desc "Get latest android APK"
 def relist_directory
 	@apks = Dir[@conf['project']['build_dir'] + "/*.apk"]
 	if @apks.length == 0
@@ -13,15 +14,14 @@ def relist_directory
 		exit 1
 	end
 end
-
-def retrieve_build_number
-	#Build system specific
-	result = JSON.parse(open(@conf['remote']['endpoint_latest']).read)	
-	if result.length == 0
-		puts "Failed to retrieve build information"
-		exit 1
+def match_configuration
+	pos =0
+	@apks.each do | apk |
+		if apk.include? @environment
+			return pos
+		end
+		pos +=1
 	end	
-	return result['number']
 end
 def generate_directories
 	if File.directory?(@conf['project']['build_dir'])
@@ -29,36 +29,36 @@ def generate_directories
 	end
 	FileUtils::mkdir @conf['project']['build_dir']
 end
-task :android_get do
-	#Prepare
-	generate_directories
-	#Retrieve
-	@build_number = retrieve_build_number
-	puts "Latest build number is " + @build_number.to_s
-	#Download
-	path = @conf['remote']['endpoint_download_constructor']
-	path.sub! 'GREATER_VERSION', @conf['app']['greater_version']
-	path.sub! 'MINOR_VERSION',@build_number.to_s
-	path.sub! 'CONFIGURATION',@conf['app']['configuration']
-	puts "Attempting to download #{path}"
+def download_apk
+	path = @conf['remote']['endpoint_download'] 
 	`wget #{path} -P #{@conf['project']['build_dir']}`
+	payload = @conf['remote']['endpoint_payload']
+	Dir.chdir(@conf['project']['build_dir']){
+		`unzip #{payload}`
+		`mv apk/*.apk .`
+	}
+end
+task :android_get do
+	generate_directories
+	download_apk
 	relist_directory
+	puts @apks[match_configuration]
 end
 desc "builds and resigns the apk"
 task :android_sign do
 	if File.directory?('test_servers')
 		`rm -rf test_servers`
 	end
-	`calabash-android resign #{@apks[0]}`
+	`calabash-android resign #{@apks[match_configuration]}`
 end
 desc "Installs the apk and test server (will reinstall if installed)"
 task :android_install do
-	`adb install -r #{@apks[0]}`
+	`adb install -r #{@apks[match_configuration]}`
 end
 desc "Runs calabash android"
 task :android_run do
 	relist_directory
-	output = `calabash-android run #{@apks[0]}`
+	output = `calabash-android run #{@apks[match_configuration]}`
 	puts output
 end
 task :default do

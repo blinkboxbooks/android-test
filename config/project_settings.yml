@@ -1,10 +1,6 @@
 #BUILD AND INSTALLATION
 remote:
- endpoint_latest: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/api/json
- endpoint_download_constructor: http://app.mobcastdev.local/bbbooks-GREATER_VERSION-MINOR_VERSION-CONFIGURATION.apk
-app:
- greater_version: 1.4.0
- configuration: production-debug
- device: emulator
+ endpoint_download: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/artifact/app/build/apk/*zip*/apk.zip   
+ endpoint_payload: apk.zip
 project:
  build_dir: build
