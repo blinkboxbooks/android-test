@@ -19,9 +19,11 @@ project structure
 ================
 
 ```
+config/
 features/
 		step_definitions/
 		support/
+		pages/
 		Rakefile #Rake -T for options
 		README.md
 		calabash_settings #Debug keystore
