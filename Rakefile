@@ -14,23 +14,28 @@ def relist_directory
 	end
 end
 
+def retrieve_build_number
+	#Build system specific
+	result = JSON.parse(open(@conf['build_server_latest']).read)	
+	if result.length == 0
+		puts "Failed to retrieve build information"
+		exit 1
+	end	
+	return result['number']
+end
+
 task :android_get do
+	#Prepare
 	if File.directory?(@conf['build_dir'])
 		`rm -rf #{@conf['build_dir']}`
 	end
 	FileUtils::mkdir @conf['build_dir']
-	#Jenkins specific build code / Replace with Teamcity URL and parsing	
-	result = JSON.parse(open(@conf['build_server_latest']).read)	
-	if result["result"] != "SUCCESS"
-		puts "Last android CI build was not successful"
-		exit 1
-	end	
-	@build_number = result["number"]
+	#Retrieve
+	@build_number = retrieve_build_number
 	#Download
 	path = "%s-%s-%s-%s.apk" % [@conf['apk_url'],@conf['apk_main_version'],@build_number,@conf['apk_config']]	
 	puts "Getting #{path}"
-	`wget #{path}`
-	`mv *.apk #{@conf['build_dir']}`
+	`wget #{path} -P #{@conf['build_dir']}`
 	relist_directory
 end
 desc "builds and resigns the apk"
@@ -38,9 +43,9 @@ task :android_sign do
 	`calabash-android build #{@apks[0]}`
 	`calabash-android resign #{@apks[0]}`
 end
-desc "Installs the apk and test server"
+desc "Installs the apk and test server (will reinstall if installed)"
 task :android_install do
-	`adb install #{@apks[0]}`
+	`adb install -r #{@apks[0]}`
 end
 desc "Runs calabash android"
 task :android_run do
