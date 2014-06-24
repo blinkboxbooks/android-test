@@ -12,7 +12,8 @@ class SignInPage < BBBPage
   def submit_sign_in_details(user_name, password)
     performAction('enter_text_into_id_field', user_name, 'edittext_email' )
     performAction('enter_text_into_id_field', password, 'edittext_password' )
-    touch("BBBButton marked:'Sign in to find books and more'")
+	scroll_down_with "* id:'button_signin'",10
+	touch("* id:'button_signin'")
   end
 
   def goto_reset_password

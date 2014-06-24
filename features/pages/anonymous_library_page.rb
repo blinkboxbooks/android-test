@@ -5,8 +5,11 @@ class   AnonymousLibraryPage < BBBPage
   end
 
   def goto_sign_in
-    touch("* marked:'Sign in to find books and more'")
-    page(SignInPage).await
+  	if query("* marked:'Sign in'").length == 0
+		scroll_down_with "* marked:'Sign in'",10
+	end
+	touch("* marked:'Sign in'")
+    @sign_in_page = page(SignInPage).await
   end
 
   def goto_registration
@@ -20,4 +23,3 @@ class   AnonymousLibraryPage < BBBPage
   end
 
 end
-
