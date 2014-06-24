@@ -5,12 +5,16 @@ Before do
 	$dunit ||= false
 	return $dunit if $dunit              
 	#load configuration files
-	@environment = $testdata['test']['environment']
-	assert_not_nil(@environment,"Environment data was nil")
-	@auth = $testdata['environment'][@environment]['url']['auth']
-	assert_not_nil(@auth,"Auth data for selected environment was nil")
-	@host = $testdata['environment'][@environment]['qa']['host']
-	assert_not_nil(@host,"Host data for selected environment was nil")
+	@conf = YAML.load_file("config/project_settings.yml")
+	@testdata = YAML.load_file("config/test_settings.yml")
+	puts @testdata['test']['timers']['scroll_timeout']
+	@environment = @testdata['test']['environment']
+	if @environment.nil?
+		puts "Alert - no configured environment"
+		exit
+	end	
+	@auth = @testdata['environment'][@environment]['url']['auth']
+	@host = @testdata['environment'][@environment]['qa']['host']
 	$dunit = true                           
 
 end

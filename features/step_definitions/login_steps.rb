@@ -9,10 +9,10 @@ Given(/^the anonymous library screen is displayed$/) do
 end
 When(/^I sign in$/) do
 	@anonymous_library_page.goto_sign_in
-
-	username = @testdata['existing_user']['username']
-	password = @testdata['existing_user']['password']
+	username = $testdata['existing_user']['username']
+	password = $testdata['existing_user']['password']
 	page(SignInPage).submit_sign_in_details(username,password)
+
 end
 Then(/^I should be on the user library screen$/) do
 	@user_library_page = page(UserLibraryPage).await.expect be_current_page

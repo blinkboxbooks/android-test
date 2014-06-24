@@ -3,7 +3,7 @@ require 'yaml'
 require 'open-uri'
 require 'json'
 
-@conf = YAML.load_file("config/project_settings")
+@conf = YAML.load_file("config/project_settings.yml")
 desc "Get latest android APK"
 
 def relist_directory

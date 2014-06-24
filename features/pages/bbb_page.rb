@@ -3,7 +3,7 @@ require 'calabash-android/abase'
 class BBBPage < Calabash::ABase
 
   def wait_element_to_exist(element)
-    wait_for_elements_exist([element], :timeout => TEST_CONFIG["sync_timeout_longer"])
+    wait_for_elements_exist([element], :timeout => @testdata['test']['timers']['await_timeout'])
   end
 
   def assert_element_contains_text(element, text)
