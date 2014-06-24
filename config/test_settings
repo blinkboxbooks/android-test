@@ -1,8 +1,10 @@
 #TEST CONFIGURATION
 test:
- environment: debug
+#Environment configuration
+ environment: production
  await_timeout: 15
  scroll_timeout: 5
+
 new_user:
   editext_emailaddress:
     calabash_test@gmail.com
@@ -19,20 +21,22 @@ existing_user:
   username: calabash_test@gmail.com
   password: password
 
+auth_user:
+ grant_type: password
+ username: calabash_test@gmail.com
+ password: password
+
 environment:
  debug:
   url:
    auth: https://auth.mobcastdev.com
   qa:
    host: https://qa.mobcastdev.com/service
-
-auth_user:
-  grant_type:
-    password
-  username:
-    calabash_test@gmail.com
-  password:
-    password
+ production:
+  url:
+   auth: https://auth.blinkboxbooks.com
+  qa:
+   host: https://api.blinkboxbooks.com/service
 
 samples_books:
   - 9781451685336
