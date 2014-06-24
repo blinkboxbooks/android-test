@@ -1,7 +1,14 @@
-build_server_latest: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/api/json
-build_dir: build
-apk_url: http://app.mobcastdev.local/bbbooks
-apk_main_version: 1.3.1
-apk_config: production-debug
-#EMULATOR | DEVICE
-device_selector: EMULATOR
+#BUILD AND INSTALLATION
+remote:
+ endpoint_latest: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/api/json
+ endpoint_download_constructor: http://app.mobcastdev.local/bbbooks-GREATER_VERSION-MINOR_VERSION-CONFIGURATION.apk
+app:
+ greater_version: 1.3.1
+ configuration: production-debug
+ device: emulator
+project:
+ build_dir: build
+
+
+#TEST CONFIGURATION
+environment: debug

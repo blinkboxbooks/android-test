@@ -7,35 +7,41 @@ require 'json'
 desc "Get latest android APK"
 
 def relist_directory
-	@apks = Dir[@conf['build_dir'] + "/*.apk"]
+	@apks = Dir[@conf['project']['build_dir'] + "/*.apk"]
 	if @apks.length == 0
-		puts "No APK's found in #{@conf['build_dir']} ..aborting"
+		puts "No APK's found in #{@conf['project']['build_dir']} ..aborting"
 		exit 1
 	end
 end
 
 def retrieve_build_number
 	#Build system specific
-	result = JSON.parse(open(@conf['build_server_latest']).read)	
+	result = JSON.parse(open(@conf['remote']['endpoint_latest']).read)	
 	if result.length == 0
 		puts "Failed to retrieve build information"
 		exit 1
 	end	
 	return result['number']
 end
-
+def generate_directories
+	if File.directory?(@conf['project']['build_dir'])
+		`rm -rf #{@conf['project']['build_dir']}`
+	end
+	FileUtils::mkdir @conf['project']['build_dir']
+end
 task :android_get do
 	#Prepare
-	if File.directory?(@conf['build_dir'])
-		`rm -rf #{@conf['build_dir']}`
-	end
-	FileUtils::mkdir @conf['build_dir']
+	generate_directories
 	#Retrieve
 	@build_number = retrieve_build_number
+	puts "Latest build number is " + @build_number.to_s
 	#Download
-	path = "%s-%s-%s-%s.apk" % [@conf['apk_url'],@conf['apk_main_version'],@build_number,@conf['apk_config']]	
-	puts "Getting #{path}"
-	`wget #{path} -P #{@conf['build_dir']}`
+	path = @conf['remote']['endpoint_download_constructor']
+	path.sub! 'GREATER_VERSION', @conf['app']['greater_version']
+	path.sub! 'MINOR_VERSION',@build_number.to_s
+	path.sub! 'CONFIGURATION',@conf['app']['configuration']
+	puts "Attempting to download #{path}"
+	`wget #{path} -P #{@conf['project']['build_dir']}`
 	relist_directory
 end
 desc "builds and resigns the apk"
