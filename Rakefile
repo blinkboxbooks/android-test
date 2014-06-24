@@ -49,7 +49,6 @@ task :android_sign do
 	if File.directory?('test_servers')
 		`rm -rf test_servers`
 	end
-	`calabash-android build #{@apks[0]}`
 	`calabash-android resign #{@apks[0]}`
 end
 desc "Installs the apk and test server (will reinstall if installed)"
@@ -64,6 +63,6 @@ task :android_run do
 end
 task :default do
 	Rake::Task["android_get"].invoke
-	Rake::Task["android_sign"].invoke
 	Rake::Task["android_install"].invoke
+	Rake::Task["android_sign"].invoke
 end	
