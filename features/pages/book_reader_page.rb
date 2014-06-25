@@ -49,11 +49,8 @@ class BookReaderPage < BBBPage
 	end
 
 	def options_menu_button
-		if query("BBBTextView marked:'Options'")
-			touch("BBBTextView marked:'Options'")
-		else
-			touch("* id:'webview_reader'")
-		end
+		puts "Opening options menu"
+		display_reader_options
 	end
 
 	def list_of_bookmarks
@@ -86,12 +83,15 @@ class BookReaderPage < BBBPage
 	end
 
 	def add_bookmark
-		click_on_element_with_desc("Reader bookmark", "ImageView")
-		wait_element_to_exist("ImageView contentDescription:'Epub bookmark'")
+		wait_for(:timeout => 5) {
+			touch(lookup_table('reader','el_touch_bookmark'))
+		}
 	end
 
 	def remove_bookmark
-		click_on_element_with_desc("Reader bookmark",  "ImageView")
+		wait_for(:timeout => 5) {
+			touch(lookup_table('reader','el_touch_bookmark'))
+		}
 	end
 
 	def save_last_position(option = "button2")
@@ -101,7 +101,13 @@ class BookReaderPage < BBBPage
 	end
 
 	def has_bookmark?
-		!query("ImageView contentDescription:'Epub bookmark'").empty?
+		wait_for(:timeout => 5) {
+			query(lookup_table('reader','el_bookmark'))
+		}
+		if query(lookup_table('reader','el_bookmark')).empty?
+			return false
+		end
+		return true
 	end
 
 	def progress_loading_present

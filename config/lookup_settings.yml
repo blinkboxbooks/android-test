@@ -19,3 +19,9 @@ reader:
  el_touch_cover:
   pad: "BookCover index:0"
   phone: "BookCover index:0"
+ el_touch_bookmark:
+  pad: "ImageView marked:'Reader bookmark'"
+  phone: "ImageView marked:'Reader bookmark'"
+ el_bookmark:
+  pad: "* id:'imageview_bookmark'"
+  phone: "* id:'imageview_bookmark'"
