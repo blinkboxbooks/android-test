@@ -16,8 +16,27 @@ test_settings.yml -> controls everything else including ENVIRONMENT
 ```
 Dynamic configuration
 ---------------------
-Within test_settings.yml the environment will select which APK to install and use
+Within test_settings.yml the environment will select which APK to install and use.
+There must be the appropriate authentication path to match chose configuration
+```yaml
+test:
+ timers:
+  await_timeout: 15
+  scroll_timeout: 5
+ environment: "production-debug"
 
+environment:
+ "debug":
+  url:
+   auth: https://auth.mobcastdev.com
+  qa:
+   host: https://qa.mobcastdev.com/service
+ "production-debug":
+  url:
+   auth: https://auth.blinkboxbooks.com
+  qa:
+   host: https://api.blinkboxbooks.com/service
+```
 usage
 =====
 
