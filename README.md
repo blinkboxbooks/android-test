@@ -13,18 +13,23 @@ Three settings files in config/
 calabash_settings.yml -> controls debug.keystore location
 project_settings.yml -> controls the endpoint location
 test_settings.yml -> controls everything else including ENVIRONMENT
+lookup_settings.yml -> Platform specific string table lookup
 ```
 Dynamic configuration
 ---------------------
 Within test_settings.yml the environment will select which APK to install and use.
 There must be the appropriate authentication path to match chose configuration
+
+There is also option for setting the device for testing - Localised query strings are available in lookup_settings.yml
+
 ```yaml
 test:
  timers:
   await_timeout: 15
   scroll_timeout: 5
  environment: "production-debug"
-
+ device: pad
+ 
 environment:
  "debug":
   url:
