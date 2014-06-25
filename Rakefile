@@ -60,9 +60,9 @@ task :android_run do
 	relist_directory
 	if ENV["feature"]
 		puts "Running - #{ENV["feature"]}"
-		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]}`
+		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]} --guess`
 	else
-		output = `calabash-android run #{@apks[match_configuration]}`
+		output = `calabash-android run #{@apks[match_configuration]} --guess`
 	end
 	puts output
 end

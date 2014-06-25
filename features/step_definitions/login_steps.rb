@@ -1,14 +1,13 @@
 Given(/^the anonymous library screen is displayed$/) do
-	if element_exists("* marked:'Sign in or register'")
+	if element_exists(lookup_table('login','el_tryout'))
 		@anonymous_library_page = page(WelcomePage).try_application_out
-	else
-		puts "already signed in!"
-		@anonymous_library_page = page(AnonymousLibraryPage).await
 	end
+	@anonymous_library_page = page(AnonymousLibraryPage).await
 	page(AnonymousLibraryPage).await.expect be_current_page	
 end
 When(/^I sign in$/) do
-	@anonymous_library_page.goto_sign_in
+	@anonymous_library_page.toggle_menu_sign_in
+	@sign_in_page = page(SignInPage).await
 	username = $testdata['users']['existing']['emailaddress']
 	password = $testdata['users']['existing']['password']
 	page(SignInPage).submit_sign_in_details(username,password)

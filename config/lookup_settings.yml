@@ -1,0 +1,21 @@
+anon:
+ toggle_menu:
+  pad: "* id:'togglebutton_home'"
+  phone: "* id:'togglebutton_home'"
+ toggle_menu_signin:
+  pad: "TextView marked:'Sign in'"
+  phone: "TextView marked:'Sign in'"
+login:
+ el_tryout:
+  pad: "* marked:'Try it out'"
+  phone: "*marked:'Try it out'" 
+ el_signin:
+  pad: "* marked:'Sign in to find books and more'"
+  phone: "BBBButton *marked:'Sign in'"
+ el_signedin:
+  pad: "BBBTextView marked:'Your library'"
+  phone: "BBBTextView marked:'Your library'"
+reader:
+ el_touch_cover:
+  pad: "BookCover index:0"
+  phone: "BookCover index:0"
