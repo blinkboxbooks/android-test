@@ -3,7 +3,6 @@ class BookReaderPage < BBBPage
 	def trait
 		"FrameLayout id:'content'"
 	end
-
 	def display_reader_options
 		performAction('click_on_screen', 50, 50)
 		#wait_element_to_exist(textview_progress)
