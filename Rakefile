@@ -62,6 +62,7 @@ task :android_run do
 	puts output
 end
 task :default do
+	#ENV['configuration'] -- Could allow us to override yaml settings from CI
 	Rake::Task["android_get"].invoke
 	Rake::Task["android_install"].invoke
 	Rake::Task["android_sign"].invoke
