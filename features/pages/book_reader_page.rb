@@ -48,10 +48,6 @@ class BookReaderPage < BBBPage
     end
   end
 
-  def exit_book_reader
-    touch("LinearLayout id:'layout_back'")
-  end
-
   def options_menu_button
     touch("BBBTextView marked:'Options'")
   end
