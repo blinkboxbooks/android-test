@@ -12,6 +12,7 @@ assert_not_nil($testdata,"Test data was nil")
 $lookup = YAML.load_file("config/lookup_settings.yml")
 assert_not_nil($lookup,"string table data was nil")
 
+
 def lookup_table(area,element)
 	puts "Performing lookup #{area} #{element} => #{$lookup[area][element]}"
 	return $lookup[area][element]
