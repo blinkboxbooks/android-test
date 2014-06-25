@@ -1,9 +1,0 @@
-test_server_path
-start_test_server_in_background
-query("*")
-element_exists("BBButton marked:'Try it out'")
-wait_for_element_exists("* marked:'Try it out'",:timeout => 5)
-wait_for_elements_exist(["button marked:'Try it out'"],:timeout => 2)
-wait_for(:timeout =>2) { query("button markedry("button marked:'Try it out'").size > 0 }
-wait_for(:timeout =>2) { query("button markedry("button marked:'Try it out'").size > 0 }
-exit
