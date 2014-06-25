@@ -2,7 +2,6 @@ class   AnonymousLibraryPage < BBBPage
 	def trait
 		"BBBTextView id:'textview_title'"
 	end
-
 	def goto_sign_in
 		if query(lookup_table("login","el_goto_signin")).length == 0
 			if !scroll_down_with lookup_table("login","el_goto_signin"),10
@@ -12,10 +11,6 @@ class   AnonymousLibraryPage < BBBPage
 			end
 		end
 		@sign_in_page = page(SignInPage).await
-	end
-
-	def goto_registration
-		touch("")
 	end
 	def toggle_menu
 		touch(lookup_table('anon','toggle_menu'))
