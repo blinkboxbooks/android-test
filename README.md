@@ -28,14 +28,8 @@ test:
   await_timeout: 15
   scroll_timeout: 5
  environment: "production-debug"
- device: pad
  
 environment:
- "debug":
-  url:
-   auth: https://auth.mobcastdev.com
-  qa:
-   host: https://qa.mobcastdev.com/service
  "production-debug":
   url:
    auth: https://auth.blinkboxbooks.com
@@ -60,6 +54,7 @@ config/
 	  calabash_settings.yml
 	  project_settings.yml
       test_settings.yml
+	  lookup_settings.yml
 features/
 		step_definitions/
 		support/
