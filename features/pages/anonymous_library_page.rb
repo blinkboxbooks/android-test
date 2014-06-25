@@ -25,9 +25,13 @@ class   AnonymousLibraryPage < BBBPage
 		touch(lookup_table('anon','toggle_menu_signin'))
 	end
 	def logged_out?
-		touch("ToggleButton id:'togglebutton_home'")
-		query("TextView marked:'Sign in'").empty?.should == false
-		touch("ToggleButton id:'togglebutton_home'")
+		toggle_menu
+		if query(lookup_table('anon','toggle_menu_signin')).empty?
+			toggle_menu
+			return false
+		end
+		toggle_menu
+		return true
 	end
 
 end
