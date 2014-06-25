@@ -44,7 +44,7 @@ Typical usage
 ```
 bundle install
 rake 
-rake android_run   or rake android_run feature=features/login.feature
+rake android_run or rake android_run feature=features/login.feature
 ```
 project structure
 ================
