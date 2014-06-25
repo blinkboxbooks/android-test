@@ -1,5 +1,5 @@
 Given(/^the anonymous library screen is displayed$/) do
-	if element_exists(lookup_table('login','el_tryout'))
+	if page(WelcomePage).displayed?
 		@anonymous_library_page = page(WelcomePage).try_application_out
 	end
 	@anonymous_library_page = page(AnonymousLibraryPage).await
