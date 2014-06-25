@@ -41,15 +41,16 @@ usage
 =====
 
 Typical usage
-```
+```shell
 bundle install
 rake 
-rake android_run or rake android_run feature=features/login.feature
+rake android_run
+#Optional: rake android_run feature=features/login.feature
 ```
 project structure
 ================
 
-```
+```shell
 config/
 	  calabash_settings.yml
 	  project_settings.yml
