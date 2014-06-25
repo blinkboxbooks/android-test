@@ -1,5 +1,5 @@
 Given(/^I open the first book$/) do
-	wait_for(:timeout=>5){
+	wait_for(:timeout=>10){
 	touch(lookup_table('reader','el_touch_cover'))
 	}
 	@book_reader_page = page(BookReaderPage).await

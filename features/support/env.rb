@@ -13,10 +13,8 @@ $lookup = YAML.load_file("config/lookup_settings.yml")
 assert_not_nil($lookup,"string table data was nil")
 
 def lookup_table(area,element)
-	platform = $testdata['test']['device']
-	assert_not_nil(platform,"Platform could not be found in test data")
-	puts "Performing lookup #{area} #{element} #{platform} => #{$lookup[area][element][platform]}"
-	return $lookup[area][element][platform]
+	puts "Performing lookup #{area} #{element} => #{$lookup[area][element]}"
+	return $lookup[area][element]
 end
 def phone?
 	if $testdata['test']['device'] == 'phone'

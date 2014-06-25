@@ -1,27 +1,11 @@
 anon:
- toggle_menu:
-  pad: "* id:'togglebutton_home'"
-  phone: "* id:'togglebutton_home'"
- toggle_menu_signin:
-  pad: "TextView marked:'Sign in'"
-  phone: "TextView marked:'Sign in'"
+ toggle_menu: "* id:'togglebutton_home'"
+ toggle_menu_signin: "TextView marked:'Sign in'"
 login:
- el_tryout:
-  pad: "* marked:'Try it out'"
-  phone: "*marked:'Try it out'" 
- el_signin:
-  pad: "* marked:'Sign in to find books and more'"
-  phone: "BBBButton *marked:'Sign in'"
- el_signedin:
-  pad: "BBBTextView marked:'Your library'"
-  phone: "BBBTextView marked:'Your library'"
+ el_tryout: "* marked:'Try it out'"
+ el_signin: "* marked:'Sign in to find books and more'"
+ el_signedin: "BBBTextView marked:'Your library'"
 reader:
- el_touch_cover:
-  pad: "BookCover index:0"
-  phone: "BookCover index:0"
- el_touch_bookmark:
-  pad: "ImageView marked:'Reader bookmark'"
-  phone: "ImageView marked:'Reader bookmark'"
- el_bookmark:
-  pad: "* id:'imageview_bookmark'"
-  phone: "* id:'imageview_bookmark'"
+ el_touch_cover: "BookCover index:0"
+ el_touch_bookmark: "ImageView marked:'Reader bookmark'"
+ el_bookmark: "* id:'imageview_bookmark'"
