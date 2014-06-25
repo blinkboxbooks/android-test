@@ -1,5 +1,7 @@
 Given(/^I open the first book$/) do
+	wait_for(:timeout=>5){
 	touch(lookup_table('reader','el_touch_cover'))
+	}
 	@book_reader_page = page(BookReaderPage).await
 end
 
@@ -13,8 +15,11 @@ end
 Then(/^I should be back on the user library screen$/) do
 	page(UserLibraryPage).await.expect be_current_page
 end
-Given(/^move (\d+) foward$/) do |arg1|
+And(/^move (\d+) foward$/) do |arg1|
 	@book_reader_page.turn_page_forward(arg1)
+end
+And(/^move (\d+) backward$/) do |arg1|
+	@book_reader_page.turn_page_backward(arg1)
 end
 
 And(/^I verify that the page is not bookmarked$/) do

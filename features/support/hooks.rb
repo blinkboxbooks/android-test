@@ -3,7 +3,7 @@ require 'httparty'
 require 'calabash-android/cucumber'
 Before do
 	$dunit ||= false
-	return $dunit if $dunit              
+	if !$dunit
 	#load configuration files
 	assert_not_nil($testdata,"No test data found")
 	assert_not_nil($conf,"No conf data found")
@@ -14,7 +14,7 @@ Before do
 	@host = $testdata['environment'][@env]['qa']['host']
 	assert_not_nil(@host,"Host data for selected env was nil")
 	$dunit = true                           
-
+	end
 end
 module KnowAboutOauthRequests
 	def authenticate(opt = {})
@@ -53,4 +53,5 @@ module LibraryService
 		@response = HTTParty.post(host, :body => body.to_json , :headers => headers )
 	end
 end
+
 World(KnowAboutOauthRequests, LibraryService)

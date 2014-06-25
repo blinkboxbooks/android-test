@@ -66,6 +66,10 @@ task :android_run do
 	end
 	puts output
 end
+desc "Prints out details about current configuration"
+task :android_details do
+	puts "Tests are currently to run on #{@testdata['test']['device']} under #{@testdata['test']['environment']} configuration"
+end
 task :default do
 	#ENV['configuration'] -- Could allow us to override yaml settings from CI
 	Rake::Task["android_get"].invoke

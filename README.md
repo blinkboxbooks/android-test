@@ -75,4 +75,5 @@ rake android_get      # Get latest android APK
 rake android_install  # Installs the apk and test server
 rake android_run      # Runs calabash android
 rake android_sign     # builds and resigns the apk
+rake android_details  # Prints out details about the current test configuration
 ```	
