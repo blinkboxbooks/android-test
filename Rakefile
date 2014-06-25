@@ -58,7 +58,12 @@ end
 desc "Runs calabash android"
 task :android_run do
 	relist_directory
-	output = `calabash-android run #{@apks[match_configuration]}`
+	if ENV["feature"]
+		puts "Running - #{ENV["feature"]}"
+		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]}`
+	else
+		output = `calabash-android run #{@apks[match_configuration]}`
+	end
 	puts output
 end
 task :default do
