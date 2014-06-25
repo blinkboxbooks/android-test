@@ -14,10 +14,12 @@ calabash_settings.yml -> controls debug.keystore location
 project_settings.yml -> controls the endpoint location
 test_settings.yml -> controls everything else including ENVIRONMENT
 ```
+Dynamic configuration
+---------------------
+Within test_settings.yml the environment will select which APK to install and use
+
 usage
 =====
-
-
 
 Typical usage
 ```
@@ -30,14 +32,16 @@ project structure
 
 ```
 config/
+	  calabash_settings.yml
+	  project_settings.yml
+      test_settings.yml
 features/
 		step_definitions/
 		support/
 		pages/
 		Rakefile #Rake -T for options
 		README.md
-		calabash_settings #Debug keystore
-		project_settings #Artifact url, build settings
+		Gemfile
 ```
 
 Rakefile -T
