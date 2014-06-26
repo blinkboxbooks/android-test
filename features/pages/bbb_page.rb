@@ -12,7 +12,7 @@ module NavigationHelpers
 			time = Time.now - t1
 		end
 		if time > max_duration
-			log.warn "Could not find element in #{max_duration}s"
+			logger.warn "Could not find element in #{max_duration}s"
 			return false
 		end
 		return false
