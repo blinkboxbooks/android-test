@@ -47,8 +47,8 @@ def download_apk
 		payload = @conf['remote']['endpoint_payload']
 	end
 	Dir.chdir(@conf['project']['build_dir']){
-		`unzip #{payload}`
-		`mv apk/*.apk .`
+		`unzip #{payload} 2>/dev/null`
+		`mv apk/*.apk . 2>/dev/null`
 	}
 end
 task :android_get do
