@@ -46,6 +46,13 @@ rake
 rake android_run
 #Optional: rake android_run feature=features/login.feature
 ```
+Custom usage
+```shell
+bundle install
+rake endpoint_download=/Users/foo/Desktop/apk.zip endpoint_type=local
+rake android_run
+```
+
 project structure
 ================
 
