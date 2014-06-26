@@ -9,12 +9,10 @@ class BookReaderPage < BBBPage
 	end
 	def display_reader_options
 		performAction('click_on_screen', 50, 50)
-		#wait_element_to_exist(textview_progress)
 	end
 
 	def remove_reader_options
 		performAction('click_on_screen', 50, 50)
-		#wait_for_elements_do_not_exist(textview_progress , :timeout => TEST_CONFIG["sync_timeout_longer"])
 	end
 
 	def turn_page_forward(number_of_pages)
@@ -112,15 +110,4 @@ class BookReaderPage < BBBPage
 		end
 		return true
 	end
-
-	def progress_loading_present
-		wait_for_elements_do_not_exist(["ProgressBar id:'progress_loading'"], :timeout => TEST_CONFIG["sync_timeout_longer"] )
-	end
-
-	private
-
-	def textview_progress
-		"TextView id:'textview_progress'"
-	end
-
 end
