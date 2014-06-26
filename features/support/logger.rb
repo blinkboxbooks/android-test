@@ -19,7 +19,7 @@ module Logging
 		end
 	end
 	def logger
-		@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT,STDERR,File.open("testlog-#{Time.now.to_i}.log","w+"))	
+		@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT,STDERR)	
 	end
 end
 World(Logging)
