@@ -9,8 +9,8 @@ When(/^I sign in$/) do
 	if @anonymous_library_page.logged_out?
 		@anonymous_library_page.toggle_menu_sign_in
 		@sign_in_page = page(SignInPage).await
-		username = $testdata['users']['existing']['emailaddress']
-		password = $testdata['users']['existing']['password']
+		username = test_data['users']['existing']['emailaddress']
+		password = test_data['users']['existing']['password']
 		page(SignInPage).submit_sign_in_details(username,password)
 	end
 end

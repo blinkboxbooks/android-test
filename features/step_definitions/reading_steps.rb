@@ -21,7 +21,9 @@ And(/^move (\d+) backward$/) do |arg1|
 end
 
 And(/^I verify that the page is not bookmarked$/) do
-	assert_equal(@book_reader_page.has_bookmark?,false,"Failed to verify page not bookmarked")
+	if @book_reader_page.has_bookmark? == true
+		scenario.fail!('Page should not have been book marked')
+	end
 end
 
 When(/^I open the reading option$/) do
@@ -33,7 +35,9 @@ When(/^I add a bookmark to the page$/) do
 end
 
 And(/^I verify that the page is bookmarked$/) do
-	assert_equal(@book_reader_page.has_bookmark?,true,"Failed to verify page bookmark existed")
+	if @book_reader_page.has_bookmark? == false
+		scenario.fail!('Page should have been book marked')
+	end
 end
 
 Then(/^I remove the bookmark from the page$/) do
