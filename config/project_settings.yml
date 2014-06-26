@@ -4,3 +4,6 @@ remote:
  endpoint_payload: apk.zip
 project:
  build_dir: build
+ log_path: logs
+ log_file: log.log
+ log_rotation: daily

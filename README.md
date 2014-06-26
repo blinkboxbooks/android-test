@@ -8,19 +8,17 @@ setup
 - Confirm location and password/username combination of debug.keystore calabash_settings
 - Confirm endpoint and project configurations in project_settings
 
-Four settings files in config/
+Three settings files in config/
 ```
 calabash_settings.yml -> controls debug.keystore location
 project_settings.yml -> controls the endpoint location
 test_settings.yml -> controls everything else including ENVIRONMENT
-lookup_settings.yml -> Platform specific string table lookup
 ```
 Dynamic configuration
 ---------------------
 Within test_settings.yml the environment will select which APK to install and use.
 There must be the appropriate authentication path to match chose configuration
 
-There is also option for setting the device for testing - Localised query strings are available in lookup_settings.yml
 
 ```yaml
 test:
@@ -61,7 +59,6 @@ config/
 	  calabash_settings.yml
 	  project_settings.yml
       test_settings.yml
-	  lookup_settings.yml
 features/
 		step_definitions/
 		support/

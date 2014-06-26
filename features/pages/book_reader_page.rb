@@ -1,5 +1,9 @@
 class BookReaderPage < BBBPage
-
+	def open_first_book
+		wait_for(:timeout => 10){
+		touch("BookCover index:0")
+		}
+	end
 	def trait
 		"FrameLayout id:'content'"
 	end
@@ -83,13 +87,13 @@ class BookReaderPage < BBBPage
 
 	def add_bookmark
 		wait_for(:timeout => 5) {
-			touch(lookup_table('reader','el_touch_bookmark'))
-		}
+			touch("ImageView marked:'Reader bookmark'")	
+	}
 	end
 
 	def remove_bookmark
 		wait_for(:timeout => 5) {
-			touch(lookup_table('reader','el_touch_bookmark'))
+			touch("ImageView marked:'Reader bookmark'")	
 		}
 	end
 
@@ -101,9 +105,9 @@ class BookReaderPage < BBBPage
 
 	def has_bookmark?
 		wait_for(:timeout => 5) {
-			query(lookup_table('reader','el_bookmark'))
+			query("* id:'imageview_bookmark'")
 		}
-		if query(lookup_table('reader','el_bookmark')).empty?
+		if query("* id:'imageview_bookmark'").empty?
 			return false
 		end
 		return true
