@@ -1,7 +1,7 @@
 class BookReaderPage < BBBPage
 	def open_first_book
 		wait_for(:timeout => 10){
-		touch("BookCover index:0")
+			touch("BookCover index:0")
 		}
 	end
 	def trait
@@ -86,7 +86,7 @@ class BookReaderPage < BBBPage
 	def add_bookmark
 		wait_for(:timeout => 5) {
 			touch("ImageView marked:'Reader bookmark'")	
-	}
+		}
 	end
 
 	def remove_bookmark
