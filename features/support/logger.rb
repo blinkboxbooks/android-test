@@ -1,0 +1,25 @@
+require 'logger'
+module Logging
+	class MultiDelegator
+		def initialize(*targets)
+			@targets = targets
+		end
+
+		def self.delegate(*methods)
+			methods.each do |m|
+				define_method(m) do |*args|
+					@targets.map { |t| t.send(m, *args) }
+				end
+			end
+			self
+		end
+
+		class <<self
+			alias to new
+		end
+	end
+	def logger
+		@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT,STDERR,File.open("testlog-#{Time.now.to_i}.log","w+"))	
+	end
+end
+World(Logging)

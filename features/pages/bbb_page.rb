@@ -28,10 +28,10 @@ end
 class BBBPage < Calabash::ABase
 	include NavigationHelpers
 	def displayed?
-		puts "Checking if \"#{trait}\" displayed"
+		logger.debug "Checking if \"#{trait}\" displayed"
 		exists = false
 		if !query(trait).empty?
-			puts "Found trait"
+			logger.debug "Found trait"
 			exists = true
 		end
 		return exists

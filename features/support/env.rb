@@ -3,16 +3,15 @@ require 'yaml'
 require 'httparty'
 require 'pry'
 require 'require_all'
+
 require_all File.expand_path("../pages",File.dirname(__FILE__))
 
 module UtilityObjects
 	def conf_data
 		@conf_data ||= YAML.load_file("config/project_settings.yml")
-		return @conf_data
 	end
 	def test_data
 		@test_data ||= YAML.load_file("config/test_settings.yml")
-		return @test_data
 	end
 end
 
