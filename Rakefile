@@ -20,7 +20,7 @@ def match_configuration
 		if apk.include? @environment
 			return pos
 		end
-		pos +=1
+	pos +=1
 	end	
 end
 def generate_directories
@@ -30,9 +30,22 @@ def generate_directories
 	FileUtils::mkdir @conf['project']['build_dir']
 end
 def download_apk
-	path = @conf['remote']['endpoint_download'] 
-	`wget #{path} -P #{@conf['project']['build_dir']}`
-	payload = @conf['remote']['endpoint_payload']
+	operation_type = 'wget'
+	if ENV['endpoint_type'] == 'local'
+		operation_type = 'cp -rf'
+	end
+	if ENV['endpoint_download']
+		path = ENV['endpoint_download']
+	else
+		path = @conf['remote']['endpoint_download'] 
+	end
+	puts "Operation type #{operation_type} on path #{path}"
+	`#{operation_type} #{path} -P #{@conf['project']['build_dir']} 2>/dev/null`
+	if ENV['endpoint_payload']
+		payload = ENV['endpoint_payload']
+	else
+		payload = @conf['remote']['endpoint_payload']
+	end
 	Dir.chdir(@conf['project']['build_dir']){
 		`unzip #{payload}`
 		`mv apk/*.apk .`
@@ -71,7 +84,9 @@ task :android_details do
 	puts "Tests are currently to run on #{@testdata['test']['device']} under #{@testdata['test']['environment']} configuration"
 end
 task :default do
-	#ENV['configuration'] -- Could allow us to override yaml settings from CI
+	#endpoint_download=custom endpoint
+	#endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
+	#configuration=custom configuration
 	Rake::Task["android_get"].invoke
 	Rake::Task["android_install"].invoke
 	Rake::Task["android_sign"].invoke
