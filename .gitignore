@@ -1,3 +1,4 @@
+device_logs
 *.log
 logs
 .irb-history

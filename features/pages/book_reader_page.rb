@@ -50,8 +50,9 @@ class BookReaderPage < BBBPage
 	end
 
 	def options_menu_button
-		puts "Opening options menu"
+		logger.debug "Opening options menu"
 		display_reader_options
+		sleep(2)
 	end
 
 	def list_of_bookmarks
@@ -102,9 +103,6 @@ class BookReaderPage < BBBPage
 	end
 
 	def has_bookmark?
-		wait_for(:timeout => 5) {
-			query("* id:'imageview_bookmark'")
-		}
 		if query("* id:'imageview_bookmark'").empty?
 			return false
 		end
