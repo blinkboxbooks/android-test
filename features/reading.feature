@@ -28,4 +28,4 @@ Feature: Allow the user to use the library to view free and purchased books
 		Examples:
 			| fpages |
 			|   2    |
-			| 	1    |
+			|   1    |
