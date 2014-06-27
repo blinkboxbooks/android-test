@@ -3,6 +3,7 @@ require 'yaml'
 require 'httparty'
 require 'pry'
 require 'require_all'
+require 'rspec'
 
 require_all File.expand_path("../pages",File.dirname(__FILE__))
 
@@ -51,5 +52,6 @@ module LibraryService
 		@response = HTTParty.post(host, :body => body.to_json , :headers => headers )
 	end
 end
+
 World(UtilityObjects)
 World(KnowAboutOauthRequests, LibraryService)

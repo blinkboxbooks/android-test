@@ -21,7 +21,7 @@ And(/^move (\d+) backward$/) do |arg1|
 end
 
 And(/^I verify that the page is not bookmarked$/) do
-	@book_reader_page.has_bookmark?
+	@book_reader_page.has_bookmark?.should eql false
 end
 
 When(/^I open the reading option$/) do
@@ -33,7 +33,7 @@ When(/^I add a bookmark to the page$/) do
 end
 
 And(/^I verify that the page is bookmarked$/) do
-	@book_reader_page.has_bookmark?
+	@book_reader_page.has_bookmark?.should eql true
 end
 
 Then(/^I remove the bookmark from the page$/) do
