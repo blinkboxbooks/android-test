@@ -1,4 +1,5 @@
 class   AnonymousLibraryPage < BBBPage
+include LibraryActions
 	def trait
 		"BBBTextView id:'textview_title'"
 	end
