@@ -27,6 +27,10 @@ end
 
 class BBBPage < Calabash::ABase
 	include NavigationHelpers
+	def initialize(world, transition_duration=0.5)
+		super(world,transition_duration)
+		logger.debug "Navigating page #{trait}"
+	end
 	def displayed?
 		logger.debug "Checking if \"#{trait}\" displayed"
 		exists = false
