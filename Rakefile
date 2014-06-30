@@ -73,12 +73,13 @@ task :android_run do
 	relist_directory
 
 	formatter = ENV['formatter'] ? ENV['formatter'] : "LoggedFormatter"
+	output_path = ENV['output'] ? ENV['output'] : ""
 	puts "Using formatter #{formatter}"
 	if ENV["feature"]
 		puts "Running - #{ENV["feature"]}"
-		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]} -f #{formatter}`
+		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]} -f #{formatter} -o #{output_path}`
 	elsif ENV["profile"]
-		output = `calabash-android run #{@apks[match_configuration]} --profile=#{ENV['profile']} -f #{formatter}`
+		output = `calabash-android run #{@apks[match_configuration]} --profile=#{ENV['profile']} -f #{formatter} -o #{output_path}`
 	else
 		output = `calabash-android run #{@apks[match_configuration]}`
 	end
