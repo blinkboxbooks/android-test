@@ -43,6 +43,7 @@ bundle install
 rake 
 rake android_run
 #Optional: rake android_run feature=features/login.feature
+#Optional: rake_android_run profile=smoke   This is based on config/cucumber.yml
 ```
 Custom usage
 ```shell

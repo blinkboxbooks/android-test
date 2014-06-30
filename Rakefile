@@ -74,6 +74,8 @@ task :android_run do
 	if ENV["feature"]
 		puts "Running - #{ENV["feature"]}"
 		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]}`
+	elsif ENV["profile"]
+		output = `calabash-android run #{@apks[match_configuration]} --profile=#{ENV['profile']}`
 	else
 		output = `calabash-android run #{@apks[match_configuration]}`
 	end
