@@ -1,7 +1,5 @@
 require 'logger'
-require_relative 'env.rb'
 module Logging
-	include UtilityObjects
 	class MultiDelegator
 		def initialize(*targets)
 			@targets = targets
@@ -15,13 +13,12 @@ module Logging
 			end
 			self
 		end
-
+		
 		class <<self
 			alias to new
 		end
 	end
 	def logger
-		@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT,File.new(conf_data['project']['log_test_name'],"a"))
+		@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT)
 	end
 end
-World(Logging)

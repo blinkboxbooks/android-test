@@ -4,6 +4,6 @@ remote:
  endpoint_payload: apk.zip
 project:
  build_dir: build
- log_test_name: testrun_history.log
- log_device_path: device_logs
+ log_html_path: output.html
+ log_device_folder: device_logss
  log_level: I
