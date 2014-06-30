@@ -15,5 +15,4 @@ After do | scenario |
 	logger.debug "After scenario..."
 	logger.debug "Saving log to " + conf_data['project']['log_path']
 	Process.kill 9, conf_data['project']['log_pid']
-logger.debug "Produced device log" 
 end
