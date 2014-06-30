@@ -15,11 +15,9 @@ Then(/^I should be back on the user library screen$/) do
 end
 And(/^move (\d+) foward$/) do |arg1|
 	@book_reader_page.turn_page_forward(arg1)
-	sleep(1) #Allow for animation time to finish
 end
 And(/^move (\d+) backward$/) do |arg1|
 	@book_reader_page.turn_page_backward(arg1)
-	sleep(1) #Allow for animation time to finish
 end
 
 And(/^I verify that the page is not bookmarked$/) do
