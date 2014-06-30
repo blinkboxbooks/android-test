@@ -71,11 +71,14 @@ end
 desc "Runs calabash android"
 task :android_run do
 	relist_directory
+
+	formatter = ENV['formatter'] ? ENV['formatter'] : "LoggedFormatter"
+	puts "Using formatter #{formatter}"
 	if ENV["feature"]
 		puts "Running - #{ENV["feature"]}"
-		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]} -f LoggedFormatter`
+		output = `calabash-android run #{@apks[match_configuration]} #{ENV["feature"]} -f #{formatter}`
 	elsif ENV["profile"]
-		output = `calabash-android run #{@apks[match_configuration]} --profile=#{ENV['profile']} -f LoggedFormatter`
+		output = `calabash-android run #{@apks[match_configuration]} --profile=#{ENV['profile']} -f #{formatter}`
 	else
 		output = `calabash-android run #{@apks[match_configuration]}`
 	end
