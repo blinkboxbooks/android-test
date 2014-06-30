@@ -62,6 +62,7 @@ config/
 features/
 		step_definitions/
 		support/
+				modules/
 		pages/
 		Rakefile #Rake -T for options
 		README.md
