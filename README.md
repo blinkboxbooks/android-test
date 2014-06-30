@@ -55,7 +55,7 @@ project structure
 
 ```shell
 config/
-	  calabash_settings.yml
+	  test_settings.yml
 	  project_settings.yml
 	  test_data.yml
 	  cucumber.yml
