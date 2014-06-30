@@ -8,11 +8,12 @@ setup
 - Confirm location and password/username combination of debug.keystore calabash_settings
 - Confirm endpoint and project configurations in project_settings
 
-Three settings files in config/
+Four settings files in config/
 ```
-calabash_settings.yml -> controls debug.keystore location
-project_settings.yml -> controls the endpoint location
-test_settings.yml -> controls everything else including ENVIRONMENT
+cucumber.yml -> cucumber profiles
+test_data.yml -> test data
+project_settings.yml -> controls the resource location
+test_settings.yml -> controls test specific settings e.g. URL endpoints
 ```
 Dynamic configuration
 ---------------------
@@ -22,9 +23,6 @@ There must be the appropriate authentication path to match chose configuration
 
 ```yaml
 test:
- timers:
-  await_timeout: 15
-  scroll_timeout: 5
  environment: "production-debug"
  
 environment:
@@ -57,9 +55,10 @@ project structure
 
 ```shell
 config/
-	  calabash_settings.yml
+	  test_settings.yml
 	  project_settings.yml
-      test_settings.yml
+	  test_data.yml
+	  cucumber.yml
 features/
 		step_definitions/
 		support/
