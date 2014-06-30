@@ -23,9 +23,6 @@ There must be the appropriate authentication path to match chose configuration
 
 ```yaml
 test:
- timers:
-  await_timeout: 15
-  scroll_timeout: 5
  environment: "production-debug"
  
 environment:
