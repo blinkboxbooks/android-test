@@ -12,6 +12,7 @@ Feature: Allow the user to use the library to view free and purchased books
 		Then I go back
 		Then I should be back on the user library screen
 	@smoke
+	@wip
 	Scenario Outline: Add and remove bookmarks
 		Given I open the first book
 		And move <fpages> foward
@@ -27,5 +28,4 @@ Feature: Allow the user to use the library to view free and purchased books
 		Then I should be back on the user library screen
 		Examples:
 			| fpages |
-			|   2    |
 			|   1    |
