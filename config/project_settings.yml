@@ -5,5 +5,5 @@ remote:
 project:
  build_dir: build
  log_html_path: output.html
- log_device_folder: device_logss
+ log_device_folder: device_logs
  log_level: I
