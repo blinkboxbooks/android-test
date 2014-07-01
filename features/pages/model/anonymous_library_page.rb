@@ -1,7 +1,9 @@
 class AnonymousLibraryPage < Page
-	@home_button = Element.new("* id:'togglebutton_home'")
-	@signin_button = Element.new("TextView marked:'Sign in'")
-	@shop_button = Element.new("* id:'button_shop'")
+	def initialize arg
+		@home_button = Element.new("* id:'togglebutton_home'")
+		@signin_button = Element.new("TextView marked:'Sign in'")
+		@shop_button = Element.new("* id:'button_shop'")
+	end
 	def trait
 		"BBBTextView id:'textview_title'"
 	end

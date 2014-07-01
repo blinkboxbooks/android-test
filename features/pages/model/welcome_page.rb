@@ -1,5 +1,7 @@
 class WelcomePage < Page
-	@try_it_out_button = Element.new("BBBButton marked:'Try it out'")
+	def initialize arg
+		@try_it_out_button = Element.new("BBBButton marked:'Try it out'")
+	end
 	def trait
 		"BBBButton marked:'Try it out'"
 	end

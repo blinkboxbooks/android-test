@@ -1,5 +1,7 @@
 class UserLibraryPage < Page
-	@shop_button = Element.new("* id:'button_shop'")
+	def initialize arg
+		@shop_button = Element.new("* id:'button_shop'")
+	end
 	def trait
 		"BBBTextView marked:'Your library'"
 	end
