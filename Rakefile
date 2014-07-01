@@ -95,6 +95,7 @@ task :environment_install do
 	if ret.empty?
 		`ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"`
 		`brew install wget`
+		`bundle install`
 	end
 end
 task :default do
