@@ -1,4 +1,5 @@
 *.html
+*.json
 device_logs
 *.log
 logs
