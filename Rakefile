@@ -91,8 +91,8 @@ task :android_details do
 end
 desc "Checks development environment and install essentials"
 task :environment_install do
-	ret = `which brew`.empty?
-	if !ret 
+	ret = `which brew`
+	if ret.empty?
 		`ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"`
 		`brew install wget`
 	end
