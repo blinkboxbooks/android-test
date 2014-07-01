@@ -89,6 +89,15 @@ desc "Prints out details about current configuration"
 task :android_details do
 	puts "Tests are currently to run on #{@testdata['test']['device']} under #{@testdata['test']['environment']} configuration"
 end
+desc "Checks development environment and install essentials"
+task :environment_install do
+	ret = `which brew`
+	if ret.empty?
+		`ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"`
+		`brew install wget`
+		`bundle install`
+	end
+end
 task :default do
 	#endpoint_download=custom endpoint
 	#endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
