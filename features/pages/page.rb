@@ -23,9 +23,10 @@ module NavigationHelpers
 	def scroll_up_with element_query, max_duration
 		scroll_with? 'scroll_up', element_query, max_duration
 	end
-end	
+end
 
-class BBBPage < Calabash::ABase
+
+class Page < Calabash::ABase
 	include NavigationHelpers
 	def initialize(world, transition_duration=0.5)
 		super(world,transition_duration)
@@ -39,5 +40,5 @@ class BBBPage < Calabash::ABase
 			exists = true
 		end
 		return exists
-	end	
+	end
 end

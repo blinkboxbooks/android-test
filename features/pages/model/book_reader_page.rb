@@ -1,4 +1,4 @@
-class BookReaderPage < BBBPage
+class BookReaderPage < Page
 	def open_first_book
 		wait_for(:timeout => 10){
 			touch("BookCover index:0")

@@ -1,6 +1,6 @@
 Given(/^the anonymous library screen is displayed$/) do
 	if page(WelcomePage).displayed?
-		@anonymous_library_page = page(WelcomePage).try_application_out
+		@anonymous_library_page = page(WelcomePage).goto_library
 	end
 	@anonymous_library_page = page(AnonymousLibraryPage).await
 	page(AnonymousLibraryPage).await.expect be_current_page	
