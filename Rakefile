@@ -93,9 +93,8 @@ desc "Checks development environment and install essentials"
 task :environment_install do
 	ret = `which brew`
 	if ret.empty?
-		`ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"`
-		`brew install wget`
-		`bundle install`
+		puts "Please run : ruby -e \"$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)\""
+		puts "Additional : brew install wget"
 	end
 end
 task :default do
