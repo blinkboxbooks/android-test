@@ -1,0 +1,10 @@
+*.html
+device_logs
+*.log
+logs
+.irb-history
+*.log
+*.png
+.DS_Store
+test_servers
+build

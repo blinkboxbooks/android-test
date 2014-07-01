@@ -1,0 +1,9 @@
+#BUILD AND INSTALLATION
+remote:
+ endpoint_download: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/artifact/app/build/apk/*zip*/apk.zip   
+ endpoint_payload: apk.zip
+project:
+ build_dir: build
+ log_html_path: output.html
+ log_device_folder: device_logs
+ log_level: I
