@@ -11,7 +11,8 @@ Then(/^I can flip pages backward$/) do
 	@book_reader_page.turn_page_backward(1)
 end
 Then(/^I should be back on the user library screen$/) do
-	page(UserLibraryPage).await.expect be_current_page
+	@user_libary_page = page(UserLibraryPage).await
+	@user_libary_page.displayed?.should be true
 end
 And(/^move (\d+) foward$/) do |arg1|
 	@book_reader_page.turn_page_forward(arg1)
