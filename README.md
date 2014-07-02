@@ -64,6 +64,7 @@ features/
 		support/
 				modules/
 		pages/
+		      model/
 		Rakefile #Rake -T for options
 		README.md
 		Gemfile
