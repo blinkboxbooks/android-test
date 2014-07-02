@@ -58,7 +58,6 @@ module Element
 		@mapped_items ||= []
 		@mapped_items << item.to_s
 	end
-
 	def build(name, pattern)
 		if pattern.empty?
 			raise 'No selector'
