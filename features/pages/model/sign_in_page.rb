@@ -8,9 +8,9 @@ class SignInPage < Page
 		"TextView marked:'Sign in'"
 	end
 	def submit_sign_in_details(user_name, password)
-		email_field.enter_text(user_name)
-		password_field.enter_text(password)
-		scroll_down_with signin_button.el,10
-		signin_button.click
+		email_field_enter_text(user_name)
+		password_field_enter_text(password)
+	#	scroll_down_with signin_button.el,10
+		signin_button_click
 	end
 end

@@ -7,18 +7,18 @@ class AnonymousLibraryPage < Page
 		"BBBTextView id:'textview_title'"
 	end
 	def goto_shop
-		shop_button.click
+		shop_button_click
 	end
 	def toggle_menu
-		home_button.click
+		home_button_click
 	end
 	def toggle_menu_sign_in
 		toggle_menu
-		signin_button.click
+		signin_button_click
 	end
 	def logged_out?
 		toggle_menu
-		if signin_button.exists?
+		if signin_button_exists?
 			toggle_menu
 			return true
 		end
