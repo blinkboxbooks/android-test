@@ -7,7 +7,7 @@ class WelcomePage < Page
 	end
 	def goto_library
 		if try_it_out_button_exists?
-			 try_it_out_button_click
+			try_it_out_button_click
 		else
 			logger.alert "Element missing #{try_it_out_button.el}"
 		end

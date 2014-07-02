@@ -4,6 +4,6 @@ class UserLibraryPage < Page
 		"BBBTextView marked:'Your library'"
 	end
 	def goto_shop
-		shop_button.click
+		shop_button_click
 	end
 end

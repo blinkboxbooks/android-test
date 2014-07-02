@@ -1,11 +1,11 @@
 class BookReaderPage < Page
 
-  element :book_cover_first, "BookCover index:0"
-  element :bookmarker, "ImageView marked:'Reader bookmark'"
-  element :bookmark, "* id:'imageview_bookmark'"
+	element :book_cover_first, "BookCover index:0"
+	element :bookmarker, "ImageView marked:'Reader bookmark'"
+	element :bookmark, "* id:'imageview_bookmark'"
 
- 	def open_first_book
-		book_cover_first.click
+	def open_first_book
+		book_cover_first_click
 	end
 	def trait
 		"FrameLayout id:'content'"
@@ -43,15 +43,15 @@ class BookReaderPage < Page
 	end
 	def add_bookmark
 		wait_for(:timeout => 5) {
-			bookmarker.click
+			bookmarker_click
 		}
 	end
 	def remove_bookmark
 		wait_for(:timeout => 5) {
-			bookmarker.click
+			bookmarker_click
 		}
 	end
 	def has_bookmark?
-		bookmark.exists?
+		bookmark_exists?
 	end
 end
