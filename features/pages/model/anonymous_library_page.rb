@@ -1,25 +1,24 @@
 class AnonymousLibraryPage < Page
-	def initialize arg
-		@home_button = Element.new("* id:'togglebutton_home'")
-		@signin_button = Element.new("TextView marked:'Sign in'")
-		@shop_button = Element.new("* id:'button_shop'")
-	end
+
+	element :home_button, "* id:'togglebutton_home'"
+	element :signin_button, "TextView marked:'Sign in'"
+	element :shop_button, "* id:'button_shop'"
 	def trait
 		"BBBTextView id:'textview_title'"
 	end
 	def goto_shop
-		@shop_button.click
+		shop_button.click
 	end
 	def toggle_menu
-		@home_button.click
+		home_button.click
 	end
 	def toggle_menu_sign_in
 		toggle_menu
-		@signin_button.click
+		signin_button.click
 	end
 	def logged_out?
 		toggle_menu
-		if @signin_button.exists?
+		if signin_button.exists?
 			toggle_menu
 			return true
 		end
