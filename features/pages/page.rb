@@ -28,6 +28,7 @@ end
 
 class Page < Calabash::ABase
 	include NavigationHelpers
+	include Logging
 	def initialize(world, transition_duration=0.5)
 		super(world,transition_duration)
 		logger.debug "Navigating page #{trait}"

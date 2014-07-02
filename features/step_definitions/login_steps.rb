@@ -3,7 +3,7 @@ Given(/^the anonymous library screen is displayed$/) do
 		@anonymous_library_page = page(WelcomePage).goto_library
 	end
 	@anonymous_library_page = page(AnonymousLibraryPage).await
-	page(AnonymousLibraryPage).await.expect be_current_page	
+	@anonymous_library_page.displayed?.should be true
 end
 When(/^I sign in$/) do
 	if @anonymous_library_page.logged_out?
@@ -15,5 +15,6 @@ When(/^I sign in$/) do
 	end
 end
 Then(/^I should be on the user library screen$/) do
-	@user_library_page = page(UserLibraryPage).await.expect be_current_page
+	@user_library_page = page(UserLibraryPage).await
+	@user_library_page.displayed?.should be true
 end
