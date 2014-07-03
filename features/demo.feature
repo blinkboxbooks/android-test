@@ -8,6 +8,7 @@ Feature: I want to demonstrate what an automation framework looks like in operat
   Scenario Outline: Navigating through the app
     Given I touch the shop icon
     Then I should see the shop page
+    Then I touch the <bselect> button
     Given I search for <shopitem>
     Then I should be presented with results
     Then I go back
@@ -20,5 +21,5 @@ Feature: I want to demonstrate what an automation framework looks like in operat
     Then I should be back on the user library screen
 
 Examples:
-  |shopitem|fpages|
-  |"Robots"| 10   |
+  |shopitem|fpages| bselect|
+  |"Robots"| 10   | "Non-fiction"|
