@@ -26,6 +26,12 @@ end
 module ElementExtensions
 	require 'calabash-android/abase'
 	include Calabash::Android::Operations
+	def ext_selector name, pattern
+		method_name = "#{name.to_s}_selector"
+		define_method method_name do
+			return pattern
+		end
+	end
 	def ext_exists? name,pattern
 		method_name = "#{name.to_s}_exists?"
 		define_method method_name do
@@ -44,7 +50,14 @@ module ElementExtensions
 			performAction('enter_text_into_id_field',text,pattern)
 		end
 	end
+	def custom_extension_method(name,pattern,command,action)
+		method_name = "#{name.to_s}_#{action}"
+		define_method method_name do | string | 
+			eval(command)
+		end
+	end
 	def build_extension_methods(name, arg)
+		ext_selector name, arg
 		ext_exists? name, arg
 		ext_click name, arg
 		ext_enter_text name, arg
@@ -73,6 +86,9 @@ module Element
 				query(pattern)
 			end
 		end
+	end
+	def custom_element(element_name,pattern,custom_action)
+
 	end
 end
 

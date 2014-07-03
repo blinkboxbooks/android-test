@@ -10,7 +10,7 @@ class SignInPage < Page
 	def submit_sign_in_details(user_name, password)
 		email_field_enter_text(user_name)
 		password_field_enter_text(password)
-	#	scroll_down_with signin_button.el,10
+		scroll_down_with signin_button_selector,10
 		signin_button_click
 	end
 end
