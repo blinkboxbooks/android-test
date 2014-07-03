@@ -7,6 +7,7 @@ class ShopPage < Page
 	element :fiction_button, "* text:'Fiction'"
 	element :non_fiction_button, "* text:'Non-fiction'"
 	element :categories_button, "* text:'Categories'"
+
 	def trait
 		"* id:'action_bar_title' marked:'Shop'"
 	end
