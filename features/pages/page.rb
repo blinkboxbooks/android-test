@@ -87,8 +87,11 @@ module Element
 			end
 		end
 	end
-	def custom_element(element_name,pattern,custom_action)
+	def custom_element(element_name,pattern,selector,custom_action)
+		if custom_action.respond_to? :call
+			raise 'responds to call'
 
+		end
 	end
 end
 

@@ -2,7 +2,7 @@ class ShopPage < Page
 	custom_action = Proc.new do | dist, *args |
 		query("* id:'search_src_text'",{:setText => string})
 	end
-	custom_element :search_field, "* id:'search_src_text'",custom_action
+	custom_element :search_field, "* id:'search_src_text'","custom_text",custom_action
 	element :search_results, "*android.widget.ListPopupWindow$DropDownListView"	
 	def trait
 		"* id:'action_bar_title' marked:'Shop'"
