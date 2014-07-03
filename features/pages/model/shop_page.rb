@@ -1,6 +1,6 @@
 class ShopPage < Page
-	custom_action = Proc.new do | dist, *args |
-		query("* id:'search_src_text'",{:setText => string})
+	custom_action = Proc.new do | *args |
+		query("* id:'search_src_text'",{:setText => args.first})
 	end
 	custom_element :search_field, "* id:'search_src_text'","custom_text",custom_action
 	element :search_results, "*android.widget.ListPopupWindow$DropDownListView"	
@@ -8,7 +8,7 @@ class ShopPage < Page
 		"* id:'action_bar_title' marked:'Shop'"
 	end
 	def search(string)
-		search_field_enter_text string
+		search_field_custom_text string
 		search_field_click
 	end
 	def search_has_results?

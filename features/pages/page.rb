@@ -50,12 +50,6 @@ module ElementExtensions
 			performAction('enter_text_into_id_field',text,pattern)
 		end
 	end
-	def custom_extension_method(name,pattern,command,action)
-		method_name = "#{name.to_s}_#{action}"
-		define_method method_name do | string | 
-			eval(command)
-		end
-	end
 	def build_extension_methods(name, arg)
 		ext_selector name, arg
 		ext_exists? name, arg
@@ -88,9 +82,19 @@ module Element
 		end
 	end
 	def custom_element(element_name,pattern,selector,custom_action)
-		if custom_action.respond_to? :call
-			raise 'responds to call'
-
+		if pattern.empty?
+			raise 'No selector'
+		end
+		if !custom_action.respond_to? :call
+			raise 'Requires block action'
+		end
+		define_method "#{element_name.to_s}_#{selector}" do |*runtime_args|
+			custom_action.call(*runtime_args)
+		end
+		build element_name, pattern do 
+			define_method element_name.to_s do |*runtime_args|
+				query(pattern)
+			end
 		end
 	end
 end
