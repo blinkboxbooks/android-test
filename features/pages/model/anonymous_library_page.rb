@@ -17,7 +17,7 @@ class AnonymousLibraryPage < Page
 		signin_button_click
 	end
 	def logged_out?
-		toggle_menu
+		  toggle_menu
 		if signin_button_exists?
 			toggle_menu
 			return true

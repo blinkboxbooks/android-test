@@ -91,7 +91,7 @@ module Element
 		define_method "#{element_name.to_s}_#{selector}" do |*runtime_args|
 			custom_action.call(*runtime_args)
 		end
-		build element_name, pattern do 
+		build element_name, pattern do
 			define_method element_name.to_s do |*runtime_args|
 				query(pattern)
 			end

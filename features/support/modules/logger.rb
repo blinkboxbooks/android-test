@@ -13,12 +13,21 @@ module Logging
 			end
 			self
 		end
-		
+
 		class <<self
 			alias to new
 		end
 	end
+
+	class PreLog
+		attr_accessor :logger
+		def initialize
+			@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT)
+			@logger.level = Logger::WARN
+		end
+	end
+
 	def logger
-		@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT)
+		@logger ||= PreLog.new.logger
 	end
 end
