@@ -1,3 +1,5 @@
+require 'calabash-android/abase'
+include Calabash::Android::Operations
 module NavigationHelpers
 	def scroll_with? scroll_direction,element_query, max_duration
 		t1 = Time.now
@@ -23,10 +25,28 @@ module NavigationHelpers
 	end
 end
 
+class Element
+	def initialize selector
+		@selector = selector
+	end
+	def selector
+		@selector
+	end
+end
+
 class Page < Calabash::ABase
+	extend Logging
 	include NavigationHelpers
-	include Logging
-	extend Element
+	def Page.element identity, selector
+		class_eval %Q{
+			def #{identity}
+				logger.debug "Creating #{identity} => #{selector}"
+				@_#{identity} ||= Element.new("#{selector}")
+				logger.debug "Done"
+				return @_#{identity}
+			end
+		}
+	end
 	def initialize(world, transition_duration=0.5)
 		super(world,transition_duration)
 		logger.debug "Navigating page #{trait}"

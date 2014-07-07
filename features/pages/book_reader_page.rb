@@ -5,7 +5,7 @@ class BookReaderPage < Page
 	element :bookmark, "* id:'imageview_bookmark'"
 
 	def open_first_book
-		book_cover_first_click
+		touch book_cover_first.selector
 	end
 	def trait
 		"FrameLayout id:'content'"
@@ -43,15 +43,15 @@ class BookReaderPage < Page
 	end
 	def add_bookmark
 		wait_for(:timeout => 5) {
-			bookmarker_click
+			touch bookmarker.selector
 		}
 	end
 	def remove_bookmark
 		wait_for(:timeout => 5) {
-			bookmarker_click
+			touch bookmarker.selector
 		}
 	end
 	def has_bookmark?
-		bookmark_exists?
+		!query(bookmark.selector).empty?
 	end
 end

@@ -1,8 +1,8 @@
 class ShopPage < Page
-	custom_action = Proc.new do | *args |
-		query("* id:'search_src_text'",{:setText => args.first})
-	end
-	custom_element :search_field, "* id:'search_src_text'","custom_text",custom_action
+#	custom_action = Proc.new do | *args |
+#		query("* id:'search_src_text'",{:setText => args.first})
+#	end
+	element :search_field, "* id:'search_src_text'"
 	element :search_results, "*android.widget.ListPopupWindow$DropDownListView"
 	element :fiction_button, "* text:'Fiction'"
 	element :non_fiction_button, "* text:'Non-fiction'"
@@ -12,21 +12,21 @@ class ShopPage < Page
 		"* id:'action_bar_title' marked:'Shop'"
 	end
 	def search(string)
-		search_field_custom_text string
-		search_field_click
+#		search_field_custom_text string
+		touch(search_field.selector)
 	end
 	def goto_fiction
-		fiction_button_click
+		touch(fiction_button.selector)
 	end
 	def goto_non_fiction
-		non_fiction_button_click
+		touch(non_fiction_button.selector)
 	end
 	def goto_categories
-		categories_button_click
+		touch(categories_button.selector)
 	end
 	def search_has_results?
 		wait_for(:timeout => 5) do
-			if search_results_exists?
+			if !query(search_results.selector).empty?
 				return true
 			end
 		end

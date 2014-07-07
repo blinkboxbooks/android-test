@@ -9,5 +9,5 @@ World(UtilityObjects)
 World(KnowAboutOauthRequests)
 World(LibraryService)
 
-require_all File.expand_path("../pages",File.dirname(__FILE__))
 require_all File.expand_path("../pages/model",File.dirname(__FILE__))
+require_all File.expand_path("../pages",File.dirname(__FILE__))

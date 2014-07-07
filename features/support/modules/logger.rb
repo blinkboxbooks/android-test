@@ -23,7 +23,7 @@ module Logging
 		attr_accessor :logger
 		def initialize
 			@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT)
-			@logger.level = Logger::WARN
+			@logger.level = Logger::DEBUG
 		end
 	end
 
