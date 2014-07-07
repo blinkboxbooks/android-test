@@ -26,11 +26,9 @@ module NavigationHelpers
 end
 
 class Element
+	attr_accessor :selector
 	def initialize selector
 		@selector = selector
-	end
-	def selector
-		@selector
 	end
 end
 
