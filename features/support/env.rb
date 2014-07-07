@@ -5,6 +5,7 @@ require 'rspec'
 require_all File.expand_path("modules",File.dirname(__FILE__))
 
 World(Logging)
+World(DeviceLogging)
 World(UtilityObjects)
 World(KnowAboutOauthRequests)
 World(LibraryService)

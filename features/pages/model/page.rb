@@ -31,7 +31,6 @@ class Element
 		@selector = selector
 	end
 end
-
 class Page < Calabash::ABase
 	extend Logging
 	include NavigationHelpers
