@@ -40,10 +40,7 @@ class Page < Calabash::ABase
 	def Page.element identity, selector
 		class_eval %Q{
 			def #{identity}
-				logger.debug "Creating #{identity} => #{selector}"
 				@_#{identity} ||= Element.new("#{selector}")
-				logger.debug "Done"
-				return @_#{identity}
 			end
 		}
 	end

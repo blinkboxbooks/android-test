@@ -1,7 +1,4 @@
 class ShopPage < Page
-#	custom_action = Proc.new do | *args |
-#		query("* id:'search_src_text'",{:setText => args.first})
-#	end
 	element :search_field, "* id:'search_src_text'"
 	element :search_results, "*android.widget.ListPopupWindow$DropDownListView"
 	element :fiction_button, "* text:'Fiction'"
@@ -12,7 +9,7 @@ class ShopPage < Page
 		"* id:'action_bar_title' marked:'Shop'"
 	end
 	def search(string)
-#		search_field_custom_text string
+		query(search_field.selector,{:setText => string})
 		touch(search_field.selector)
 	end
 	def goto_fiction
