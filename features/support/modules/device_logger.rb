@@ -2,10 +2,12 @@ module DeviceLogging
 
   class DeviceLogger
     def start
-      puts "Starting device logging"
+    #  FileUtils::mkdir_p(conf_data['project']['log_device_path'])
+      @pid = fork { `adb logcat *:I >> device-#{Time.now.to_i}.log` }
     end
     def stop
-      puts "Stopping device logging"
+      Process.kill 9, @pid
+
     end
   end
   def device_logger
