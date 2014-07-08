@@ -21,15 +21,12 @@ module Logging
 
 	class PreLog
 		attr_accessor :logger
-		def initialize level
+		def initialize
 			@logger ||= Logger.new MultiDelegator.delegate(:write,:close).to(STDOUT)
-			@logger.level = level ? level : Logger::DEBUG
+			@logger.level = Logger::DEBUG
 		end
 	end
-	def logger_set_level(level)
-		@logger.level = level
-	end
-	def logger level = Logger::DEBUG
-		@logger ||= PreLog.new(level).logger
+	def logger
+		@logger ||= PreLog.new.logger
 	end
 end

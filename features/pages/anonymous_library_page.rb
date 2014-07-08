@@ -25,10 +25,10 @@ class AnonymousLibraryPage < Page
 		open_menu
 		wait_for(:timeout => 5){
 			element_exists(signin_button.selector)
+			touch signin_button.selector
 		}
-		touch signin_button.selector
 	end
 	def logged_out?
-			query(your_library_label.selector).empty?
+		!your_library_label.exists?
 	end
 end

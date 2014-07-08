@@ -70,7 +70,7 @@ module Navigation
 		end
 		def initialize(world, transition_duration=0.5)
 			super(world,transition_duration)
-			logger.debug "Initializing page => #{trait}"
+			logger.debug "Initializing page => #{self.class.to_s}"
 		end
 		def displayed?
 			self.current_page?
