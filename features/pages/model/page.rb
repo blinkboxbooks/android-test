@@ -42,6 +42,15 @@ module Navigation
 		def initialize selector
 			@selector = selector
 		end
+		def attributes
+			@attributes ||= query(@selector)
+		end
+		def exists?
+			!query(@selector).empty?
+		end
+		def has_attribute?(attr)
+			attributes.has_key?(attr)
+		end
 	end
 	class Page < Calabash::ABase
 		extend Logging
