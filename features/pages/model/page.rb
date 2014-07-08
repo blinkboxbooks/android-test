@@ -25,7 +25,6 @@ module Navigation
 	end
 
 	def try perform_action, withelement, should_produce, with
-
 		perform_action.call(withelement)
 		wait_for({:timeout => 10, #maximum number of seconds to wait
 			:retry_frequency => 0.2, #wait this long before retrying the block
@@ -39,7 +38,7 @@ module Navigation
 	end
 
 	class Element
-		attr_accessor :selector
+		attr_reader :selector
 		def initialize selector
 			@selector = selector
 		end
