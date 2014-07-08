@@ -1,14 +1,11 @@
 class BookReaderPage < Page
-
+	trait "FrameLayout id:'content'"
 	element :book_cover_first, "BookCover index:0"
 	element :bookmarker, "ImageView marked:'Reader bookmark'"
 	element :bookmark, "* id:'imageview_bookmark'"
 
 	def open_first_book
 		touch book_cover_first.selector
-	end
-	def trait
-		"FrameLayout id:'content'"
 	end
 	def display_reader_options
 		performAction('click_on_screen', 50, 50)
@@ -52,6 +49,6 @@ class BookReaderPage < Page
 		}
 	end
 	def has_bookmark?
-		!query(bookmark.selector).empty?
+		bookmark.exists?
 	end
 end

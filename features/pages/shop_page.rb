@@ -1,13 +1,11 @@
 class ShopPage < Page
+	trait "* id:'action_bar_title' marked:'Shop'"
 	element :search_field, "* id:'search_src_text'"
 	element :search_results, "*android.widget.ListPopupWindow$DropDownListView"
 	element :fiction_button, "* text:'Fiction'"
 	element :non_fiction_button, "* text:'Non-fiction'"
 	element :categories_button, "* text:'Categories'"
 
-	def trait
-		"* id:'action_bar_title' marked:'Shop'"
-	end
 	def search(string)
 		query(search_field.selector,{:setText => string})
 		touch(search_field.selector)
@@ -23,7 +21,7 @@ class ShopPage < Page
 	end
 	def search_has_results?
 		wait_for(:timeout => 5) do
-			if !query(search_results.selector).empty?
+			if search_results.exists?
 				return true
 			end
 		end

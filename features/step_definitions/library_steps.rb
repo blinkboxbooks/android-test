@@ -4,5 +4,5 @@ end
 
 Then(/^I should see the shop page$/) do
 	@shop_page = page(ShopPage).await
-    @shop_page.displayed?.should be true
+	expect(@shop_page).to be_displayed
 end

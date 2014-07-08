@@ -4,7 +4,9 @@ module DeviceLogging
       @pid = fork { `adb logcat *:I >> device-#{Time.now.to_i}.log` }
     end
     def stop
-      Process.kill 9, @pid
+      if @pid
+        Process.kill 9, @pid
+      end
     end
   end
   def device_logger

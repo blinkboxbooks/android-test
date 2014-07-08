@@ -5,7 +5,7 @@ end
 Then(/^I touch the "(.*?)" button$/) do |arg1|
 	case arg1
 	when "Fiction"
-	@shop_page.goto_fiction
+  @shop_page.goto_fiction
 	when "Non-fiction"
 	@shop_page.goto_non_fiction
 	when "Categories"

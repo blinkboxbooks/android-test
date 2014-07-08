@@ -23,7 +23,6 @@ module Navigation
 	def scroll_up_with element_query, max_duration
 		scroll_with? 'scroll_up', element_query, max_duration
 	end
-
 	def try perform_action, withelement, should_produce, with
 		perform_action.call(withelement)
 		wait_for({:timeout => 10, #maximum number of seconds to wait
@@ -36,7 +35,6 @@ module Navigation
 			}
 		end
 	end
-
 	class Element
 		attr_reader :selector
 		def initialize selector
@@ -55,6 +53,14 @@ module Navigation
 	class Page < Calabash::ABase
 		extend Logging
 		include Navigation
+
+		def Page.trait selector
+		class_eval %Q{
+			def trait
+				"#{selector}"
+			end
+		}
+		end
 		def Page.element identity, selector
 			class_eval %Q{
 				def #{identity}
@@ -64,15 +70,9 @@ module Navigation
 		end
 		def initialize(world, transition_duration=0.5)
 			super(world,transition_duration)
-			logger.debug "Navigating page #{trait}"
+			logger.debug "Initializing page => #{trait}"
 		end
 		def displayed?
-			logger.debug "Checking if \"#{trait}\" displayed"
-			exists = false
-			if !query(trait).empty?
-				logger.debug "Found trait"
-				exists = true
-			end
-			return exists
+			self.current_page?
 		end
 	end
