@@ -27,8 +27,7 @@ module Navigation
 	def try perform_action, withelement, should_produce, with
 
 		perform_action.call(withelement)
-
-		wait_for({:timeout => 5, #maximum number of seconds to wait
+		wait_for({:timeout => 10, #maximum number of seconds to wait
 			:retry_frequency => 0.2, #wait this long before retrying the block
 			:post_timeout => 0.1, #wait this long after the block returns true
 			:timeout_message => "Timed out waiting...", #error message in case options[:timeout] is exceeded
