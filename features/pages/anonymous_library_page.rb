@@ -32,6 +32,6 @@ class AnonymousLibraryPage < Page
 		touch signin_button.selector
 	end
 	def logged_out?
-		query(your_library.selector).empty?
+			query(your_library.selector).empty?
 	end
 end

@@ -43,7 +43,7 @@ module Navigation
 			@selector = selector
 		end
 		def attributes
-			@attributes ||= query(@selector)
+			query(@selector)
 		end
 		def exists?
 			!query(@selector).empty?
