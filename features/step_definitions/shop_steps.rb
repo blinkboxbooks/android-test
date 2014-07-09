@@ -14,5 +14,5 @@ Then(/^I touch the "(.*?)" button$/) do |arg1|
 end
 Then(/^I should be presented with results$/) do
 	@shop_page = page(ShopPage)
-	@shop_page.search_has_results?.should eql true
+	expect(@shop_page).to have_search_results
 end

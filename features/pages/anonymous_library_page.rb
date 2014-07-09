@@ -23,10 +23,8 @@ class AnonymousLibraryPage < Page
 	end
 	def toggle_menu_sign_in
 		open_menu
-		wait_for(:timeout => 5){
-			element_exists(signin_button.selector)
-			touch signin_button.selector
-		}
+		touch signin_button.selector
+
 	end
 	def logged_out?
 		!your_library_label.exists?

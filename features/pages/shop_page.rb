@@ -19,7 +19,7 @@ class ShopPage < Page
 	def goto_categories
 		touch(categories_button.selector)
 	end
-	def search_has_results?
+	def has_search_results?
 		wait_for(:timeout => 5) do
 			if search_results.exists?
 				return true
