@@ -11,7 +11,8 @@ Then(/^I can flip pages backward$/) do
 	@book_reader_page.turn_page_backward(1)
 end
 Then(/^I should be back on the user library screen$/) do
-	page(UserLibraryPage).await.expect be_current_page
+	@user_libary_page = page(UserLibraryPage).await
+	expect(@user_libary_page).to be_displayed
 end
 And(/^move (\d+) foward$/) do |arg1|
 	@book_reader_page.turn_page_forward(arg1)
@@ -21,7 +22,7 @@ And(/^move (\d+) backward$/) do |arg1|
 end
 
 And(/^I verify that the page is not bookmarked$/) do
-	@book_reader_page.has_bookmark?.should eql false
+	expect(@book_reader_page).to_not have_bookmark
 end
 
 When(/^I open the reading option$/) do
@@ -33,10 +34,9 @@ When(/^I add a bookmark to the page$/) do
 end
 
 And(/^I verify that the page is bookmarked$/) do
-	@book_reader_page.has_bookmark?.should eql true
+	expect(@book_reader_page).to have_bookmark
 end
 
 Then(/^I remove the bookmark from the page$/) do
 	@book_reader_page.remove_bookmark
 end
-

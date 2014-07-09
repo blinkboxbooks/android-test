@@ -3,5 +3,6 @@ Given(/^I touch the shop icon$/) do
 end
 
 Then(/^I should see the shop page$/) do
-	@shop_page = page(ShopPage).await.expect be_shop_page
+	@shop_page = page(ShopPage).await
+	expect(@shop_page).to be_displayed
 end

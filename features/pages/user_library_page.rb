@@ -1,6 +1,8 @@
-class UserLibraryPage < BBBPage
-include LibraryActions
-  def trait
-    "BBBTextView marked:'Your library'"
-  end
+class UserLibraryPage < Page
+	trait	"BBBTextView marked:'Your library'"
+	element :shop_button, "* id:'button_shop'"
+
+	def goto_shop
+		touch shop_button.selector
+	end
 end

@@ -1,22 +1,32 @@
-class   AnonymousLibraryPage < BBBPage
-include LibraryActions
-	def trait
-		"BBBTextView id:'textview_title'"
+class AnonymousLibraryPage < Page
+
+	trait "BBBTextView id:'textview_title'"
+	element :home_button, "* id:'togglebutton_home'"
+	element :signin_button, "TextView marked:'Sign in'"
+	element :shop_button, "* id:'button_shop'"
+	element :your_library_label, "* marked:'Your library'"
+
+	def goto_shop
+		touch shop_button.selector
 	end
-	def toggle_menu
-		touch("* id:'togglebutton_home'")
+	def open_menu
+		try Proc.new{|el| touch el.selector },
+		home_button,
+		Proc.new{|el| return element_exists(el.selector) },
+		signin_button
+	end
+	def close_menu
+		try Proc.new{|el| touch el.selector },
+		home_button,
+		Proc.new{|el| return element_does_not_exist(el.selector) },
+		signin_button
 	end
 	def toggle_menu_sign_in
-		toggle_menu
-		touch("TextView marked:'Sign in'")
+		open_menu
+		touch signin_button.selector
+
 	end
 	def logged_out?
-		toggle_menu
-		if query("TextView marked:'Sign in'").empty?
-			toggle_menu
-			return false
-		end
-		toggle_menu
-		return true
+		!your_library_label.exists?
 	end
 end
