@@ -1,11 +1,20 @@
-*.html
-*.json
-device_logs
-*.log
-logs
-.irb-history
-*.log
-*.png
+# OSX-specific
 .DS_Store
+.irb-history
+
+# android builds and calabash output
 test_servers
 build
+logs
+device_logs
+results/
+*.html
+*.json
+*.log
+*.png
+
+# ide settings
+.idea/
+*.iml
+
+
