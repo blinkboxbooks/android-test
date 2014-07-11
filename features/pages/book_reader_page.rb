@@ -8,20 +8,20 @@ class BookReaderPage < Page
 		touch book_cover_first.selector
 	end
 	def display_reader_options
-		performAction('click_on_screen', 50, 50)
+		perform_action('click_on_screen', 50, 50)
 	end
 
 	def remove_reader_options
-		performAction('click_on_screen', 50, 50)
+		perform_action('click_on_screen', 50, 50)
 	end
 	def turn_page_forward(number_of_pages)
 		number_of_pages.to_i.times do
-			performAction('click_on_screen', 90, 50)
+			perform_action('click_on_screen', 90, 50)
 		end
 	end
 	def turn_page_backward(number_of_pages)
 		number_of_pages.to_i.times do
-			performAction('click_on_screen', 10, 50)
+			perform_action('click_on_screen', 10, 50)
 		end
 	end
 	def get_current_reading_percentage

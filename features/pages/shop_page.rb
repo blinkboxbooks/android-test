@@ -7,7 +7,7 @@ class ShopPage < Page
 	element :categories_button, "* text:'Categories'"
 
 	def search(string)
-		query(search_field.selector,{:setText => string})
+		enter_text search_field.selector,string
 		touch(search_field.selector)
 	end
 	def goto_fiction
