@@ -29,11 +29,11 @@ module Navigation
 			attributes.has_key?(attr)
 		end
 	end
-	
+
 	class Section
 		attr_reader :members
 		def initialize element_kvp
-			@members = Hash.new
+			@members = {}
 			element_kvp.each do | identity, selector |
 				@members[identity] =  Element.new("#{selector}")
 			end
