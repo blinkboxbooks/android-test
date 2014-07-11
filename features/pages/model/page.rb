@@ -33,10 +33,7 @@ module Navigation
 	class Section
 		attr_reader :members
 		def initialize element_kvp
-			@members = {}
-			element_kvp.each do | identity, selector |
-				@members[identity] =  Element.new("#{selector}")
-			end
+			@members = Hash[{element.kvp { |identity, selector| [identity,Element.new("#{selector}")]}]
 		end
 	end
 
