@@ -50,6 +50,15 @@ module Navigation
 			attributes.has_key?(attr)
 		end
 	end
+	class Section
+		attr_reader :element_list
+		def initialize element_kvp
+			@element_list = []
+			element_kvp.each do | identity, selector |
+				@element_list << [ :identity => identity, :element => Element.new(selector) ]
+			end
+		end
+	end
 	class Page < Calabash::ABase
 		extend Logging
 		include Navigation
@@ -65,6 +74,13 @@ module Navigation
 			class_eval %Q{
 				def #{identity}
 					@_#{identity} ||= Element.new("#{selector}")
+				end
+			}
+		end
+		def Page.section element_kvp
+			class_eval %Q{
+				def #{identity}
+					@_#{identity} ||= Section.new("#{element_kvp}")
 				end
 			}
 		end
