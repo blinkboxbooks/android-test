@@ -21,7 +21,7 @@ module Navigation
 			super.send(method,args,block)
 		end
 	end
-	
+
 	require 'calabash-android/abase'
 	class Page < Calabash::ABase
 		extend Logging
@@ -38,13 +38,6 @@ module Navigation
 			class_eval %Q{
 				def #{identity}
 					@_#{identity} ||= Element.new("#{selector}")
-				end
-			}
-		end
-		def Page.section identity,element_kvp
-			class_eval %Q{
-				def #{identity}
-					@_#{identity} ||= Section.new(#{element_kvp})
 				end
 			}
 		end

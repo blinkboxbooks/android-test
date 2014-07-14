@@ -12,6 +12,7 @@ class AutomationDSL
     raise "set not implemented"
   end
 end
+
 class CalabashMethods < AutomationDSL
   include Calabash::Android::Operations
   attr_reader :selector
