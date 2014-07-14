@@ -101,7 +101,6 @@ class CalabashPageMethods < AutomationPageDSL
     end
     page_obj
   end
-
   def await_screenshot(wait_opts={}, screenshot_opts={})
     await(wait_opts)
     screenshot_embed(screenshot_opts)
