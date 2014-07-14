@@ -5,8 +5,8 @@ class SignInPage < Page
 	element :signin_button, "* id:'button_signin'"
 
 	def submit_sign_in_details(user_name, password)
-		email_field.enter_text user_name
-		password_field.enter_text password
+		email_field.set user_name
+		password_field.set password
 		scroll("android.widget.ScrollView", :down)
 		signin_button.click
 	end

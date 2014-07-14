@@ -15,20 +15,13 @@ module Navigation
 
 	class Element < CalabashMethods
 		def initialize selector
-			super @selector
+			super selector
 		end
 		def method_missing(method, *args, &block)
 			super.send(method,args,block)
 		end
 	end
-
-	class Section
-		attr_reader :members
-		def initialize element_kvp
-			@members = Hash[ element.kvp { |identity, selector| [identity,Element.new("#{selector}")] } ]
-		end
-	end
-
+	
 	require 'calabash-android/abase'
 	class Page < Calabash::ABase
 		extend Logging

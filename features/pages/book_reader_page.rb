@@ -5,7 +5,7 @@ class BookReaderPage < Page
 	element :bookmark, "* id:'imageview_bookmark'"
 
 	def open_first_book
-		touch book_cover_first.selector
+		book_cover_first.click
 	end
 	def display_reader_options
 		perform_action('click_on_screen', 50, 50)
@@ -40,12 +40,12 @@ class BookReaderPage < Page
 	end
 	def add_bookmark
 		wait_for(:timeout => 5) {
-			touch bookmarker.selector
+			bookmarker.click
 		}
 	end
 	def remove_bookmark
 		wait_for(:timeout => 5) {
-			touch bookmarker.selector
+			bookmarker.click
 		}
 	end
 	def has_bookmark?
