@@ -1,4 +1,4 @@
-Feature: Navgating the user library screen
+Feature: Navigating the user library screen
 	Background:
 		Given the anonymous library screen is displayed
 		When I sign in

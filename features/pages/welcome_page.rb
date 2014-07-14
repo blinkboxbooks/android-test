@@ -3,6 +3,7 @@ class WelcomePage < Page
 	element :try_it_out_button, "BBBButton marked:'Try it out'"
 
 	def goto_library
-			touch try_it_out_button.selector
+
+      try_it_out_button.click
 	end
 end

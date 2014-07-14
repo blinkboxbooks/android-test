@@ -1,5 +1,4 @@
-require 'calabash-android/abase'
-include Calabash::Android::Operations
+
 module Navigation
 	def try perform_action, withelement, should_produce, with
 		perform_action.call(withelement)
@@ -14,19 +13,12 @@ module Navigation
 		end
 	end
 
-	class Element
-		attr_reader :selector
+	class Element < CalabashMethods
 		def initialize selector
-			@selector = selector
+			super @selector
 		end
-		def attributes
-			query(@selector)
-		end
-		def exists?
-			!query(@selector).empty?
-		end
-		def has_attribute?(attr)
-			attributes.has_key?(attr)
+		def method_missing(method, *args, &block)
+			super.send(method,args,block)
 		end
 	end
 
@@ -37,6 +29,7 @@ module Navigation
 		end
 	end
 
+	require 'calabash-android/abase'
 	class Page < Calabash::ABase
 		extend Logging
 		include Navigation
