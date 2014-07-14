@@ -23,6 +23,9 @@ class AutomationPageDSL
   def tap x, y
     raise 'tap not implemented'
   end
+  def await(wait_opts={})
+    raise 'await not implemented'
+  end
 end
 
 class CalabashElementMethods < AutomationElementDSL
