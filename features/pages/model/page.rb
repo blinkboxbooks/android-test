@@ -13,7 +13,7 @@ module Navigation
 		end
 	end
 
-	class Element < CalabashMethods
+	class Element < CalabashElementMethods
 		def initialize selector
 			super selector
 		end
@@ -22,8 +22,7 @@ module Navigation
 		end
 	end
 
-	require 'calabash-android/abase'
-	class Page < Calabash::ABase
+	class Page < CalabashPageMethods
 		extend Logging
 		include Navigation
 
@@ -41,11 +40,8 @@ module Navigation
 				end
 			}
 		end
-		def initialize(world, transition_duration=0.5)
-			super(world,transition_duration)
+		def initialize(world)
+			super(world)
 			logger.debug "Initializing page => #{self.class.to_s}"
-		end
-		def displayed?
-			self.current_page?
 		end
 	end
