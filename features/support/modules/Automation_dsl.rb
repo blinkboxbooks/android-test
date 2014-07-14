@@ -20,6 +20,9 @@ class AutomationPageDSL
   def displayed?
     raise 'displayed? not implemented'
   end
+  def tap x, y
+    raise 'tap not implemented'
+  end
 end
 
 class CalabashElementMethods < AutomationElementDSL
@@ -59,6 +62,9 @@ class CalabashPageMethods < AutomationPageDSL
   end
   def page(clz, *args)
     clz.new(world, *args)
+  end
+  def tap x, y
+    perform_action('click_on_screen', x, y)
   end
   def await(wait_opts={})
     wait_for_elements_exist([trait], wait_opts)
