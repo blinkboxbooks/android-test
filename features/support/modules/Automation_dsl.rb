@@ -28,6 +28,7 @@ class AutomationPageDSL
   end
 end
 
+require 'calabash-android/cucumber'
 class CalabashElementMethods < AutomationElementDSL
   include Calabash::Android::Operations
   attr_reader :selector
