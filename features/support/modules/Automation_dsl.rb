@@ -91,7 +91,6 @@ class CalabashPageMethods < AutomationPageDSL
     else
       action.call()
     end
-
     page_obj = page_arg.is_a?(Class) ? page(page_arg) : page_arg
     page_obj ||= self
 
