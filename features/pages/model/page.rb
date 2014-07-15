@@ -29,9 +29,11 @@ class Element < CalabashElementMethods
 end
 
 class Page < CalabashPageMethods
-	extend Logging
+	include Logging
 	include Navigation
-
+	def method_missing(method, *args, &block)
+		super.send(method,args,block)
+	end
 	def Page.trait selector
 		class_eval %Q{
 			def trait

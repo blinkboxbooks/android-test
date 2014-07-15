@@ -106,9 +106,8 @@ class CalabashPageMethods < AutomationPageDSL
     await(wait_opts)
     screenshot_embed(screenshot_opts)
   end
-  protected
-  def method_missing(name, *args, &block)
-    world.send(name, *args, &block)
+  def method_missing(method, *args, &block)
+    raise "CalabashPageMethods - Caught missing method => #{method.to_s}"
   end
 
 end
