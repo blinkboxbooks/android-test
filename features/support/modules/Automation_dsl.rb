@@ -28,8 +28,9 @@ class AutomationPageDSL
   end
 end
 
-require 'calabash-android/cucumber'
+
 class CalabashElementMethods < AutomationElementDSL
+  require 'calabash-android/cucumber'
   include Calabash::Android::Operations
   attr_reader :selector
   def initialize selector
@@ -49,8 +50,8 @@ class CalabashElementMethods < AutomationElementDSL
   end
 end
 
-require 'calabash-android/abase'
 class CalabashPageMethods < AutomationPageDSL
+  require 'calabash-android/cucumber'
   include Calabash::Android::Operations
   attr_accessor :world, :transition_duration
   def initialize(world)
