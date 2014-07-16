@@ -1,4 +1,3 @@
-require 'calabash-android/cucumber'
 require 'require_all'
 require 'rspec'
 

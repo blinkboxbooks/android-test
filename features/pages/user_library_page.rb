@@ -3,6 +3,6 @@ class UserLibraryPage < Page
 	element :shop_button, "* id:'button_shop'"
 
 	def goto_shop
-		touch shop_button.selector
+		shop_button.click
 	end
 end

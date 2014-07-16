@@ -7,24 +7,23 @@ class AnonymousLibraryPage < Page
 	element :your_library_label, "* marked:'Your library'"
 
 	def goto_shop
-		touch shop_button.selector
+		shop_button.click
 	end
 	def open_menu
-		try Proc.new{|el| touch el.selector },
+		try Proc.new{|el| el.click },
 		home_button,
-		Proc.new{|el| return element_exists(el.selector) },
+		Proc.new{|el| return el.exists? },
 		signin_button
 	end
 	def close_menu
-		try Proc.new{|el| touch el.selector },
+		try Proc.new{|el| el.click },
 		home_button,
-		Proc.new{|el| return element_does_not_exist(el.selector) },
+		Proc.new{|el| return !el.exists? },
 		signin_button
 	end
 	def toggle_menu_sign_in
 		open_menu
-		touch signin_button.selector
-
+		signin_button.click
 	end
 	def logged_out?
 		!your_library_label.exists?
