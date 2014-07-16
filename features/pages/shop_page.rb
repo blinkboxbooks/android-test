@@ -7,17 +7,17 @@ class ShopPage < Page
 	element :categories_button, "* text:'Categories'"
 
 	def search(string)
-		query(search_field.selector,{:setText => string})
-		touch(search_field.selector)
+		search_field.set string
+		search_field.click
 	end
 	def goto_fiction
-		touch(fiction_button.selector)
+		fiction_button.click
 	end
 	def goto_non_fiction
-		touch(non_fiction_button.selector)
+		non_fiction_button.click
 	end
 	def goto_categories
-		touch(categories_button.selector)
+		categories_button.click
 	end
 	def has_search_results?
 		wait_for(:timeout => 5) do

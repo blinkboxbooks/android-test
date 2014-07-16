@@ -59,6 +59,7 @@ task :android_get do
 end
 desc "builds and resigns the apk"
 task :android_sign do
+	relist_directory
 	if File.directory?('test_servers')
 		`rm -rf test_servers`
 	end
@@ -66,6 +67,7 @@ task :android_sign do
 end
 desc "Installs the apk and test server (will reinstall if installed)"
 task :android_install do
+	relist_directory
 	`adb install -r #{@apks[match_configuration]}`
 end
 desc "Runs calabash android"
@@ -102,6 +104,6 @@ task :default do
 	#endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
 	#configuration=custom configuration
 	Rake::Task["android_get"].invoke
-	Rake::Task["android_install"].invoke
 	Rake::Task["android_sign"].invoke
+	Rake::Task["android_install"].invoke
 end	
