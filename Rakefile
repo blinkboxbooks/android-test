@@ -104,6 +104,6 @@ task :default do
 	#endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
 	#configuration=custom configuration
 	Rake::Task["android_get"].invoke
-	Rake::Task["android_install"].invoke
 	Rake::Task["android_sign"].invoke
+	Rake::Task["android_install"].invoke
 end	
