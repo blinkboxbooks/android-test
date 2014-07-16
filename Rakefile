@@ -59,6 +59,7 @@ task :android_get do
 end
 desc "builds and resigns the apk"
 task :android_sign do
+	relist_directory
 	if File.directory?('test_servers')
 		`rm -rf test_servers`
 	end
@@ -66,6 +67,7 @@ task :android_sign do
 end
 desc "Installs the apk and test server (will reinstall if installed)"
 task :android_install do
+	relist_directory
 	`adb install -r #{@apks[match_configuration]}`
 end
 desc "Runs calabash android"
