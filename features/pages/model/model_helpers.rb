@@ -1,26 +1,5 @@
 module PageModelHelpers
-  require 'calabash-android/operations'
-  include Calabash::Android::Operations
   include Logging
-
-  def class_name_to_caller_method(class_name)
-    class_name.to_s.gsub(/.*::([^:]*)/, '\1').camel_case_to_snake_case
-  end
-
-  def page_class_name_to_caller_method(class_name)
-    class_name_to_caller_method(class_name).sub(/_page$/, '') + '_page'
-  end
-
-  #example: HomePage --> home_page
-  # def home_page
-  #    @_home_page ||= HomePage.new
-  # end
-  def register_page_caller_method(class_name, caller_method=nil)
-    caller_method ||= page_class_name_to_caller_method(class_name)
-    class_eval %Q{def #{caller_method}
-                    @_#{caller_method} ||= page(#{class_name})
-                  end}
-  end
 
   # Determine page class name based on page name
   #
