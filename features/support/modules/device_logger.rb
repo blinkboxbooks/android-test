@@ -5,7 +5,10 @@ include Sys
 
 module DeviceLogging
 	include Logging
+
 	class DeviceLogger
+    include UtilityObjects
+
 		def kill_existing_processes
 			a = ProcTable.ps
 			a.each do | p |
@@ -18,7 +21,7 @@ module DeviceLogging
 		end
 		def start
 			kill_existing_processes
-			@pid = fork { `adb logcat *:I >> device-#{Time.now.to_i}.log` }
+			@pid = fork { `adb logcat *:I >> #{conf_data['project']['log_device_folder']}device-#{Time.now.to_i}.log` }
 		end
 		def stop
 			if @pid

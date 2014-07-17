@@ -4,6 +4,7 @@ remote:
  endpoint_payload: apk.zip
 project:
  build_dir: build
- log_html_path: output.html
- log_device_folder: device_logs
+ log_html_path: results/output.html
+ log_device_folder: results/device_logs/
+ log_screenshot_folder: results/screenshots/
  log_level: I

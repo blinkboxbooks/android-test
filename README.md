@@ -39,15 +39,15 @@ Typical usage
 ```shell
 bundle install
 rake 
-rake android_run
-#Optional: rake android_run feature=features/login.feature
-#Optional: rake_android_run profile=smoke   This is based on config/cucumber.yml
+rake calabash:run
+#Optional: rake calabash:run feature=features/login.feature
+#Optional: rake calabash:run profile=smoke   This is based on config/cucumber.yml
 ```
 Custom usage
 ```shell
 bundle install
 rake endpoint_download=/Users/foo/Desktop/apk.zip endpoint_type=local
-rake android_run
+rake calabash:run
 ```
 
 project structure
@@ -65,16 +65,18 @@ features/
 				modules/
 		pages/
 		      model/
-		Rakefile #Rake -T for options
+		Rakefile #rake -T for options
 		README.md
 		Gemfile
 ```
 
-Rakefile -T
+rake -T
 ```
-rake android_get      # Get latest android APK
-rake android_install  # Installs the apk and test server
-rake android_run      # Runs calabash android
-rake android_sign     # builds and resigns the apk
-rake android_details  # Prints out details about the current test configuration
+rake android:get_latest_apk         # Get latest android APK
+rake android:install_apk[apk_file]  # Installs the apk and test server (will reinstall if in...
+rake android:resign[apk_file]       # builds and resigns the apk
+rake calabash:environment_install   # Checks development environment and install essentials
+rake calabash:run_config            # Prints out details about current configuration
+rake calabash:console[apk_file]     # Run calabash-android console with included Calabash::A...
+rake calabash:run[apk_file]         # Runs calabash android
 ```	
