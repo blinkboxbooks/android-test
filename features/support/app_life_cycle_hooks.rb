@@ -7,7 +7,7 @@ end
 
 After do |scenario|
   if scenario.failed?
-    screenshot_embed
+    screenshot_embed(:prefix => conf_data['project']['log_screenshot_folder'])
   end
   shutdown_test_server
 end
