@@ -75,9 +75,9 @@ class CalabashPageMethods < AutomationPageDSL
     wait_for_elements_exist([trait], wait_opts)
     self
   end
-  #def embed(x,y=nil,z=nil)
-  #  puts "Screenshot at #{x}"
-  #end
+  def embed(x,y=nil,z=nil)
+    puts "Screenshot at #{x}"
+  end
   def transition(transition_options={})
     uiquery = transition_options[:tap]
     action = transition_options[:action]
