@@ -98,7 +98,7 @@ namespace :calabash do
     end
   end
 
-  desc 'Run calabash-android console with included Calabash::Android::Operations'
+  desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
   task :console, [:apk_file] do |t, args|
     apk_file = args[:apk_file] || default_apk
     ENV['IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
