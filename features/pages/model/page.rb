@@ -11,17 +11,17 @@ module PageObjectModel
 
     def self.trait selector
       class_eval %Q{
-			  def trait
-				  "#{selector}"
-			  end
+        def trait
+          "#{selector}"
+        end
 		  }
     end
 
     def self.element identity, selector
       class_eval %Q{
 			  def #{identity}
-				  @_#{identity} ||= Element.new("#{selector}")
-			  end
+	        @_#{identity} ||= Element.new("#{selector}")
+		    end
 		  }
     end
 

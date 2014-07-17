@@ -4,18 +4,13 @@ module PageOperations
   def try action, withelement, should_produce, with
     logger.debug "Trying... #{withelement.selector}"
     action.call(withelement)
-    t1 = Time.now
-    max_time = 5.0
-    current_time = 0.0
-    hasCompleted = false
-    while (current_time < max_time) && !hasCompleted
-      hasCompleted = should_produce.call(with)
-      current_time = Time.now - t1
-      return
+    start_time = Time.now
+    timeout = 5.0
+    while(Time.now - start_time < timeout)
+      return if should_produce.call(with)
+      sleep(0.1)
     end
-    if !hasCompleted
-      raise "Timed out waiting for should_produce => #{with.to_s}"
-    end
+    raise "Timed out waiting for should_produce => #{with.to_s}"
   end
 
   def tap x, y
