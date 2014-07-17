@@ -65,6 +65,8 @@ class CalabashPageMethods < AutomationPageDSL
   def displayed?
     element_exists(trait)
   end
+  def embed(x,y=nil,z=nil)
+  end
   def page(clz, *args)
     clz.new(world, *args)
   end
