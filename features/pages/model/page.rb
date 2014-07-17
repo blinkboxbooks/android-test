@@ -7,15 +7,13 @@ module Navigation
 		t1 = Time.now
 		max_time = 5.0
 		current_time = 0.0
-		hasCompleted = false
-		while (current_time < max_time) && !hasCompleted
-			hasCompleted = should_produce.call(with)
+		has_completed = false
+		while (current_time < max_time) && !has_completed
+			has_completed = should_produce.call(with)
 			current_time = Time.now - t1
-			return
+			return if has_completed
 		end
-		if !hasCompleted
-			raise "Timed out waiting for should_produce => #{with.to_s}"
-		end
+		raise "Timed out waiting for should_produce => #{with.to_s}"
 	end
 end
 
