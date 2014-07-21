@@ -25,15 +25,9 @@ module PageObjectModel
     end
 
     def has_search_results?
-      wait_for(:timeout => 5) do
-        if search_results.exists?
-          return true
-        end
-      end
-      return false
+      wait_for(timeout: 5) { search_results.exists? } rescue false
     end
   end
-
 
   def shop_page
     @_shop_page ||= page(ShopPage)

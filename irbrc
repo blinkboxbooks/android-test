@@ -23,8 +23,6 @@ def embed(*args)
   puts "Embed is a Cucumber method and is not available in this console."
 end
 
-
-
 #Virker det her?
 module Calabash
   module Android
@@ -44,8 +42,8 @@ require 'require_all'
 
 #load support code of the framework
 def load_support_code
-    require_rel 'features/support/modules'
-    require_rel 'features/pages/model'
-    require_rel 'features/pages'
+    load_rel 'features/support/modules'
+    load_rel 'features/pages/model'
+    load_rel 'features/pages'
 end
 load_support_code
