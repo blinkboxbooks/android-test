@@ -3,9 +3,10 @@ module PageObjectModel
     trait "* id:'action_bar_title' marked:'Shop'"
     element :search_field, "* id:'search_src_text'"
     element :search_results, "*android.widget.ListPopupWindow$DropDownListView"
-    element :fiction_button, "* text:'Fiction'"
-    element :non_fiction_button, "* text:'Non-fiction'"
-    element :categories_button, "* text:'Categories'"
+
+    element :fiction_tab, "* id:'title' {text: LIKE 'Fiction*'}"
+    element :non_fiction_tab, "* id:'title' {text: LIKE 'Non-fiction*'}"
+    element :categories_tab, "* id:'title' {text: LIKE 'Categories*'}"
 
     def search(string)
       search_field.set string
@@ -13,19 +14,19 @@ module PageObjectModel
     end
 
     def goto_fiction
-      fiction_button.click
+      fiction_tab.click
     end
 
     def goto_non_fiction
-      non_fiction_button.click
+      non_fiction_tab.click
     end
 
     def goto_categories
-      categories_button.click
+      categories_tab.click
     end
 
     def has_search_results?
-      wait_for(timeout: 5) { search_results.exists? } rescue false
+      search_results.wait_for_element_exists(timeout: 5) rescue false
     end
   end
 

@@ -1,6 +1,7 @@
 require 'require_all'
 require 'rspec'
 require 'calabash-android/cucumber'
+require 'awesome_print'
 
 require_all File.expand_path('hooks', File.dirname(__FILE__))
 require_all File.expand_path('modules', File.dirname(__FILE__))

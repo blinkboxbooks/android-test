@@ -116,7 +116,7 @@ namespace :calabash do
 
     if ENV["feature"]
       puts "RUNNING: feature=#{ENV["feature"]}"
-      output = `calabash-android run #{apk_file} #{ENV["feature"]} -f #{formatter} -o #{output_path}`
+      output = `calabash-android run #{apk_file} #{ENV["feature"]} -f #{formatter} -o #{output_path} -f pretty`
     elsif ENV["profile"]
       output = `calabash-android run #{apk_file} --profile=#{ENV['profile']} -f #{formatter} -o #{output_path}`
     else
