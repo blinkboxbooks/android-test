@@ -2,6 +2,7 @@ Given(/^I search for "(.*?)"$/) do |search_string|
   shop_page.await
   shop_page.search(search_string)
 end
+
 Then(/^I touch the "(.*?)" button$/) do |button_name|
   case button_name
     when "Fiction"
@@ -10,8 +11,11 @@ Then(/^I touch the "(.*?)" button$/) do |button_name|
       shop_page.goto_non_fiction
     when "Categories"
       shop_page.goto_categories
+    else
+      raise "Unsupported button '#{button_name}' on the Shop page"
   end
 end
+
 Then(/^I should be presented with results$/) do
   shop_page.await
   expect(shop_page).to have_search_results
