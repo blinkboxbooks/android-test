@@ -1,13 +1,13 @@
+require 'active_support/inflector'
+
 class String
   #@desc: converts a string to snake_case or SNAKE_CASE.
   #@example: "MyFirstClass" --> "my_first_class"
-  def camel_case_to_snake_case(casing = :lower)
-    s = self.gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
-        gsub(/([a-z\d])([A-Z])/, '\1_\2').
-        tr('-', '_')
+  def underscore_with_casing(casing = :lower)
+    s = self.underscore
     case casing
       when :lower then
-        s.downcase
+        s
       when :upper then
         s.upcase
       else
