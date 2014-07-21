@@ -16,17 +16,13 @@ module PageObjectModel
     end
 
     def open_menu
-      try Proc.new { |el| el.click },
-          home_button,
-          Proc.new { |el| return el.exists? },
-          signin_button
+      home_button.click
+      signin_button.wait_for_element_exists(timeout: 5)
     end
 
     def close_menu
-      try Proc.new { |el| el.click },
-          home_button,
-          Proc.new { |el| return !el.exists? },
-          signin_button
+      home_button.click
+      signin_button.wait_for_element_does_not_exist(timeout: 5)
     end
 
     def toggle_menu_sign_in
