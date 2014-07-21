@@ -1,8 +1,8 @@
 require 'active_support/inflector'
 
 class String
-  #@desc: converts a string to snake_case or SNAKE_CASE.
-  #@example: "MyFirstClass" --> "my_first_class"
+  #@desc: added casing to the active_support #underscore method: converts a string to snake_case or SNAKE_CASE.
+  #@example: "MyFirstClass".underscore_with_casing(:upper) --> "MY_FIRST_CLASS"
   def underscore_with_casing(casing = :lower)
     s = self.underscore
     case casing
