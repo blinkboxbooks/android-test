@@ -1,7 +1,7 @@
 require 'cucumber'
 require 'cucumber/formatter/io'
 require 'cucumber/formatter/html'
-require_relative '../env.rb'
+
 class LoggedFormatter < Cucumber::Formatter::Html
 	include UtilityObjects
 	def initialize(step_mother, path_or_io, options)

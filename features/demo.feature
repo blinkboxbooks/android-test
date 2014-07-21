@@ -1,4 +1,5 @@
 Feature: I want to demonstrate what an automation framework looks like in operation
+
   Background:
     Given the anonymous library screen is displayed
     When I sign in
@@ -20,9 +21,9 @@ Feature: I want to demonstrate what an automation framework looks like in operat
     Then I go back
     Then I should be back on the user library screen
 
-Examples:
-  |shopitem|fpages| bselect|
-  |"Robots"| 10   | "Non-fiction top 100"|
+  Examples:
+    | shopitem | fpages | bselect       |
+    | "Robots" | 10     | "Non-fiction" |
 
   @phone
   Scenario Outline: Navigating through the app on the phone
@@ -39,6 +40,6 @@ Examples:
     Then I go back
     Then I should be back on the user library screen
 
-Examples:
-  |shopitem|fpages|
-  |"Robots"| 10   |
+  Examples:
+    | shopitem | fpages |
+    | "Robots" | 10     |

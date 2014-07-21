@@ -101,22 +101,22 @@ namespace :calabash do
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
   task :console, [:apk_file] do |t, args|
     apk_file = args[:apk_file] || default_apk
-    ENV['IRBRC'] = nil
-    puts "REMEMBER: you need to resign '#{apk_file}' with task android:resign, before you can run it"
+    ENV['IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
+    puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     system "calabash-android console #{apk_file}"
   end
 
   desc "Runs calabash android"
   task :run, [:apk_file] do |t, args|
     apk_file = args[:apk_file] || default_apk
-    puts "REMEMBER: you need to resign '#{apk_file}' with task android:resign, before you can run it"
+    puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     formatter = ENV['formatter'] ? ENV['formatter'] : "LoggedFormatter"
     output_path = ENV['output'] ? ENV['output'] : ""
     puts "Using formatter #{formatter}"
 
     if ENV["feature"]
       puts "RUNNING: feature=#{ENV["feature"]}"
-      output = `calabash-android run #{apk_file} #{ENV["feature"]} -f #{formatter} -o #{output_path}`
+      output = `calabash-android run #{apk_file} #{ENV["feature"]} -f #{formatter} -o #{output_path} -f pretty`
     elsif ENV["profile"]
       output = `calabash-android run #{apk_file} --profile=#{ENV['profile']} -f #{formatter} -o #{output_path}`
     else

@@ -1,53 +1,43 @@
+module PageObjectModel
+  require 'calabash-android/abase'
 
-module Navigation
-	extend Logging
-	def try action, withelement, should_produce, with
-		logger.debug "Trying... #{withelement.selector}"
-		action.call(withelement)
-		t1 = Time.now
-		max_time = 5.0
-		current_time = 0.0
-		has_completed = false
-		while (current_time < max_time) && !has_completed
-			has_completed = should_produce.call(with)
-			current_time = Time.now - t1
-			return if has_completed
-		end
-		raise "Timed out waiting for should_produce => #{with.to_s}"
-	end
+  class Page < Calabash::ABase
+    include PageOperations
+
+    def initialize(world, transition_duration=0.5)
+      logger.debug "Initializing page => #{self.class.to_s}"
+      super(world, transition_duration)
+    end
+
+    def self.trait selector
+      class_eval %Q{
+        def trait
+          "#{selector}"
+        end
+		  }
+    end
+
+    def self.element identity, selector
+      class_eval %Q{
+			  def #{identity}
+	        @_#{identity} ||= Element.new("#{selector}")
+		    end
+		  }
+    end
+
+    alias :displayed? :current_page?
+
+    #TODO: embed screenshots into our formatters
+    def embed(file, mime_type, label = 'Screenshot')
+      logger.info "Screenshot at #{file}"
+    end
+
+    #override default delegation to the World methods as defined in Calabash::ABase, to avoid explosion of methods
+    #in the page models
+    def method_missing(method_name, *args, &block)
+      raise NoMethodError, "undefined method '#{method_name}' for \##{self.class.inspect}"
+    end
+  end
+
 end
 
-class Element < CalabashElementMethods
-	def initialize selector
-		super selector
-	end
-	def method_missing(method, *args, &block)
-		super.send(method,args,block)
-	end
-end
-
-class Page < CalabashPageMethods
-	include Logging
-	include Navigation
-	def method_missing(method, *args, &block)
-		super.send(method,args,block)
-	end
-	def Page.trait selector
-		class_eval %Q{
-			def trait
-				"#{selector}"
-			end
-		}
-	end
-	def Page.element identity, selector
-		class_eval %Q{
-			def #{identity}
-				@_#{identity} ||= Element.new("#{selector}")
-			end
-		}
-	end
-	def initialize(world)
-		super(world)
-		logger.debug "Initializing page => #{self.class.to_s}"
-	end
-end
