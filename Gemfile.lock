@@ -80,7 +80,7 @@ DEPENDENCIES
   activesupport
   calabash-android (~> 0.5.0)
   cucumber
-  cucumber-blinkbox (~> 0.2.0)
+  cucumber-blinkbox
   cuporter
   httparty
   json

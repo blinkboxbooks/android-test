@@ -22,5 +22,5 @@ end
 
 group :reporting do
   gem 'cuporter'
-  gem 'cucumber-blinkbox', '~> 0.2.0'
+  gem 'cucumber-blinkbox'
 end
