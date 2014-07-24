@@ -1,6 +1,6 @@
-Given(/^I search for "(.*?)"$/) do |search_string|
+When(/^I enter \"([^\"]*)\" as the search term$/) do |search_string|
   shop_page.await
-  shop_page.search(search_string)
+  shop_page.search_suggestions_for(search_string)
 end
 
 Then(/^I touch the "(.*?)" button$/) do |button_name|
@@ -16,7 +16,7 @@ Then(/^I touch the "(.*?)" button$/) do |button_name|
   end
 end
 
-Then(/^I should be presented with results$/) do
+Then(/^I should see search suggestions$/) do
   shop_page.await
-  expect(shop_page).to have_search_results
+  expect(shop_page).to have_search_suggestions
 end
