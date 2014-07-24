@@ -1,9 +1,9 @@
 module PageObjectModel
+
   class ShopPage < PageObjectModel::Page
     trait "* id:'action_bar_title' marked:'Shop'"
     element :search_field, "* id:'search_src_text'"
     element :search_suggestions, "android.widget.ListPopupWindow$DropDownListView"
-
     element :fiction_tab, "* id:'title' {text BEGINSWITH 'Fiction'}"
     element :non_fiction_tab, "* id:'title' {text BEGINSWITH 'Non-fiction'}"
     element :categories_tab, "* id:'title' {text BEGINSWITH 'Categories'}"
@@ -28,7 +28,6 @@ module PageObjectModel
     def goto_categories
       categories_tab.click
     end
-
   end
 
   def shop_page
