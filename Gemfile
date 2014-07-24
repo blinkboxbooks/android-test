@@ -9,6 +9,7 @@ group :automation_libs do
 end
 
 group :misc_libs do
+  gem 'rake'
   gem 'sys-proctable'
   gem 'require_all'
   gem 'activesupport'
