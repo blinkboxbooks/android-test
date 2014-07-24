@@ -26,7 +26,7 @@ module PageObjectModel
     end
 
     def has_search_results?
-      search_results.wait_for_element_exists(timeout: 10) rescue false
+    	search_results.element_exists 
     end
   end
 
