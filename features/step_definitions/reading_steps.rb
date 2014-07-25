@@ -12,7 +12,7 @@ Then(/^I can flip pages backward$/) do
 end
 Then(/^I should be back on the user library screen$/) do
   user_library_page.await
-	expect(user_libary_page).to be_displayed
+	expect(user_library_page).to be_displayed
 end
 And(/^move (\d+) foward$/) do |arg1|
 	book_reader_page.turn_page_forward(arg1)
