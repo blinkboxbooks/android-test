@@ -10,9 +10,8 @@ When(/^I sign in$/) do
   if anonymous_library_page.logged_out?
     anonymous_library_page.toggle_menu_sign_in
     sign_in_page.await
-    username = test_data['users']['existing']['emailaddress']
-    password = test_data['users']['existing']['password']
-    sign_in_page.submit_sign_in_details(username, password)
+    sign_in_page.submit_sign_in_details( test_data['users']['existing'] \
+    ['emailaddress'],test_data['users']['existing']['password'])
   end
 end
 

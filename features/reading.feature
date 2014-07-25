@@ -23,9 +23,9 @@ Feature: Allow the user to use the library to view free and purchased books
 		When I open the reading option
 		And I remove the bookmark from the page
 		And I verify that the page is not bookmarked
-		And move <fpages> backward
+		And move <bpages> backward
 		Then I go back
 		Then I should be back on the user library screen
 		Examples:
-			| fpages |
-			|   1    |
+			| fpages | bpages|
+			|   1    |  -1 	 |

@@ -14,10 +14,10 @@ Feature: I want to demonstrate what an automation framework looks like in operat
     And I go back
     When I open the first book
     And move <fpages> foward
-    And move <fpages> backward
+    And move <bpages> backward
     And I go back
     Then I should be back on the user library screen
 
   Examples:
-    | shopitem | fpages |
-    | "Robots" | 10     |
+    | shopitem | fpages | bpages |
+    | "Robots" | 10     | -10    |
