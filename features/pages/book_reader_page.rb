@@ -3,11 +3,7 @@ module PageObjectModel
     trait "FrameLayout id:'content'"
     element :bookmarker, "ImageView marked:'Reader bookmark'"
     element :bookmark, "* id:'imageview_bookmark'"
-    @isbookmarked = false
-    def display_reader_options
-      tap 50, 50
-    end
-    def remove_reader_options
+    def toggle_reader_options
       tap 50, 50
     end
     def turn_page(number_of_pages)
@@ -26,22 +22,16 @@ module PageObjectModel
     end
     def options_menu_button
       logger.debug "Opening options menu"
-      display_reader_options
+      toggle_reader_options
       sleep(2)
     end
     def toggle_bookmark
-      case @isbookmarked
-      when false
-        @isbookmarked = true
-      when true
-        @isbookmarked = false
-      end
       wait_for(:timeout => 5) {
         bookmarker.click
       }
     end
     def has_bookmark?
-      !bookmark.exists? ^ @isbookmarked
+      bookmark.exists?
     end
   end
 
