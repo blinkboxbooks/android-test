@@ -13,19 +13,12 @@ module PageObjectModel
 		def goto_shop
 			shop_button.click
 		end
-		def toggle_menu
+		def open_menu
 			home_button.click
-			case @is_menu_open
-			when false
-				signin_button.wait_for_element_exists(timeout: 5)
-				@is_menu_open = true
-			when true
-				signin_button.wait_for_element_does_not_exist(timeout: 5)
-				@is_menu_open = false
-			end
+			signin_button.wait_for_element_exists(timeout: 5)
 		end
-		def toggle_menu_and_signin
-			toggle_menu
+		def open_menu_and_signin
+			open_menu
 			signin_button.click
 		end
 		def logged_out?
