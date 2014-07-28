@@ -6,7 +6,6 @@ module PageObjectModel
 		element :shop_button, "* id:'button_shop'"
 		element :your_library_label, "* marked:'Your library'"
 		element :book_cover_first, "BookCover index:0"
-		@is_menu_open = false
 		def open_first_book
 			book_cover_first.click
 		end
