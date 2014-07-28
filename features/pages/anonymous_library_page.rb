@@ -28,7 +28,6 @@ module PageObjectModel
 			toggle_menu
 			signin_button.click
 		end
-
 		def logged_out?
 			!your_library_label.exists?
 		end
