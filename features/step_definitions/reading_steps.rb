@@ -6,11 +6,11 @@ Then(/^I should be back on the user library screen$/) do
   user_library_page.await
 	expect(user_library_page).to be_displayed
 end
-And(/^move (\d+) foward$/) do |pages_to_turn|
+And(/^turn (\d+) pages forward$/) do |pages_to_turn|
 	book_reader_page.turn_page(pages_to_turn)
 end
-And(/^move (-\d+) backward$/) do |pages_to_turn|
-	book_reader_page.turn_page(pages_to_turn)
+And(/^turn (\d+) pages backward$/) do |pages_to_turn|
+	book_reader_page.turn_page(-pages_to_turn.to_i.abs)
 end
 
 And(/^I verify that the page is not bookmarked$/) do

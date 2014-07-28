@@ -4,23 +4,23 @@ Feature: Allow the user to use the library to view free and purchased books
 		Given the anonymous library screen is displayed
 		When I sign in
 		Then I should be on the user library screen
-	@smoke
+		@smoke
 	Scenario Outline: I am able to open a book and flip through
 		Given I open the first book
-		And move <fpages> foward
-		And move <bpages> backward
+		And turn <fpages> pages forward
+		And turn <bpages> pages backward
 		And I go back
 		Then I should be back on the user library screen
 
 		Examples:
 			| fpages | bpages|
-			|   1    |  -1 	 |
+			|   1    |   1 	 |
 
-	@smoke
+		@smoke
 	@wip
 	Scenario Outline: Add and remove bookmarks
 		Given I open the first book
-		And move <fpages> foward
+		And turn <fpages> pages forward
 		And I verify that the page is not bookmarked
 		When I open the reading option
 		And I add a bookmark to the page
@@ -28,9 +28,9 @@ Feature: Allow the user to use the library to view free and purchased books
 		When I open the reading option
 		And I remove the bookmark from the page
 		And I verify that the page is not bookmarked
-		And move <bpages> backward
+		And turn <bpages> pages backward
 		And I go back
 		Then I should be back on the user library screen
 		Examples:
 			| fpages | bpages|
-			|   1    |  -1 	 |
+			|   1    |   1 	 |
