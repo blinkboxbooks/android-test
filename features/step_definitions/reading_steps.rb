@@ -2,14 +2,6 @@ Given(/^I open the first book$/) do
   user_library_page.open_first_book
 	book_reader_page.await
 end
-
-Then(/^I can flip pages forward$/) do
-	book_reader_page.turn_page(1)
-end
-
-Then(/^I can flip pages backward$/) do
-	book_reader_page.turn_page(-1)
-end
 Then(/^I should be back on the user library screen$/) do
   user_library_page.await
 	expect(user_library_page).to be_displayed
