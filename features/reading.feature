@@ -29,7 +29,7 @@ Feature: Allow the user to use the library to view free and purchased books
 		And I remove the bookmark from the page
 		And I verify that the page is not bookmarked
 		And move <bpages> backward
-		Then I go back
+		And I go back
 		Then I should be back on the user library screen
 		Examples:
 			| fpages | bpages|
