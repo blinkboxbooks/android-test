@@ -5,8 +5,9 @@
 # android builds and calabash output
 test_servers
 build
-logs
+bundle
 device_logs
+logs
 results/
 *.html
 *.json
