@@ -9,7 +9,7 @@ Then(/^I should be back on the user library screen$/) do
 end
 
 And(/turn (\d+) pages forward$/) do |pages_to_turn|
-  book_reader_pages.turn_page(pages_to_turn)
+  book_reader_page.turn_pages(pages_to_turn)
 end
 
 And(/turn (\d+) pages backward$/) do |pages_to_turn|
