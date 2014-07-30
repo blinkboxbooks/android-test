@@ -35,10 +35,6 @@ module PageObjectModel
       attributes.has_key?(attr)
     end
 
-    def click
-      touch
-    end
-
     def set(text)
       clear_text
       enter_text(text)

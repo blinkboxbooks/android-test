@@ -26,7 +26,7 @@ module PageObjectModel
 
     def toggle_bookmark
       wait_for(:timeout => 5) {
-        bookmarker.click
+        bookmarker.touch
       }
     end
 
