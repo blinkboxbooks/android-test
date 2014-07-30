@@ -9,7 +9,7 @@ module PageObjectModel
       email_field.set user_name
       password_field.set password
       scroll_down
-      signin_button.click
+      signin_button.touch
     end
   end
 
