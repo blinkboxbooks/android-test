@@ -17,3 +17,15 @@ Then(/^I should be on the user library screen$/) do
   user_library_page.await
   expect(user_library_page).to be_displayed
 end
+
+Given(/^I am on user library screen$/) do
+  expect(user_library_page).to be_displayed
+end
+
+When(/^I sign out$/) do
+  user_library_page.open_drawer_menu_and_signout
+end
+
+Then(/^I should be on anonymous library screen$/) do
+  expect_page(anonymous_library_page)
+end
