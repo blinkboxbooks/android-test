@@ -9,6 +9,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     awesome_print (1.2.0)
+    blinkbox-user (0.0.2)
+      httparty
+      multi_json
     builder (3.2.2)
     calabash-android (0.5.1)
       awesome_print
@@ -79,6 +82,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  blinkbox-user
   calabash-android (~> 0.5.0)
   cucumber
   cucumber-blinkbox
