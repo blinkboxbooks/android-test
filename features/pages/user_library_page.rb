@@ -5,6 +5,7 @@ module PageObjectModel
     element :book_cover_first, "BookCover index:0"
     element :signout_button, "TextView marked:'Sign out'"
     element :home_button, "* id:'togglebutton_home'"
+    element :your_library_label, "* marked:'Your library'"
 
     def open_first_book
       book_cover_first.touch
@@ -19,7 +20,12 @@ module PageObjectModel
       signout_button.wait_for_element_exists(timeout: 5)
     end
 
-    def open_drawer_menu_and_signout
+
+    def signed_in?
+      your_library_label.exists?
+    end
+
+    def sign_out
       open_drawer_menu
       signout_button.touch
     end
