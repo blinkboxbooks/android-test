@@ -17,7 +17,7 @@ module PageObjectModel
 
     def open_menu
       home_button.touch
-      signin_button.wait_for_element_exists(timeout: 5)
+      signin_button.wait_for_element_exists(timeout: 10)
     end
 
     def open_menu_and_signin

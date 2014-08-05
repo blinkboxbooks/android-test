@@ -8,6 +8,7 @@ module PageObjectModel
 
     def submit_sign_in_details(user_name, password)
       email_field.set user_name
+      scroll_down
       password_field.set password
       scroll_down
       signin_button.touch
