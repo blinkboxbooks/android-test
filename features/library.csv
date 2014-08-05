@@ -1,4 +1,0 @@
-Feature: Navigating the user library screen,iPhone,Android
-----,,
-Given I touch the shop icon,,
-Then I should see the shop page,,
