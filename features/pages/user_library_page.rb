@@ -20,7 +20,6 @@ module PageObjectModel
       signout_button.wait_for_element_exists(timeout: 5)
     end
 
-
     def signed_in?
       your_library_label.exists?
     end
@@ -30,7 +29,9 @@ module PageObjectModel
       signout_button.touch
     end
   end
+end
 
+module PageObjectModel
   def user_library_page
     @_user_library_page ||= page(UserLibraryPage)
   end
