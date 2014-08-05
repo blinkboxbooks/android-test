@@ -15,5 +15,6 @@ World(UserManagement)
 
 require_all File.expand_path('../pages/model', File.dirname(__FILE__))
 require_all File.expand_path('../pages', File.dirname(__FILE__))
-
+require_all File.expand_path('../pages/actions', File.dirname(__FILE__))
 World(PageObjectModel)
+World(PageObjectModel::PageActions)

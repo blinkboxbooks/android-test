@@ -1,14 +1,11 @@
 Given(/^the anonymous library screen is displayed$/) do
-  if welcome_page.displayed?
-    welcome_page.goto_library
-  end
-  anonymous_library_page.await
-  expect(anonymous_library_page).to be_displayed
+  enter_app_as_anonymous_user()
+  expect_page(anonymous_library_page)
 end
 
 When(/^I sign in$/) do
   if anonymous_library_page.logged_out?
-    anonymous_library_page.toggle_menu_sign_in
+    anonymous_library_page.open_menu_and_signin
     sign_in_page.await
     username = test_data['users']['existing']['emailaddress']
     password = test_data['users']['existing']['password']

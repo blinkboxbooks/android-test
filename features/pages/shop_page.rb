@@ -18,15 +18,15 @@ module PageObjectModel
     end
 
     def goto_fiction
-      fiction_tab.click
+      fiction_tab.touch
     end
 
     def goto_non_fiction
-      non_fiction_tab.click
+      non_fiction_tab.touch
     end
 
     def goto_categories
-      categories_tab.click
+      categories_tab.touch
     end
   end
 

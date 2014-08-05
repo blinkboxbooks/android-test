@@ -5,11 +5,11 @@ module PageObjectModel
     element :book_cover_first, "BookCover index:0"
 
     def open_first_book
-      book_cover_first.click
+      book_cover_first.touch
     end
 
     def goto_shop
-      shop_button.click
+      shop_button.touch
     end
   end
 
