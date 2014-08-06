@@ -19,7 +19,5 @@ Then(/^I should be on the user library screen$/) do
 end
 
 And(/^I reset my devices$/) do
-  fork do
-    current_user.deregister_client_all
-  end
+    user_interface.deregister_client_all
 end

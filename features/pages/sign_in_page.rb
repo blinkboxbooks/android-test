@@ -6,10 +6,11 @@ module PageObjectModel
     element :signin_button, "* id:'button_signin'"
 
     def submit_sign_in_details(user_name, password)
+      email_field.scroll_to
       email_field.set user_name
-      scroll_down
+      password_field.scroll_to
       password_field.set password
-      scroll_down
+      signin_button.scroll_to 
       signin_button.touch
     end
   end
