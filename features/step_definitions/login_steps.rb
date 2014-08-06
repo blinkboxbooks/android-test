@@ -1,4 +1,4 @@
-Given(/^the anonymous library screen is displayed$/) do
+And(/^the anonymous library screen is displayed$/) do
   enter_app_as_anonymous_user()
   expect_page(anonymous_library_page)
 end
@@ -16,8 +16,4 @@ end
 Then(/^I should be on the user library screen$/) do
   user_library_page.await
   expect(user_library_page).to be_displayed
-end
-
-And(/^I reset my devices$/) do
-    user_interface.deregister_client_all
 end
