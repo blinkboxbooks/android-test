@@ -20,6 +20,10 @@ module PageObjectModel
       signin_button.wait_for_element_exists(timeout: 10)
     end
 
+    def links_on_menu_drawer(links)
+      links.hashes.map { | x |  Element.new("* marked:\'#{x['links']}'").exists?  }
+    end
+
     def open_menu_and_signin
       open_menu
       signin_button.touch

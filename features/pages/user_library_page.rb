@@ -20,6 +20,10 @@ module PageObjectModel
       signout_button.wait_for_element_exists(timeout: 5)
     end
 
+    def links_on_drawer_menu(links)
+      links.hashes.map { | x |  Element.new("* marked:\'#{x['links']}'").exists?  }
+    end
+
     def signed_in?
       your_library_label.exists?
     end

@@ -37,6 +37,10 @@ When(/^I use drawer menu to sign out$/) do
   user_library_page.sign_out
 end
 
+When(/^I Sign out$/) do
+  user_library_page.sign_out
+end
+
 Then(/^I should see sign in option in drawer menu$/) do
   anonymous_library_page.open_menu
   expect(anonymous_library_page.signin_button).to exist
@@ -48,6 +52,7 @@ Then(/^I should see sign out option in the drawer menu$/) do
 end
 
 When(/^I go back to the Anonymous Library page$/) do
+  sign_in_page.await
   sign_in_page.go_back
   anonymous_library_page.await
 end
