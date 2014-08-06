@@ -41,19 +41,6 @@ bundle install
 rake 
 rake calabash:run
 ```
-Running a selected feature
-```
-rake calabash:run feature=features/login.feature
-```
-Running with particular environment
-```
-rake environment=qa-debug
-rake calabash:run environment=qa-debug
-``
-Running with a selected profile
-```
-rake calabash:run profile=smoke
-```
 Custom usage
 ```
 bundle install

@@ -4,7 +4,7 @@ require 'open-uri'
 require 'json'
 @conf = YAML.load_file("config/project_settings.yml")
 @testdata = YAML.load_file("config/test_settings.yml")
-@environment = ENV['environment'] ? ENV['environment'] : @testdata['test']['environment']
+@environment = @testdata['test']['environment']
 
 # rake helper functions for android tasks
 namespace :android do
@@ -108,7 +108,6 @@ namespace :calabash do
 
   desc "Runs calabash android"
   task :run, [:apk_file] do |t, args|
-    puts "Environment: #{@environment}"
     apk_file = args[:apk_file] || default_apk
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     formatter = ENV['formatter'] ? ENV['formatter'] : "LoggedFormatter"
