@@ -36,15 +36,26 @@ usage
 =====
 
 Typical usage
-```shell
+```
 bundle install
 rake 
 rake calabash:run
-#Optional: rake calabash:run feature=features/login.feature
-#Optional: rake calabash:run profile=smoke   This is based on config/cucumber.yml
+```
+Running a selected feature
+```
+rake calabash:run feature=features/login.feature
+```
+Running with particular environment
+```
+rake environment=qa-debug
+rake calabash:run environment=qa-debug
+``
+Running with a selected profile
+```
+rake calabash:run profile=smoke
 ```
 Custom usage
-```shell
+```
 bundle install
 rake endpoint_download=/Users/foo/Desktop/apk.zip endpoint_type=local
 rake calabash:run
