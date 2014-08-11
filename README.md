@@ -3,8 +3,7 @@ android-test
 
 android native app acceptance tests
 
-###Documentation
-[Wiki](https://git.mobcastdev.com/TEST/android-test/wiki)
+Please read the [Wiki](https://git.mobcastdev.com/TEST/android-test/wiki) to get started.
 
 
 setup
