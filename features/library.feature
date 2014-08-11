@@ -3,7 +3,7 @@ Feature: Navigating the user library screen
   Background:
     Given the anonymous library screen is displayed
     When I sign in
-    Then the user_library should be displayed
+    Then the user library should be displayed
 
   @smoke
   Scenario: I am able to validate the shop link
