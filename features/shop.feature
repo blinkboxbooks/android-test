@@ -3,7 +3,7 @@ Feature: I want to search and purchase titles from the shop
   Background:
     Given the anonymous library screen is displayed
     When I sign in
-    Then the user_library should be displayed
+    Then the user library should be displayed
     Given I touch the shop icon
     Then the shop should be displayed
 
