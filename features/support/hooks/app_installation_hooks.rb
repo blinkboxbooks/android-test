@@ -11,8 +11,7 @@ Before do |scenario|
   end
 
   feature_name = scenario.feature.title
-  if FeatureNameMemory.feature_name != feature_name \
-		or ENV["RESET_BETWEEN_SCENARIOS"] == "1"
+  if FeatureNameMemory.feature_name != feature_name or ENV["RESET_BETWEEN_SCENARIOS"] == "1"
     if ENV["RESET_BETWEEN_SCENARIOS"] == "1"
       log "New scenario - reinstalling apps"
     else
