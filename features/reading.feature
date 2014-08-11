@@ -3,7 +3,7 @@ Feature: Allow the user to use the library to view free and purchased books
   Background:
     Given the anonymous library screen is displayed
     When I sign in
-    Then the user libary should be displayed
+    Then the user library should be displayed
 
   @smoke
   Scenario Outline: I am able to open a book and flip through
@@ -11,7 +11,7 @@ Feature: Allow the user to use the library to view free and purchased books
     And turn <fpages> pages forward
     And turn <bpages> pages backward
     And I go back
-    Then the user libary should be displayed
+    Then the user library should be displayed
 
   Examples:
     | fpages | bpages |
@@ -31,7 +31,7 @@ Feature: Allow the user to use the library to view free and purchased books
     And I verify that the page is not bookmarked
     And turn <bpages> pages backward
     And I go back
-    Then the user libary should be displayed
+    Then the user library should be displayed
     
     Examples:
     | fpages | bpages |
