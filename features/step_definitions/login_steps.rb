@@ -1,13 +1,9 @@
 Given(/^I am signed in as an existing user$/) do
-  if anonymous_library_page.logged_out?
-    anonymous_library_page.open_menu_and_signin
-    sign_in_page.await
-    username = test_data['users']['existing']['emailaddress']
-    password = test_data['users']['existing']['password']
-    sign_in_page.submit_sign_in_details(username, password)
-  end
+  enter_app_as_existing_user
 end
-
+When(/^I sign in$/) do
+  enter_app_as_existing_user
+end
 Given(/^I am on the User Library page$/) do
   expect_page(user_library_page)
 end
