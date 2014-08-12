@@ -3,6 +3,9 @@ android-test
 
 android native app acceptance tests
 
+Please read the [Wiki](https://git.mobcastdev.com/TEST/android-test/wiki) to get started.
+
+
 setup
 =====
 - Confirm location and password/username combination of debug.keystore calabash_settings
