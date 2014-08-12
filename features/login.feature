@@ -1,5 +1,8 @@
 Feature: Sign in/out into blinkbox books
 
+  Background: Existing user sign in/out
+    Given a valid user account ready for use on a new device
+
   @smoke
   Scenario: Existing user successfully signs in
     Given the anonymous library screen is displayed
@@ -17,4 +20,3 @@ Feature: Sign in/out into blinkbox books
     Then the Sign in page should be displayed
     When I go back to the Anonymous Library page
     Then I should see sign in option in drawer menu
-
