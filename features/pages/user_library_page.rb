@@ -33,7 +33,9 @@ module PageObjectModel
       signout_button.touch
     end
   end
+end
 
+module PageObjectModel
   def user_library_page
     @_user_library_page ||= page(UserLibraryPage)
   end

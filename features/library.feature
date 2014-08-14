@@ -3,12 +3,12 @@ Feature: Navigating the user library screen
   Background:
     Given the anonymous library screen is displayed
     When I sign in
-    Then the User Library page should be displayed
+    Then the user Library should be displayed
 
   @smoke
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
-    Then the Shop page should be displayed
+    Then the shop should be displayed
 
   Scenario: Verify drawer menu links present when user signed in
     When I open the drawer menu

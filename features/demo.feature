@@ -3,7 +3,7 @@ Feature: I want to demonstrate what an automation framework looks like in operat
   Background:
     Given the anonymous library screen is displayed
     When I sign in
-    Then I should be on the user library screen
+    Then the user library should be displayed
 
   Scenario Outline: Navigating through the app on the device
     Given I touch the shop icon
@@ -16,7 +16,7 @@ Feature: I want to demonstrate what an automation framework looks like in operat
     And turn <fpages> pages forward
     And turn <bpages> pages backward
     And I go back
-    Then I should be back on the user library screen
+    Then the user library should be displayed
 
   Examples:
     | shopitem | fpages | bpages |

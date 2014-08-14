@@ -3,6 +3,9 @@ android-test
 
 android native app acceptance tests
 
+Please read the [Wiki](https://git.mobcastdev.com/TEST/android-test/wiki) to get started.
+
+
 setup
 =====
 - Confirm location and password/username combination of debug.keystore calabash_settings
@@ -36,15 +39,13 @@ usage
 =====
 
 Typical usage
-```shell
+```
 bundle install
 rake 
 rake calabash:run
-#Optional: rake calabash:run feature=features/login.feature
-#Optional: rake calabash:run profile=smoke   This is based on config/cucumber.yml
 ```
 Custom usage
-```shell
+```
 bundle install
 rake endpoint_download=/Users/foo/Desktop/apk.zip endpoint_type=local
 rake calabash:run
