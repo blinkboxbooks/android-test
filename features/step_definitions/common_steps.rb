@@ -1,7 +1,7 @@
 Given(/a valid user account(?: ready for use on a new device)$/) do
-  device = user_interface.get_clients.first
-  if device
-    user_interface.deregister_client(device['client_id'].split(":").last)
+  devices = user_interface.get_devices
+  if devices
+    user_interface.deregister_device(devices.first)
   end
 end
 
