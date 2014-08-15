@@ -1,8 +1,5 @@
 Given(/a valid user account(?: ready for use on a new device)$/) do
-  device = user_interface.get_devices
-  if device
-    user_interface.deregister_device(device.first)
-  end
+  user_interface.deregister_all_devices
 end
 
 Given(/^the anonymous library screen is displayed$/) do
