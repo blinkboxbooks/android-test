@@ -1,8 +1,5 @@
 Given(/a valid user account(?: ready for use on a new device)$/) do
-  device = user_interface.get_clients.first
-  if device
-    user_interface.deregister_client(device['client_id'].split(":").last)
-  end
+  user_interface.deregister_all_devices
 end
 
 Given(/^the anonymous library screen is displayed$/) do
