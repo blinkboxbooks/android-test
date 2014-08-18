@@ -14,7 +14,9 @@ module PageObjectModel
       end
       anonymous_library_page.await
     end
+
     def enter_app_as_existing_user
+      enter_app_as_anonymous_user
       if anonymous_library_page.logged_out?
         anonymous_library_page.open_menu_and_signin
         sign_in_page.await
