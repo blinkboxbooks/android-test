@@ -6,12 +6,12 @@ class String
   def underscore_with_casing(casing = :lower)
     s = self.underscore
     case casing
-      when :lower then
-        s
-      when :upper then
-        s.upcase
-      else
-        raise ArgumentError, "unsupported casing"
+    when :lower then
+      s
+    when :upper then
+      s.upcase
+    else
+      raise ArgumentError, "unsupported casing"
     end
   end
 

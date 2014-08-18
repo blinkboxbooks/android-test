@@ -8,26 +8,21 @@ module PageObjectModel
     element :book_cover_first, "BookCover index:0"
 
     def open_first_book
-      book_cover_first.click
+      book_cover_first.touch
     end
 
     def goto_shop
-      shop_button.click
+      shop_button.touch
     end
 
     def open_menu
-      home_button.click
-      signin_button.wait_for_element_exists(timeout: 5)
+      home_button.touch
+      signin_button.wait_for_element_exists(timeout: 10)
     end
 
-    def close_menu
-      home_button.click
-      signin_button.wait_for_element_does_not_exist(timeout: 5)
-    end
-
-    def toggle_menu_sign_in
+    def open_menu_and_signin
       open_menu
-      signin_button.click
+      signin_button.touch
     end
 
     def logged_out?

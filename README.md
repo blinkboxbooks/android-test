@@ -3,6 +3,9 @@ android-test
 
 android native app acceptance tests
 
+Please read the [Wiki](https://git.mobcastdev.com/TEST/android-test/wiki) to get started.
+
+
 setup
 =====
 - Confirm location and password/username combination of debug.keystore calabash_settings
@@ -54,12 +57,6 @@ Custom profiles
 bundle install
 rake 
 rake calabash:run profile=smoke
-```
-Custom download path
-```
-bundle install
-rake endpoint_download=/Users/foo/Desktop/apk.zip endpoint_type=local
-rake calabash:run
 ```
 
 project structure

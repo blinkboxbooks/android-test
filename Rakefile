@@ -134,6 +134,15 @@ namespace :calabash do
     end
     puts output
   end
+
+  desc "Runs calabash android with given profile"
+  task :run_with_profile, [:profile, :apk_file] do |t, args|
+    profile = args[:profile] || 'default'
+    apk_file = args[:apk_file] || default_apk
+    puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
+
+    system("calabash-android run #{apk_file} -p #{profile}")
+  end
 end
 
 
