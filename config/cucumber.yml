@@ -1,4 +1,4 @@
-<% ci_opts = " -r features --color --tags ~@on_demand --tags ~@wip --tags ~@unstable --tags ~@manual --tags ~@pending --format junit -o results/junit/ --format Cucumber::Blinkbox::Formatter::Html -o results/features_report.html --format pretty"  %>
+<% ci_opts = " -r features --color --tags ~@on_demand --tags ~@wip --tags ~@unstable --tags ~@manual --tags ~@pending --format junit -o results/junit/ --format json -o results/cucumber.json --format Cucumber::Blinkbox::Formatter::Html -o results/features_report.html --format pretty"  %>
 
 default: -p local_debug
 local_debug: -r features --tags ~@wip environment=production debug=true --format pretty
