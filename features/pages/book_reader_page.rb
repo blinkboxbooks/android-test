@@ -19,13 +19,13 @@ module PageObjectModel
 
     def open_options_menu
       logger.debug "Opening options menu"
-      wait_for(:timeout => 5) {
+      wait_for(:timeout => Page.timeout_short) {
         toggle_reader_options
       }
     end
 
     def toggle_bookmark
-      wait_for(:timeout => 5) {
+      wait_for(:timeout => Page.timeout_short) {
         bookmarker.touch
       }
     end

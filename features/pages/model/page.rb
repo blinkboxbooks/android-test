@@ -25,6 +25,14 @@ module PageObjectModel
 		  }
     end
 
+    def self.timeout_short
+      5
+    end
+
+    def self.timeout_long
+      Calabash::Android::WaitHelpers.const_get(:DEFAULT_OPTS)[:timeout]
+    end
+
     alias :displayed? :current_page?
 
     #TODO: embed screenshots into our formatters
@@ -40,4 +48,3 @@ module PageObjectModel
   end
 
 end
-
