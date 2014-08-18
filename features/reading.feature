@@ -18,7 +18,7 @@ Feature: Allow the user to use the library to view free and purchased books
     | 1      | 1      |
 
   @smoke @production
-  @wip
+  @unstable
   Scenario Outline: Add and remove bookmarks
     Given I open the first book
     And turn <fpages> pages forward
