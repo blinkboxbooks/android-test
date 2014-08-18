@@ -63,7 +63,6 @@ namespace :android do
   end
 end
 
-
 #android rake tasks
 namespace :android do
   desc "Get latest android APK"
@@ -118,7 +117,7 @@ namespace :calabash do
   desc "Runs calabash android"
   task :run, [:apk_file] do |t, args|
     apk_file = args[:apk_file] || default_apk
-    puts "Running with environment:%s" % @environment
+    puts "Running with environment:#{@environment}"
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     formatter = ENV['formatter'] ? ENV['formatter'] : "LoggedFormatter"
     output_path = ENV['output'] ? ENV['output'] : ""
