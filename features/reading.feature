@@ -6,7 +6,7 @@ Feature: Allow the user to use the library to view free and purchased books
     When I sign in
     Then the user library should be displayed
 
-  @disabled
+  @smoke
   Scenario Outline: I am able to open a book and flip through
     Given I open the first book
     And turn <fpages> pages forward
@@ -18,7 +18,7 @@ Feature: Allow the user to use the library to view free and purchased books
     | fpages | bpages |
     | 1      | 1      |
 
-  @unstable
+  @smoke
   Scenario Outline: Add and remove bookmarks
     Given I open the first book
     And turn <fpages> pages forward
