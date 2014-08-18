@@ -18,7 +18,6 @@ module PageObjectModel
       tap(50, 50)
       if !@optionsDisplayed
         @optionsDisplayed = true
-        options.exists?
       else
         @optionsDisplayed = false 
       end
