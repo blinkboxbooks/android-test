@@ -1,11 +1,11 @@
 Feature: Navigating the user library screen
 
   Background:
-    Given the anonymous library screen is displayed
-    When I sign in
-    Then the user library should be displayed
+    Given a valid user account ready for use on a new device
+    And I am signed in
+    And I am on the User Library page
 
-  @smoke
+  @smoke @production
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
     Then the shop should be displayed
