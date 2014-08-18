@@ -32,3 +32,12 @@ Feature: Navigating the user library screen
       | "Frequently asked questions"  |
       | "Contact us"                  |
       | "Info"                        |
+
+  Scenario: Verify refresh icon is present when user not signed in
+    When I Sign out
+    And I go back to the Anonymous Library page
+    Then I should see refresh icon
+
+  Scenario: Verify refresh icon is present when user signed in
+    Given I am on the User Library page
+    Then I should see refresh image
