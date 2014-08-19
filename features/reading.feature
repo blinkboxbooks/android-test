@@ -1,11 +1,11 @@
 Feature: Allow the user to use the library to view free and purchased books
 
   Background:
-    Given the anonymous library screen is displayed
-    When I sign in
-    Then the user library should be displayed
+    Given a valid user account ready for use on a new device
+    And I am signed in
+    And I am on the User Library page
 
-  @smoke
+  @smoke @production
   Scenario Outline: I am able to open a book and flip through
     Given I open the first book
     And turn <fpages> pages forward
@@ -17,8 +17,8 @@ Feature: Allow the user to use the library to view free and purchased books
     | fpages | bpages |
     | 1      | 1      |
 
-  @smoke
-  @wip
+  @smoke @production
+  @unstable
   Scenario Outline: Add and remove bookmarks
     Given I open the first book
     And turn <fpages> pages forward

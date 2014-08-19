@@ -1,5 +1,10 @@
 Feature: Navigating the user library screen
 
+  Background:
+    Given a valid user account ready for use on a new device
+    And I am signed in
+    And I am on the User Library page
+
   @smoke @signed_in
   Scenario: User navigates to the Shop from Library
     Given the anonymous library screen is displayed
@@ -8,7 +13,7 @@ Feature: Navigating the user library screen
     Given I touch the shop icon
     Then the Shop page should be displayed
 
-  @smoke
+  @smoke @production
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
     Then the shop should be displayed

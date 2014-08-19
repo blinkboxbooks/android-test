@@ -44,11 +44,19 @@ bundle install
 rake 
 rake calabash:run
 ```
-Custom usage
+
+Custom features
 ```
 bundle install
-rake endpoint_download=/Users/foo/Desktop/apk.zip endpoint_type=local
-rake calabash:run
+rake 
+rake calabash:run feature=features/login.feature
+```
+
+Custom profiles
+```
+bundle install
+rake 
+rake calabash:run profile=smoke
 ```
 
 project structure
