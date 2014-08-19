@@ -1,4 +1,4 @@
-Given(/a valid user account(?: ready for use on a new device)$/) do
+Given(/a valid user account(?: ready for use on a new device)?$/) do
   user_interface.deregister_all_devices
 end
 

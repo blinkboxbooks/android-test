@@ -1,9 +1,10 @@
+@production
 Feature: I want to demonstrate what an automation framework looks like in operation
 
   Background:
-    Given the anonymous library screen is displayed
-    When I sign in
-    Then the user library should be displayed
+    Given a valid user account ready for use on a new device
+    And I am signed in
+    And I am on the User Library page
 
   Scenario Outline: Navigating through the app on the device
     Given I touch the shop icon

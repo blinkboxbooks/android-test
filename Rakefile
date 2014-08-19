@@ -4,7 +4,7 @@ require 'open-uri'
 require 'json'
 @conf = YAML.load_file("config/project_settings.yml")
 @testdata = YAML.load_file("config/test_settings.yml")
-@environment = @testdata['test']['environment']
+@environment = ENV['environment'] ? ENV['environment'] : @testdata['test']['environment']
 
 include FileUtils
 # rake helper functions for android tasks
@@ -62,6 +62,10 @@ namespace :android do
     end
     `calabash-android resign #{apk_file}`
   end
+
+  def display_installed_apk
+    puts `adb shell pm list packages | grep blinkbox`
+  end
 end
 
 #android rake tasks
@@ -98,6 +102,10 @@ namespace :android do
     Rake::Task["android:resign"].invoke
     Rake::Task["android:install_apk"].invoke
   end
+  desc "Displays installed blinkbox APK's on device (Requires connected device)"
+  task :display_installed_apk do
+    display_installed_apk
+  end
 end
 
 #calabash rake tasks
@@ -127,6 +135,7 @@ namespace :calabash do
   desc "Runs calabash android"
   task :run, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
+    puts "Running with environment:#{@environment}"
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     formatter = ENV['formatter'] ? ENV['formatter'] : "LoggedFormatter"
     output_path = ENV['output'] ? ENV['output'] : ""
@@ -141,6 +150,15 @@ namespace :calabash do
       output = `calabash-android run #{apk_file}`
     end
     puts output
+  end
+
+  desc "Runs calabash android with given profile"
+  task :run_with_profile, [:profile, :apk_file] do |t, args|
+    profile = args[:profile] || 'default'
+    apk_file = args[:apk_file] || default_apk
+    puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
+
+    system("calabash-android run #{apk_file} -p #{profile}")
   end
 end
 
