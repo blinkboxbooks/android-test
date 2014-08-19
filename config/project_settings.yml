@@ -2,6 +2,7 @@
 remote:
  endpoint_download: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/artifact/app/build/apk/*zip*/apk.zip   
  endpoint_payload: apk.zip
+ endpoint_specific_build: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/__BUILDNUM__/artifact/app/build/apk/*zip*/apk.zip 
 project:
  build_dir: build
  log_html_path: results/output.html
