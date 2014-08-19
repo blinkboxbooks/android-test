@@ -41,8 +41,7 @@ namespace :android do
     end
     if params[:buildnumber]
       puts "Using specified build number #{params[:buildnumber]}"
-      path = @conf['remote']['endpoint_specific_build']
-      path.gsub!("__BUILDNUM__", params[:buildnumber])
+      path.gsub!("lastSuccessfulBuild", params[:buildnumber])
     end
     puts "Operation type #{operation_type} on path #{path}"
     `#{operation_type} #{path} -P #{@conf['project']['build_dir']} 2>/dev/null`
