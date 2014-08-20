@@ -7,6 +7,10 @@ module PageObjectModel
     element :your_library_label, "* marked:'Your library'"
     element :book_cover_first, "BookCover index:0"
     element :refresh_button, "* id:'button_sync'"
+    element :book_cover_first, 'BookCover index:0'
+    # TODO: Be aware multiple element has the same id
+    element :option_button, "* id:'btn_options'"
+    element :embedded_option_menu, "* id:'text1'"
 
     def open_first_book
       book_cover_first.touch
@@ -27,7 +31,18 @@ module PageObjectModel
 
     def open_menu_and_signin
       open_menu
-      signin_button.touch
+      signin_button.tap_when_element_exists
+    end
+
+    def open_option_button
+      option_button.touch
+      option_button.wait_for_element_does_not_exist(timeout: 5)
+      embedded_option_menu.wait_for_element_exists(timeout: 5)
+    end
+
+    def option_exists?(option_name)
+      option_menu_item = Element.new("* marked:'#{option_name}'")
+      option_menu_item.exists?
     end
 
     def refresh_icon

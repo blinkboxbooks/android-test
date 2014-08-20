@@ -1,6 +1,7 @@
 require 'cucumber'
 require 'cucumber/formatter/io'
 require 'cucumber/formatter/html'
+require 'cucumber/blinkbox/formatter/html'
 
 class LoggedFormatter < Cucumber::Formatter::Html
   include UtilityObjects
