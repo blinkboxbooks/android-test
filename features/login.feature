@@ -8,7 +8,7 @@ Feature: Sign in/out into blinkbox books
     Given the anonymous library screen is displayed
     When I navigate to the Sign in page
     And I submit valid sign in details
-    Then the User Library page should be displayed
+    Then the user library should be displayed
     And I should see sign out option in the drawer menu
 
   @smoke @production
@@ -17,6 +17,6 @@ Feature: Sign in/out into blinkbox books
     And I am signed in as an existing user
     And I am on the User Library page
     When I use drawer menu to sign out
-    Then the Sign in page should be displayed
+    Then the sign in should be displayed
     When I go back to the Anonymous Library page
     Then I should see sign in option in drawer menu
