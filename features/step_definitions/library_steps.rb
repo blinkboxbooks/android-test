@@ -10,7 +10,6 @@ Then(/^I should see the following$/) do |table|
   table.rows.each do |x|
     anonymous_library_page.option_exists?(x.first)
   end
-
 end
 
 Then(/^I should see the following links$/) do |links|
@@ -28,3 +27,12 @@ end
 When(/^I open the menu drawer$/) do
  anonymous_library_page.open_menu
 end
+
+Then(/^I should see refresh icon$/) do
+ anonymous_library_page.refresh_icon
+end
+
+Then(/^I should see refresh image$/) do
+  user_library_page.refresh_image
+end
+

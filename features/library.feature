@@ -41,7 +41,18 @@ Feature: Navigating the user library screen
       | "Contact us"                  |
       | "Info"                        |
 
-  @smoke
+  @smoke @reinstall
+  Scenario: Verify refresh icon is present when user not signed in
+    When I Sign out
+    And I go back to the Anonymous Library page
+    Then I should see refresh icon
+
+  @smoke @reinstall
+  Scenario: Verify refresh icon is present when user signed in
+    Given I am on the User Library page
+    Then I should see refresh image
+
+  @smoke @reinstall
   Scenario: Verify embedded book option menu
     When I Sign out
     And I go back to the Anonymous Library page
@@ -54,5 +65,3 @@ Feature: Navigating the user library screen
       | Read sample                    |
       | Mark sample as 'Finished'      |
       | Remove sample from your device |
-
-

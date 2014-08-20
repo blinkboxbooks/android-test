@@ -5,6 +5,8 @@ module PageObjectModel
     element :signin_button, "TextView marked:'Sign in'"
     element :shop_button, "* id:'button_shop'"
     element :your_library_label, "* marked:'Your library'"
+    element :book_cover_first, "BookCover index:0"
+    element :refresh_button, "* id:'button_sync'"
     element :book_cover_first, 'BookCover index:0'
     # TODO: Be aware multiple element has the same id
     element :option_button, "* id:'btn_options'"
@@ -41,6 +43,10 @@ module PageObjectModel
     def option_exists?(option_name)
       option_menu_item = Element.new("* marked:'#{option_name}'")
       option_menu_item.exists?
+    end
+
+    def refresh_icon
+      refresh_button.exists?
     end
 
     def logged_out?
