@@ -31,7 +31,7 @@ module PageObjectModel
 
     def open_menu_and_signin
       open_menu
-      signin_button.tap_when_element_exists
+      signin_button.touch
     end
 
     def open_option_button
