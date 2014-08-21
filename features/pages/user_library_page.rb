@@ -6,6 +6,7 @@ module PageObjectModel
     element :signout_button, "TextView marked:'Sign out'"
     element :home_button, "* id:'togglebutton_home'"
     element :your_library_label, "* marked:'Your library'"
+    element :refresh_button, "* id:'button_sync'"
 
     def open_first_book
       book_cover_first.touch
@@ -20,8 +21,16 @@ module PageObjectModel
       signout_button.wait_for_element_exists(timeout: Page.timeout_short)
     end
 
+    def links_on_drawer_menu(links)
+      links.hashes.map { | x |  Element.new("* marked:\'#{x['links']}'").exists?  }
+    end
+
     def signed_in?
       your_library_label.exists?
+    end
+
+    def refresh_image
+      refresh_button.exists?
     end
 
     def sign_out
