@@ -1,0 +1,37 @@
+#!/bin/bash
+function echo_red()
+{
+    tput setaf 1
+    echo $1
+    tput sgr0
+}
+function echo_green()
+{
+    tput setaf 2
+    echo $1
+    tput sgr0
+}
+function check()
+{
+  which $1
+  if [ $? != 0 ]; then
+    echo_red "Not found"
+    return 1
+  fi
+  echo_green "Found"
+  return 0
+}
+
+
+
+
+
+echo_green "Configuration starting"
+
+check "brew" 
+if [ $? != 0 ]; then
+  echo "installing..."
+fi
+
+
+echo_green "Configuration completed"

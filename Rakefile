@@ -99,11 +99,7 @@ namespace :calabash do
 
   desc "Checks development environment and install essentials"
   task :environment_install do
-    ret = `which brew`
-    if ret.empty?
-      puts "Please run : ruby -e \"$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)\""
-      puts "Additional : brew install wget"
-    end
+    system("./config/configuration")
   end
 
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
