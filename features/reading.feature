@@ -21,17 +21,13 @@ Feature: Allow the user to use the library to view free and purchased books
   Scenario Outline: Add and remove bookmarks
     Given I open the first book
     And turn <fpages> pages forward
-    And I verify that the page is not bookmarked
-    When I open the reading option
-    And I add a bookmark to the page
-    And I verify that the page is bookmarked
-    When I open the reading option
-    And I remove the bookmark from the page
-    And I verify that the page is not bookmarked
+    When I toggle the reading option
+    And verify it exists 
+    When I toggle the reading option
     And turn <bpages> pages backward
     And I go back
     Then the user library should be displayed
     
     Examples:
     | fpages | bpages |
-    | 1      | 1      |
+    | 25      | 25      |

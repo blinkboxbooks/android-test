@@ -19,8 +19,10 @@ end
 And(/^I verify that the page is not bookmarked$/) do
   expect(book_reader_page).to_not have_bookmark
 end
-
-When(/^I open the reading option$/) do
+When(/^verify it exists$/) do
+  expect(book_reader_page).to have_options
+end
+When(/^I toggle the reading option$/) do
   book_reader_page.open_options_menu
 end
 
