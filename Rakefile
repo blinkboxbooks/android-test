@@ -6,9 +6,9 @@ require 'json'
 @testdata = YAML.load_file("config/test_settings.yml")
 @environment = ENV['environment'] ? ENV['environment'] : @testdata['test']['environment']
 
-include FileUtils
 # rake helper functions for android tasks
 namespace :android do
+  include FileUtils
   def apks
     @apks ||= Dir[@conf['project']['build_dir'] + "/*.apk"]
     if @apks.empty?
