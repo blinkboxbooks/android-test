@@ -99,7 +99,7 @@ namespace :calabash do
 
   desc "Checks development environment and install essentials"
   task :environment_install do
-    system("./config/configuration")
+    system("./config/dev_env_install")
   end
 
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
