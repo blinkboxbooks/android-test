@@ -8,6 +8,7 @@ require 'json'
 
 # rake helper functions for android tasks
 namespace :android do
+  include FileUtils
   def apks
     @apks ||= Dir[@conf['project']['build_dir'] + "/*.apk"]
     if @apks.empty?
@@ -25,10 +26,10 @@ namespace :android do
     if File.directory?(@conf['project']['build_dir'])
       `rm -rf #{@conf['project']['build_dir']}`
     end
-    FileUtils::mkdir @conf['project']['build_dir']
+    mkdir @conf['project']['build_dir']
   end
 
-  def download_apk
+  def download_apk(params = {})
     operation_type = 'wget'
     if ENV['endpoint_type'] == 'local'
       operation_type = 'cp -rf'
@@ -37,6 +38,10 @@ namespace :android do
       path = ENV['endpoint_download']
     else
       path = @conf['remote']['endpoint_download']
+    end
+    if params[:buildnumber]
+      puts "Using specified build number #{params[:buildnumber]}"
+      path.gsub!("lastSuccessfulBuild", params[:buildnumber])
     end
     puts "Operation type #{operation_type} on path #{path}"
     `#{operation_type} #{path} -P #{@conf['project']['build_dir']} 2>/dev/null`
@@ -73,17 +78,30 @@ namespace :android do
   end
 
   desc "builds and resigns the apk"
-  task :resign, [:apk_file] do |t, args|
+  task :resign, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
     resign_apk(apk_file)
   end
 
   desc "Installs the apk and test server (will reinstall if installed)"
-  task :install_apk, [:apk_file] do |t, args|
+  task :install_apk, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
     `adb install -r #{apk_file}`
   end
-
+  desc "Gets the latest apk, resigns it and installs the apk, optional argument for a specified build"
+  task :setup, [:buildnumber] do |_, args|
+    buildn = args[:buildnumber]
+    if buildn
+      puts buildn
+      generate_directories
+      download_apk(:buildnumber => buildn)
+      puts default_apk 
+    else
+      Rake::Task["android:get_latest_apk"].invoke
+    end
+    Rake::Task["android:resign"].invoke
+    Rake::Task["android:install_apk"].invoke
+  end
   desc "Displays installed blinkbox APK's on device (Requires connected device)"
   task :display_installed_apk do
     display_installed_apk
@@ -103,7 +121,7 @@ namespace :calabash do
   end
 
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
-  task :console, [:apk_file] do |t, args|
+  task :console, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
     ENV['IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
@@ -111,7 +129,7 @@ namespace :calabash do
   end
 
   desc "Runs calabash android"
-  task :run, [:apk_file] do |t, args|
+  task :run, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
     puts "Running with environment:#{@environment}"
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
@@ -140,12 +158,8 @@ namespace :calabash do
   end
 end
 
-
 task :default do
   #endpoint_download=custom endpoint
   #endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
   #configuration=custom configuration
-  Rake::Task["android:get_latest_apk"].invoke
-  Rake::Task["android:resign"].invoke
-  Rake::Task["android:install_apk"].invoke
 end
