@@ -9,12 +9,12 @@ Feature: Navigating the user library screen
   @smoke @signed_in
   Scenario: User navigates to the Shop from Library
     Given I touch the shop icon
-    Then the Shop page should be displayed
+    Then the shop page should be displayed
 
   @smoke @production
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
-    Then the shop should be displayed
+    Then the shop page should be displayed
 
   @smoke
   Scenario: Verify drawer menu links present when user signed in
