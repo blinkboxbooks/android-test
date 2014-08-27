@@ -25,11 +25,11 @@ module PageObjectModel
 		  }
     end
 
-    def self.timeout_short
+    def timeout_short
       5
     end
 
-    def self.timeout_long
+    def timeout_long
       Calabash::Android::WaitHelpers.const_get(:DEFAULT_OPTS)[:timeout]
     end
 

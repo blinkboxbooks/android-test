@@ -12,11 +12,6 @@ module PageObjectModel
       (number_of_pages.to_i.abs).times { tap(point[:x], point[:y]) }
     end
 
-    #TODO: should check for visibility not only existence?
-    def has_bookmark?
-      bookmark.exists?
-    end
-
     def has_options?
       options.exists?
     end

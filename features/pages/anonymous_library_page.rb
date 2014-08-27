@@ -22,7 +22,7 @@ module PageObjectModel
 
     def open_menu
       home_button.touch
-      signin_button.wait_for_element_exists(timeout: Page.timeout_short)
+      signin_button.wait_for_element_exists(timeout: timeout_short)
     end
 
     def links_on_menu_drawer(links)
@@ -36,8 +36,8 @@ module PageObjectModel
 
     def open_option_button
       option_button.touch
-      option_button.wait_for_element_does_not_exist(timeout: 5)
-      embedded_option_menu.wait_for_element_exists(timeout: 5)
+      option_button.wait_for_element_does_not_exist(timeout: timeout_short)
+      embedded_option_menu.wait_for_element_exists(timeout: timeout_short)
     end
 
     def option_exists?(option_name)
