@@ -7,7 +7,9 @@ module PageObjectModel
       try_it_out_button.touch
     end
   end
+end
 
+module PageObjectModel
   def welcome_page
     @_welcome_page ||= page(WelcomePage)
   end

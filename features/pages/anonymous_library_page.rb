@@ -53,7 +53,9 @@ module PageObjectModel
       !your_library_label.exists?
     end
   end
+end
 
+module PageObjectModel
   def anonymous_library_page
     @_anonymous_library_page ||= page(AnonymousLibraryPage)
   end

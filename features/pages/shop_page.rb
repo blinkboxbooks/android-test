@@ -29,7 +29,9 @@ module PageObjectModel
       categories_tab.touch
     end
   end
+end
 
+module PageObjectModel  
   def shop_page
     @_shop_page ||= page(ShopPage)
   end

@@ -12,11 +12,13 @@ module PageObjectModel
       (number_of_pages.to_i.abs).times { tap(point[:x], point[:y]) }
     end
 
-    def has_options?
-      options.exists?
+    def has_bookmark?
+      bookmark.exists?
     end
   end
+end
 
+module PageObjectModel
   def book_reader_page
     @_book_reader_page ||= page(BookReaderPage)
   end
