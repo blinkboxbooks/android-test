@@ -17,17 +17,3 @@ Feature: Allow the user to use the library to view free and purchased books
     | fpages | bpages |
     | 1      | 1      |
 
-  @smoke @production
-  Scenario Outline: Add and remove bookmarks
-    Given I open the first book
-    And turn <fpages> pages forward
-    When I toggle the reading option
-    And verify it exists 
-    When I toggle the reading option
-    And turn <bpages> pages backward
-    And I go back
-    Then the user library should be displayed
-    
-    Examples:
-    | fpages | bpages |
-    | 25      | 25      |
