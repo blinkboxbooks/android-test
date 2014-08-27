@@ -17,8 +17,7 @@ module PageObjectModel
     end
 
     def open_drawer_menu
-      home_button.touch
-      signout_button.wait_for_element_exists(timeout: timeout_short)
+      home_button.tap_when_element_exists(timeout: timeout_short)
     end
 
     def links_on_drawer_menu(links)
@@ -35,7 +34,7 @@ module PageObjectModel
 
     def sign_out
       open_drawer_menu
-      signout_button.touch
+      signout_button.tap_when_element_exists(timeout: timeout_short)
     end
   end
 end
