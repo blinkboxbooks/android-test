@@ -35,7 +35,7 @@ module PageObjectModel
 
     def sign_out
       open_drawer_menu
-      signout_button.wait_for_element_exists(timeout: Page.timeout_short)
+      signout_button.wait_for_element_exists(timeout: timeout_short)
       signout_button.touch
     end
   end
