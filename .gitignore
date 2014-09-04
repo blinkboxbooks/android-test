@@ -1,4 +1,5 @@
 # OSX-specific
+android-vm/.vagrant
 .DS_Store
 .irb-history
 

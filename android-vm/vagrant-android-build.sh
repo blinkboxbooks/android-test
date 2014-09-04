@@ -1,3 +1,4 @@
+apt-get update
 apt-get install openjdk-7-jdk unzip -y
 # For maven-plugin
 apt-get install lib32z1-dev bison flex lib32ncurses5-dev libx11-dev gperf g++-multilib -y
@@ -26,6 +27,7 @@ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+source ~/.bashrc
 rbenv install 2.0.0 -k
 rbenv global 2.0.0
 sudo rm -rf /usr/bin/ruby
