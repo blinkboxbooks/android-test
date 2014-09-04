@@ -1,4 +1,3 @@
-apt-get update -y
 apt-get install openjdk-7-jdk unzip -y
 # For maven-plugin
 apt-get install lib32z1-dev bison flex lib32ncurses5-dev libx11-dev gperf g++-multilib -y
@@ -20,3 +19,16 @@ sudo -u vagrant echo export PATH=/home/vagrant/apache-maven-3.2.1/bin:\$PATH >> 
 sudo -u vagrant echo "y" | /home/vagrant/adt-bundle-linux-x86_64-20131030/sdk/tools/android update sdk -t 6 --no-ui -y
 # ANDROID_HOME is for Maven
 sudo -u vagrant echo export ANDROID_HOME=/home/vagrant/adt-bundle-linux-x86_64-20131030/sdk/ >> /home/vagrant/.bashrc
+
+# Install android-test
+apt-get install git -y
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+rbenv install 2.0.0 -k
+rbenv global 2.0.0
+sudo rm -rf /usr/bin/ruby
+sudo rm -rf /opt/vagrant_ruby/bin/ruby 
+sudo ln -s /home/vagrant/.rbenv/shims/ruby /usr/bin/ruby
+gem install bundler
