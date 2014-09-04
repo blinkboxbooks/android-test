@@ -21,16 +21,15 @@ sudo -u vagrant echo "y" | /home/vagrant/adt-bundle-linux-x86_64-20131030/sdk/to
 # ANDROID_HOME is for Maven
 sudo -u vagrant echo export ANDROID_HOME=/home/vagrant/adt-bundle-linux-x86_64-20131030/sdk/ >> /home/vagrant/.bashrc
 
-# Install android-test
+# Install android-test components
+
+apt-get install build-essential -y
 apt-get install git -y
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+sudo -u vagrant git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+sudo -u vagrant git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+sudo -u vagrant echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+sudo -u vagrant echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 source ~/.bashrc
-rbenv install 2.0.0 -k
-rbenv global 2.0.0
-sudo rm -rf /usr/bin/ruby
-sudo rm -rf /opt/vagrant_ruby/bin/ruby 
-sudo ln -s /home/vagrant/.rbenv/shims/ruby /usr/bin/ruby
+rbenv install 2.0.0-p481 -k
+rbenv global 2.0.0-p481
 gem install bundler
