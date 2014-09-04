@@ -25,11 +25,11 @@ sudo -u vagrant echo export ANDROID_HOME=/home/vagrant/adt-bundle-linux-x86_64-2
 
 apt-get install build-essential -y
 apt-get install git -y
-sudo -u vagrant git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-sudo -u vagrant git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-sudo -u vagrant echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-sudo -u vagrant echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-source ~/.bashrc
+git clone https://github.com/sstephenson/rbenv.git ~/home/vagrant/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/home/vagrant/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/home/vagrant/.bashrc
+echo 'eval "$(rbenv init -)"' >> ~/home/vagrant.bashrc
+source ~/home/vagrant/.bashrc
 rbenv install 2.0.0-p481 -k
 rbenv global 2.0.0-p481
 gem install bundler
