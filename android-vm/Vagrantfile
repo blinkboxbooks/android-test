@@ -50,6 +50,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      # Enable Network Address Translation option to speed up external requests from VM
      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
      vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+     vb.customize ['modifyvm', :id, '--usb', 'on']
   end
 
   # View the documentation for the provider you're using for more
