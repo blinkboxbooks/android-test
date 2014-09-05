@@ -33,3 +33,6 @@
 #rbenv install 2.0.0-p481 -k
 #rbenv global 2.0.0-p481
 #gem install bundler
+
+echo "export ANDROID_HOME =/usr/local/android/sdk" >> /home/vagrant/.bashrc
+echo "export PATH=$PATH:/usr/local/android/sdk/platform-tools" >> /home/vagrant/.bashrc
