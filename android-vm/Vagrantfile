@@ -10,11 +10,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "android-dev-1409656186"
+  config.vm.box = "deb"
   config.vm.synced_folder "../","/android-test"
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://kernick.blinkbox.local/Android/android-dev-1409656186.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -65,6 +64,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # example: config.vm.provision :shell, :path => "vagrant-conf/vagrant-provision.sh", :args => "MY_VAR #{ENV['SOME_VALUE']} FOO #{ENV['BAR']}"
 
   # pass the environment variable 'BUILD_NUMBER' (used by both Jenkins and Team City) into the provisioning script
-  config.vm.provision :shell, :path => "vagrant-android-provision.sh", :args => "BUILD_NUMBER #{ENV['BUILD_NUMBER']}"
 
 end
