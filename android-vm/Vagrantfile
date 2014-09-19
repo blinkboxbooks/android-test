@@ -59,6 +59,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 end
 
-Vagrant::Config.run do |config|
-  config.vm.network :bridged
-end
