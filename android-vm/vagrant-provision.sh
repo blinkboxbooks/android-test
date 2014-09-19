@@ -4,6 +4,8 @@ echo "Provisioning vagrant box"
 cd /android-test
 sed 's/artifactory.blinkbox.local/192.168.16.183/g' Gemfile
 #This gets around an error caused by bundler `require': no such file to load -- mkmf (LoadError)`
+sudo apt-get install ruby1.8-dev
+sudo apt-get install build-essential
 gem install bundler
 
 bundle update
