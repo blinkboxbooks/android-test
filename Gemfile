@@ -1,5 +1,5 @@
-source "http://artifactory.blinkbox.local/artifactory/api/gems/bbb-gems/"
-source "http://artifactory.blinkbox.local/artifactory/api/gems/rubygems/"
+source "http://192.168.16.183/artifactory/api/gems/bbb-gems/"
+source "http://192.168.16.183/artifactory/api/gems/rubygems/"
 
 group :automation_libs do
   gem 'cucumber'

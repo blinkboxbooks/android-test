@@ -12,6 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "deb"
   config.vm.synced_folder "../","/android-test"
+  config.vm.network "private_network", ip: "192.168.255.2"
+  config.vm.provision :shell, :path => "vagrant-provision.sh"
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
 
@@ -49,11 +51,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Provision using bash script
   # first, fix the 'stdin: is not a tty' problem when trying to 'vagrant up'
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-
   # args are environment variable name/value pairs (separated by whitespace) which will be created in the guest provisioning script and made available to the vagrant user
   # In this example, environment variables are being read from the host and passed to the guest
   # example: config.vm.provision :shell, :path => "vagrant-conf/vagrant-provision.sh", :args => "MY_VAR #{ENV['SOME_VALUE']} FOO #{ENV['BAR']}"
 
   # pass the environment variable 'BUILD_NUMBER' (used by both Jenkins and Team City) into the provisioning script
 
+end
+
+Vagrant::Config.run do |config|
+  config.vm.network :bridged
 end
