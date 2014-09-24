@@ -10,9 +10,10 @@ module PageObjectModel
     include Logging
 
     attr_reader :selector
-
-    def initialize selector
+    attr_reader :custom_block
+    def initialize(selector,params={})
       @selector = selector
+      @custom_block = params[:block] ? params[:block] : nil
     end
 
     private
@@ -48,12 +49,12 @@ module PageObjectModel
     def method_missing(method_name, *args, &block)
       if calabash_proxy.respond_to?(method_name.to_sym)
         logger.debug %(Delegating method call \##{method_name}(#{args.join(', ')}) for selector "#{selector}" to calabash)
-        calabash_proxy.send(method_name.to_sym, selector, *args, &block)
+        calabash_proxy.send(method_name.to_sym, custom_block ? custom_block : selector, *args, &block)
       elsif has_attribute?(method_name.to_s)
-        logger.debug %(Fetching element attribute \##{method_name} for selector "#{selector}")
+        logger.debug %(Fetching element attribute \##{method_name} for selector "#{ custom_block ? custom_block : selector}")
         attributes[method_name.to_s]
       else
-        raise NoMethodError, %(undefined method '#{method_name}' for \##{self.class.inspect} with selector "#{selector}")
+        raise NoMethodError, %(undefined method '#{method_name}' for \##{self.class.inspect} with selector "#{custom_block ? custom_block : selector}")
       end
     end
 

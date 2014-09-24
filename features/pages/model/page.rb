@@ -17,10 +17,11 @@ module PageObjectModel
 		  }
     end
 
-    def self.element identity, selector
+    def self.element(identity, selector, params={})
+      custom_blk = params[:custom_block]
       class_eval %Q{
 			  def #{identity}
-	        @_#{identity} ||= Element.new("#{selector}")
+	        @_#{identity} ||= Element.new("#{selector},#{custom_blk}")
 		    end
 		  }
     end
