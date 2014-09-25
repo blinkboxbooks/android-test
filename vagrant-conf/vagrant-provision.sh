@@ -22,4 +22,18 @@ source /home/vagrant/.bash_profile
 ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | $ANDROID_HOME/tools/android update sdk --no-ui --filter \
   "build-tools-20.0.0, android-19, extra-android-support, extra-android-m2repository, extra-google-m2repository"
 echo yes | sudo /usr/local/android/sdk/tools/android update sdk --all --no-ui --filter sys-img-armeabi-v7a-android-19 
+# Create the emulator
+echo no | android create avd -n EMULATOR -t 1
+# Start emulator
+emulator -avd EMULATOR -no-skin -no-audio -no-window &
 
+OUT=`adb shell getprop init.svc.bootanim`
+RES="stopped"
+
+while [[ ${OUT:0:7}  != 'stopped' ]]; do
+  OUT=`adb shell getprop init.svc.bootanim`
+  echo 'Waiting for emulator to fully boot...'
+  sleep 1
+done
+
+echo "Emulator booted!"
