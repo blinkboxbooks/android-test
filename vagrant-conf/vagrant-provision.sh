@@ -18,8 +18,10 @@ done
 
 source /home/vagrant/.bash_profile
 #add keystore
-keytool -genkey -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
-
+echo "Installing keystore"
+mkdir -p /home/vagrant/.android
+keytool -genkey -v -keystore /home/vagrant/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+echo "Installed keystore"
 # install requried SDK components
 ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | $ANDROID_HOME/tools/android update sdk --no-ui --filter \
   "build-tools-20.0.0, android-19, extra-android-support, extra-android-m2repository, extra-google-m2repository"
