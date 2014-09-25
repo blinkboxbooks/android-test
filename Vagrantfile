@@ -55,6 +55,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # example: config.vm.provision :shell, :path => "vagrant-conf/vagrant-provision.sh", :args => "MY_VAR #{ENV['SOME_VALUE']} FOO #{ENV['BAR']}"
 
   # pass the environment variable 'BUILD_NUMBER' (used by both Jenkins and Team City) into the provisioning script
-
+  config.vm.provision :shell, :path => "vagrant-conf/vagrant-provision.sh", :args => "BUILD_NUMBER #{ENV['BUILD_NUMBER']}"
 end
 
