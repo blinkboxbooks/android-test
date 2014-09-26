@@ -158,6 +158,18 @@ namespace :calabash do
   end
 end
 
+namespace :scaffold do
+  desc "Creates a new page. Can pass option 'name=EXAMPLE'"
+  task :page do | t,args |
+    name = ENV['name'] ? ENV['name'] : "unnamed"
+  down_cased = name.downcase.tr(' ','_')
+  filename = down_cased + ".rb"
+  classname = name.split(' ').map { |word|word.capitalize}.join
+  File.open("features/pages/#{filename}",'w') { | file |
+    file.write("module PageObjectModel\n\nclass #{classname} < PageObjectModel::Page\nend\nmodule PageObjectModel\n def #{down_cased}\n  @_#{down_cased} ||=page(#{classname})\n end\nend") }
+  end
+end
+
 task :default do
   #endpoint_download=custom endpoint
   #endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
