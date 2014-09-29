@@ -29,6 +29,7 @@ echo yes | sudo /usr/local/android/sdk/tools/android update sdk --all --no-ui --
 # Create the emulator
 echo no | android create avd -n EMULATOR -t 1
 sudo echo "hw.gpu.enabled=yes" >> /root/.android/avd/EMULATOR.avd/config.ini
+sudo echo "hw.ramSize=2048" >> /root/.android/avd/EMULATOR.avd/config.ini
 # Start emulator
 emulator -avd EMULATOR -no-skin -no-audio -no-window &
 
