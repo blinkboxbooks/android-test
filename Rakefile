@@ -41,10 +41,22 @@ namespace :android do
     end
     if params[:buildnumber]
       puts "Using specified build number #{params[:buildnumber]}"
-      path.gsub!("lastSuccessfulBuild", params[:buildnumber])
+      path = @conf['remote']['endpoint_download_build']
+      path = path.gsub('BUILDNUM',params[:buildnumber])
     end
+    
+    if !ENV['username'] && !ENV['password']
+      puts "Please provide your username & password for teamcity e.g. rake android:setup username=AlexJones password=ThisisMyPassword"
+      exit 
+    else
+      puts "Using #{ENV['username']} and #{ENV['password']}"
+    end
+    
+    path = path.gsub("UNAME",ENV['username'])
+    path = path.gsub("PWORD",ENV['password'])
     puts "Operation type #{operation_type} on path #{path}"
-    `#{operation_type} #{path} -P #{@conf['project']['build_dir']} 2>/dev/null`
+
+    `#{operation_type} #{path} -P #{@conf['project']['build_dir']}`
     if ENV['endpoint_payload']
       payload = ENV['endpoint_payload']
     else
