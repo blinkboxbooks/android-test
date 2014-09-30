@@ -1,6 +1,6 @@
 GEM
-  remote: http://192.168.16.183/artifactory/api/gems/bbb-gems/
-  remote: http://192.168.16.183/artifactory/api/gems/rubygems/
+  remote: http://artifactory.blinkbox.local/artifactory/api/gems/bbb-gems/
+  remote: http://artifactory.blinkbox.local/artifactory/api/gems/rubygems/
   specs:
     activesupport (4.1.6)
       i18n (~> 0.6, >= 0.6.9)
@@ -49,7 +49,7 @@ GEM
     i18n (0.6.11)
     json (1.8.1)
     mini_portile (0.6.0)
-    minitest (5.4.1)
+    minitest (5.4.2)
     multi_json (1.10.1)
     multi_test (0.1.1)
     multi_xml (0.5.5)
@@ -62,14 +62,14 @@ GEM
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)
       rspec-mocks (~> 3.1.0)
-    rspec-core (3.1.4)
+    rspec-core (3.1.5)
       rspec-support (~> 3.1.0)
-    rspec-expectations (3.1.1)
+    rspec-expectations (3.1.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.1.0)
-    rspec-mocks (3.1.1)
+    rspec-mocks (3.1.2)
       rspec-support (~> 3.1.0)
-    rspec-support (3.1.0)
+    rspec-support (3.1.1)
     rubyzip (1.1.6)
     slowhandcuke (0.0.3)
       cucumber
