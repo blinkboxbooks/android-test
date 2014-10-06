@@ -174,8 +174,8 @@ namespace :scaffold do
   desc "Creates a new page. Can pass option 'name=EXAMPLE'"
   task :page do | t,args |
   name = ENV['name']
-  if !name 
-    raise "No name given for scaffold"
+  if name.nil? || name.length <= 3
+    raise "No name given for scaffold or below minimum length (3 characters)"
   end
   down_cased = name.downcase.tr(' ','_')
   filename = down_cased + ".rb"
