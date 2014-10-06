@@ -1,7 +1,8 @@
 #BUILD AND INSTALLATION
 remote:
- endpoint_download: http://mobile-build.mobcastdev.local:8080/jenkins/job/BBB%20Android%20App/lastSuccessfulBuild/artifact/app/build/apk/*zip*/apk.zip   
- endpoint_payload: apk.zip
+ endpoint_download: http://grisham:8111/repository/downloadAll/Books_Android_Application_Build/latest.lastSuccessful/artifacts --user=UNAME --password=PWORD
+ endpoint_download_build: http://grisham:8111/repository/downloadAll/Books_Android_Application_Build/BUILDNUM:id/ --user=UNAME --password=PWORD
+ endpoint_payload: artifacts
 project:
  build_dir: build
  log_html_path: results/output.html
