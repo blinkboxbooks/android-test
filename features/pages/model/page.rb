@@ -17,7 +17,11 @@ module PageObjectModel
 		  }
     end
 
+<<<<<<< HEAD
     def self.element identity, selector
+=======
+    def self.element(identity, selector)
+>>>>>>> upstream/master
       class_eval %Q{
 			  def #{identity}
 	        @_#{identity} ||= Element.new("#{selector}")

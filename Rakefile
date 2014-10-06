@@ -41,10 +41,22 @@ namespace :android do
     end
     if params[:buildnumber]
       puts "Using specified build number #{params[:buildnumber]}"
-      path.gsub!("lastSuccessfulBuild", params[:buildnumber])
+      path = @conf['remote']['endpoint_download_build']
+      path = path.gsub('BUILDNUM',params[:buildnumber])
     end
+    
+    if !ENV['username'] && !ENV['password']
+      puts "Please provide your username & password for teamcity e.g. rake android:setup username=AlexJones password=ThisisMyPassword"
+      exit 
+    else
+      puts "Using #{ENV['username']} and #{ENV['password']}"
+    end
+    
+    path = path.gsub("UNAME",ENV['username'])
+    path = path.gsub("PWORD",ENV['password'])
     puts "Operation type #{operation_type} on path #{path}"
-    `#{operation_type} #{path} -P #{@conf['project']['build_dir']} 2>/dev/null`
+
+    `#{operation_type} #{path} -P #{@conf['project']['build_dir']}`
     if ENV['endpoint_payload']
       payload = ENV['endpoint_payload']
     else
@@ -161,12 +173,18 @@ end
 namespace :scaffold do
   desc "Creates a new page. Can pass option 'name=EXAMPLE'"
   task :page do | t,args |
-    name = ENV['name'] ? ENV['name'] : "unnamed"
+  name = ENV['name']
+  if !name 
+    raise "No name given for scaffold"
+  end
   down_cased = name.downcase.tr(' ','_')
   filename = down_cased + ".rb"
   classname = name.split(' ').map { |word|word.capitalize}.join
+  if File.exist?("features/pages/#{filename}")
+    raise "The file  features/pages/#{filename} already exists"
+  end
   File.open("features/pages/#{filename}",'w') { | file |
-    file.write("module PageObjectModel\n\nclass #{classname} < PageObjectModel::Page\nend\nmodule PageObjectModel\n def #{down_cased}\n  @_#{down_cased} ||=page(#{classname})\n end\nend") }
+    file.write("module PageObjectModel\n class #{classname} < PageObjectModel::Page\n end\nend\nmodule PageObjectModel\n def #{down_cased}\n  @_#{down_cased} ||=page(#{classname})\n end\nend") }
   end
 end
 
