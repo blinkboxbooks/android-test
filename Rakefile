@@ -4,7 +4,7 @@ require 'open-uri'
 require 'json'
 @conf = YAML.load_file("config/project_settings.yml")
 @testdata = YAML.load_file("config/test_settings.yml")
-@environment = ENV['environment'] ? ENV['environment'] : @testdata['test']['environment']
+@environment = ENV['environment'] ? ENV['environment'] : @testdata['environment']
 
 # rake helper functions for android tasks
 namespace :android do
