@@ -183,8 +183,22 @@ namespace :scaffold do
   if File.exist?("features/pages/#{filename}")
     raise "The file  features/pages/#{filename} already exists"
   end
+
+  content = %Q{
+module PageObjectModel
+  class #{classname} < PageObjectModel::Page
+  end
+end
+  
+module PageObjectModel
+  def #{down_cased}
+    @_#{down_cased} ||=page(#{classname})
+  end
+end}
+  
   File.open("features/pages/#{filename}",'w') { | file |
-    file.write("module PageObjectModel\n class #{classname} < PageObjectModel::Page\n end\nend\nmodule PageObjectModel\n def #{down_cased}\n  @_#{down_cased} ||=page(#{classname})\n end\nend") }
+     file.write(content)
+  }
   end
 end
 
