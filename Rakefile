@@ -171,15 +171,18 @@ namespace :calabash do
 end
 
 namespace :scaffold do
-  desc "Creates a new page. Can pass option 'name=EXAMPLE'"
+  desc "Generates a new page object class. Should pass page name as environment variable 'name=EXAMPLE'"
   task :page do | t,args |
   name = ENV['name']
+  
   if name.nil? || name.length <= 3
     raise "No name given for scaffold or below minimum length (3 characters)"
   end
+  
   down_cased = name.downcase.tr(' ','_')
   filename = down_cased + ".rb"
   classname = name.split(' ').map { |word|word.capitalize}.join
+  
   if File.exist?("features/pages/#{filename}")
     raise "The file  features/pages/#{filename} already exists"
   end
