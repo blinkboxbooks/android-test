@@ -170,6 +170,41 @@ namespace :calabash do
   end
 end
 
+namespace :scaffold do
+  desc "Generates a new page object class. Should pass page name as environment variable 'name=EXAMPLE'"
+  task :page do | t,args |
+  name = ENV['name']
+  
+  if name.nil? || name.length <= 3
+    raise "No name given for scaffold or below minimum length (3 characters)"
+  end
+  
+  down_cased = name.downcase.tr(' ','_')
+  filename = down_cased + ".rb"
+  classname = name.split(' ').map { |word|word.capitalize}.join
+  
+  if File.exist?("features/pages/#{filename}")
+    raise "The file  features/pages/#{filename} already exists"
+  end
+
+  content = %Q{
+module PageObjectModel
+  class #{classname} < PageObjectModel::Page
+  end
+end
+  
+module PageObjectModel
+  def #{down_cased}
+    @_#{down_cased} ||=page(#{classname})
+  end
+end}
+  
+  File.open("features/pages/#{filename}",'w') { | file |
+     file.write(content)
+  }
+  end
+end
+
 task :default do
   #endpoint_download=custom endpoint
   #endpoint_payload=customise what is being downloaded e.g. 'apk.zip', 'apk.tar.gz'
