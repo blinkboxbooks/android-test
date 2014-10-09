@@ -19,7 +19,7 @@ When(/^I submit valid sign in details$/) do
   sign_in_page.submit_sign_in_details(username, password)
 end
 
-When(/^I use drawer menu to sign out$/) do
+Then(/^I use drawer menu to sign out$/) do
   user_library_page.sign_out
 end
 
