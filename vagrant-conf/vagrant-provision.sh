@@ -25,9 +25,9 @@ echo "Installed keystore"
 # install requried SDK components
 ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | $ANDROID_HOME/tools/android update sdk --no-ui --filter \
   "build-tools-20.0.0, android-19, extra-android-support, extra-android-m2repository, extra-google-m2repository"
-echo yes | sudo /usr/local/android/sdk/tools/android update sdk --all --no-ui --filter sys-img-armeabi-v7a-android-19 
+echo yes | sudo /usr/local/android/sdk/tools/android update sdk --all --no-ui --filter sys-img-x86-android-19 
 # Create the emulator
-echo no | android create avd -n EMULATOR -t 1
+echo no | android create avd -n EMULATOR -t 6 -b x86
 sudo echo "hw.gpu.enabled=yes" >> /root/.android/avd/EMULATOR.avd/config.ini
 # Start emulator
 emulator -avd EMULATOR -no-skin -no-audio -no-window &
