@@ -21,10 +21,6 @@ module PageObjectModel
     end
 
     public
-    def exists?
-      !calabash_proxy.query(selector).empty?
-    end
-
     def attributes
       query = calabash_proxy.query(selector)
       raise "Unable to locate element \##{selector}" if query.empty?
@@ -35,9 +31,13 @@ module PageObjectModel
       attributes.has_key?(attr)
     end
 
-    def set(text)
+    def set(text) #an experimental method, as I am not sure we want to diverge from calabash operations API
       clear_text
       enter_text(text)
+    end
+
+    def exists? #a change to existing calabash operations API as well, but I am happy with extensions like this for the sake of proper ruby paradigm behind method names
+      calabash_proxy.element_exists(selector)
     end
 
     #@examples:
