@@ -137,7 +137,7 @@ namespace :calabash do
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
   task :console, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
-    ENV['IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
+    ENV['CALABASH_IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     system "calabash-android console #{apk_file}"
   end
