@@ -27,13 +27,13 @@ When(/^I Sign out$/) do
   user_library_page.sign_out
 end
 
-Then(/^I should see sign in option in drawer menu$/) do
+Then(/^I should see sign in option in the drawer menu$/) do
   anonymous_library_page.open_menu
   expect(anonymous_library_page.signin_button).to exist
 end
 
 Then(/^I should see sign out option in the drawer menu$/) do
-  user_library_page.open_drawer_menu
+  user_library_page.open_menu
   expect(user_library_page.signout_button).to exist
 end
 

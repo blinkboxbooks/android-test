@@ -1,6 +1,6 @@
 Feature: Sign in/out into blinkbox books
 
-  Background: Existing user sign in/out
+  Background: Deregister devices for an existing user
     Given a valid user account ready for use on a new device
 
   @smoke @production
@@ -13,7 +13,6 @@ Feature: Sign in/out into blinkbox books
 
   @smoke @production
   Scenario: User successfully signs out
-    Given the anonymous library screen is displayed
-    And I am signed in as an existing user
-    And I am on the User Library page
-    Then I use drawer menu to sign out
+    Given I am signed in as an existing user
+    When I use drawer menu to sign out
+    Then the sign in page should be displayed

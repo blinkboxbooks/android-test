@@ -4,7 +4,7 @@ module PageObjectModel
     element :email_field, "* id:'edittext_email'"
     element :password_field, "* id:'edittext_password'"
     element :signin_button, "* id:'button_signin'"
-    element :signin_label, "* text:'Sign in'"
+    element :back_button, "* text:'Sign in'"
 
     def submit_sign_in_details(user_name, password)
       email_field.scroll_to
@@ -16,7 +16,7 @@ module PageObjectModel
     end
 
     def go_back
-      signin_label.touch
+      back_button.touch
     end
   end
 end
