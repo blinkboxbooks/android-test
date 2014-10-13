@@ -2,6 +2,12 @@ module PageObjectModel
   module CalabashProxy
     require 'calabash-android/operations'
     include Calabash::Android::Operations
+    include Logging
+
+    #a monkey patch stub based on this suggestion, sadly they do not want to address it in calabash itself: https://github.com/calabash/calabash-ios/issues/531
+    def embed(*args)
+      logger.error "Embed is a Cucumber method and is not available within the context of CalabashProxy"
+    end
   end
 end
 
