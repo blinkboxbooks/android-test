@@ -49,7 +49,7 @@ namespace :android do
       puts "Please provide your username & password for teamcity e.g. rake android:setup username=AlexJones password=ThisisMyPassword"
       exit 
     else
-      puts "Using #{ENV['username']} and #{ENV['password']}"
+      puts "Connecting as '#{ENV['username']}'"
     end
     
     path = path.gsub("UNAME",ENV['username'])
@@ -100,6 +100,7 @@ namespace :android do
     apk_file = args[:apk_file] || default_apk
     `adb install -r #{apk_file}`
   end
+
   desc "Gets the latest apk, resigns it and installs the apk, optional argument for a specified build"
   task :setup, [:buildnumber] do |_, args|
     buildn = args[:buildnumber]
@@ -114,6 +115,7 @@ namespace :android do
     Rake::Task["android:resign"].invoke
     Rake::Task["android:install_apk"].invoke
   end
+
   desc "Displays installed blinkbox APK's on device (Requires connected device)"
   task :display_installed_apk do
     display_installed_apk
@@ -135,7 +137,7 @@ namespace :calabash do
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
   task :console, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
-    ENV['IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
+    ENV['CALABASH_IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
     system "calabash-android console #{apk_file}"
   end

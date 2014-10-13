@@ -42,6 +42,7 @@ require 'require_all'
 
 #load support code of the framework
 def load_support_code
+    puts 'Loading blinkbox Books support code...'
     load_rel 'features/support/modules'
     load_rel 'features/pages/model'
     load_rel 'features/pages'
