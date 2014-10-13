@@ -21,7 +21,7 @@ Then(/^I should see the these links$/) do |links|
 end
 
 When(/^I open the drawer menu$/) do
-  user_library_page.open_drawer_menu
+  user_library_page.open_menu
 end
 
 When(/^I open the menu drawer$/) do

@@ -5,7 +5,7 @@ module PageObjectModel
     element :book_cover_first, "BookCover index:0"
     element :signout_button, "TextView marked:'Sign out'"
     element :home_button, "* id:'togglebutton_home'"
-    element :your_library_label, "* marked:'Your library'"
+    element :your_library_label, "BBBTextView marked:'text1' {text ENDSWITH 'library'}"
     element :refresh_button, "* id:'button_sync'"
 
     def open_first_book
@@ -16,8 +16,9 @@ module PageObjectModel
       shop_button.touch
     end
 
-    def open_drawer_menu
+    def open_menu
       home_button.tap_when_element_exists(timeout: timeout_short)
+      your_library_label.wait_for_element_exists(timeout: timeout_short)
     end
 
     def links_on_drawer_menu(links)
@@ -33,7 +34,7 @@ module PageObjectModel
     end
 
     def sign_out
-      open_drawer_menu
+      open_menu
       signout_button.tap_when_element_exists(timeout: timeout_short)
     end
   end
