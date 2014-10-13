@@ -5,14 +5,14 @@ end
 
 Then(/^I touch the "(.*?)" button$/) do |button_name|
   case button_name
-    when "Fiction"
-      shop_page.goto_fiction
-    when "Non-fiction"
-      shop_page.goto_non_fiction
-    when "Categories"
-      shop_page.goto_categories
-    else
-      raise "Unsupported button '#{button_name}' on the Shop page"
+  when "Fiction"
+    shop_page.goto_fiction
+  when "Non-fiction"
+    shop_page.goto_non_fiction
+  when "Categories"
+    shop_page.goto_categories
+  else
+    fail "Unsupported button '#{button_name}' on the Shop page"
   end
 end
 

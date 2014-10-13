@@ -15,7 +15,7 @@ module PageObjectModel
       signin_button.touch
     end
 
-    def go_back
+    def go_back_to_library
       back_button.touch
     end
   end

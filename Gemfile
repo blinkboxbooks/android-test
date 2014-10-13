@@ -24,4 +24,5 @@ end
 group :reporting do
   gem 'cuporter'
   gem 'cucumber-blinkbox'
+  gem 'blinkbox-rubocop'
 end

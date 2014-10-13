@@ -1,9 +1,11 @@
 Given(/^I am signed in(?: as an existing user)?$/) do
   enter_app_as_existing_user
 end
+
 When(/^I sign in$/) do
   enter_app_as_existing_user
 end
+
 Given(/^I am on the User Library page$/) do
   expect_page(user_library_page)
 end
@@ -39,6 +41,6 @@ end
 
 When(/^I go back to the Anonymous Library page$/) do
   sign_in_page.await
-  sign_in_page.go_back
+  sign_in_page.go_back_to_library
   anonymous_library_page.await
 end

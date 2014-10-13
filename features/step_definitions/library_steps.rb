@@ -25,14 +25,13 @@ When(/^I open the drawer menu$/) do
 end
 
 When(/^I open the menu drawer$/) do
- anonymous_library_page.open_menu
+  anonymous_library_page.open_menu
 end
 
 Then(/^I should see refresh icon$/) do
- anonymous_library_page.refresh_icon
+  anonymous_library_page.refresh_icon
 end
 
 Then(/^I should see refresh image$/) do
   user_library_page.refresh_image
 end
-
