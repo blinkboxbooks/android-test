@@ -22,6 +22,5 @@ group :api do
 end
 
 group :reporting do
-  gem 'cuporter'
   gem 'cucumber-blinkbox'
 end

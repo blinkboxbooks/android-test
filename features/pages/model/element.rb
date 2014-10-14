@@ -5,7 +5,7 @@ module PageObjectModel
     include Logging
 
     #a monkey patch stub based on this suggestion, sadly they do not want to address it in calabash itself: https://github.com/calabash/calabash-ios/issues/531
-    def embed(*args)
+    def embed(*)
       logger.error "Embed is a Cucumber method and is not available within the context of CalabashProxy"
     end
   end
@@ -17,16 +17,18 @@ module PageObjectModel
 
     attr_reader :selector
 
-    def initialize selector
+    def initialize(selector)
       @selector = selector
     end
 
     private
+
     def calabash_proxy
       @calabash_proxy ||= Class.new.extend(PageObjectModel::CalabashProxy)
     end
 
     public
+
     def attributes
       query = calabash_proxy.query(selector)
       raise "Unable to locate element \##{selector}" if query.empty?
@@ -34,7 +36,7 @@ module PageObjectModel
     end
 
     def has_attribute?(attr)
-      attributes.has_key?(attr)
+      attributes.key?(attr)
     end
 
     def set(text) #an experimental method, as I am not sure we want to diverge from calabash operations API
@@ -62,6 +64,5 @@ module PageObjectModel
         raise NoMethodError, %(undefined method '#{method_name}' for \##{self.class.inspect} with selector "#{selector}")
       end
     end
-
   end
 end

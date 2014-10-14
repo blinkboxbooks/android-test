@@ -9,9 +9,7 @@ module PageModelHelpers
     page_class = page_name.to_s.to_class_name
     unless PageObjectModel.const_defined?(page_class)
       page_class << 'Page'
-      unless PageObjectModel.const_defined?(page_class)
-        return nil
-      end
+      return nil unless PageObjectModel.const_defined?(page_class)
     end
     page(PageObjectModel.const_get(page_class))
   end
