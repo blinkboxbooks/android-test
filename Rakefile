@@ -9,6 +9,7 @@ require 'json'
 # rake helper functions for android tasks
 namespace :android do
   include FileUtils
+
   def apks
     @apks ||= Dir[@conf['project']['build_dir'] + "/*.apk"]
     if @apks.empty?
@@ -23,10 +24,9 @@ namespace :android do
   end
 
   def generate_directories
-    if File.directory?(@conf['project']['build_dir'])
-      `rm -rf #{@conf['project']['build_dir']}`
-    end
-    mkdir @conf['project']['build_dir']
+    build_dir = @conf['project']['build_dir']
+    exec("rm -rf #{build_dir}") if File.directory?(build_dir)
+    mkdir build_dir
   end
 
   def download_apk(params = {})
@@ -42,18 +42,18 @@ namespace :android do
     if params[:buildnumber]
       puts "Using specified build number #{params[:buildnumber]}"
       path = @conf['remote']['endpoint_download_build']
-      path = path.gsub('BUILDNUM',params[:buildnumber])
+      path = path.gsub('BUILDNUM', params[:buildnumber])
     end
-    
+
     if !ENV['username'] && !ENV['password']
       puts "Please provide your username & password for teamcity e.g. rake android:setup username=AlexJones password=ThisisMyPassword"
-      exit 
+      exit
     else
       puts "Connecting as '#{ENV['username']}'"
     end
-    
-    path = path.gsub("UNAME",ENV['username'])
-    path = path.gsub("PWORD",ENV['password'])
+
+    path = path.gsub("UNAME", ENV['username'])
+    path = path.gsub("PWORD", ENV['password'])
     puts "Operation type #{operation_type} on path #{path}"
 
     `#{operation_type} #{path} -P #{@conf['project']['build_dir']}`
@@ -62,16 +62,14 @@ namespace :android do
     else
       payload = @conf['remote']['endpoint_payload']
     end
-    Dir.chdir(@conf['project']['build_dir']) {
+    Dir.chdir(@conf['project']['build_dir']) do
       `unzip #{payload} 2>/dev/null`
       `mv apk/*.apk . 2>/dev/null`
-    }
+    end
   end
 
   def resign_apk(apk_file)
-    if File.directory?('test_servers')
-      `rm -rf test_servers`
-    end
+    `rm -rf test_servers` if File.directory?('test_servers')
     `calabash-android resign #{apk_file}`
   end
 
@@ -108,7 +106,7 @@ namespace :android do
       puts buildn
       generate_directories
       download_apk(:buildnumber => buildn)
-      puts default_apk 
+      puts default_apk
     else
       Rake::Task["android:get_latest_apk"].invoke
     end
@@ -131,7 +129,7 @@ namespace :calabash do
 
   desc "Checks development environment and install essentials"
   task :environment_install do
-    system("./config/dev_env_install")
+    exec("./config/dev_env_install")
   end
 
   desc 'Run calabash-android console with included Calabash::Android::Operations, as well as android-test support modules & page models'
@@ -139,7 +137,7 @@ namespace :calabash do
     apk_file = args[:apk_file] || default_apk
     ENV['CALABASH_IRBRC'] = File.join(File.dirname(__FILE__), 'irbrc')
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
-    system "calabash-android console #{apk_file}"
+    exec "calabash-android console #{apk_file}"
   end
 
   desc "Runs calabash android"
@@ -163,47 +161,44 @@ namespace :calabash do
   end
 
   desc "Runs calabash android with given profile"
-  task :run_with_profile, [:profile, :apk_file] do |t, args|
+  task :run_with_profile, [:profile, :apk_file] do |_t, args|
     profile = args[:profile] || 'default'
     apk_file = args[:apk_file] || default_apk
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
 
-    system("calabash-android run #{apk_file} -p #{profile}")
+    exec("calabash-android run #{apk_file} -p #{profile}")
   end
 end
 
 namespace :scaffold do
-  desc "Generates a new page object class. Should pass page name as environment variable 'name=EXAMPLE'"
-  task :page do | t,args |
-  name = ENV['name']
-  
-  if name.nil? || name.length <= 3
-    raise "No name given for scaffold or below minimum length (3 characters)"
-  end
-  
-  down_cased = name.downcase.tr(' ','_')
-  filename = down_cased + ".rb"
-  classname = name.split(' ').map { |word|word.capitalize}.join
-  
-  if File.exist?("features/pages/#{filename}")
-    raise "The file  features/pages/#{filename} already exists"
-  end
+  desc "Generates a new page object class. Page name should be provided as the first argument: rake scaffold:page['my new page']"
+  task :page, [:name] do |_t, args|
+    name = args[:name]
+    fail "Page name should be provided as the first argument: rake scaffold:page['my new page']" if (name.nil? || name.empty?)
 
-  content = %Q{
-module PageObjectModel
+    down_cased = name.downcase.tr(' -', '_')
+    filename = "features/pages/#{down_cased}.rb"
+    classname = name.tr('-_', ' ').split().map { |word| word.capitalize }.join
+
+    fail "File #{filename} already exists" if File.exist?(filename)
+
+    content = %Q{module PageObjectModel
   class #{classname} < PageObjectModel::Page
+    #TODO: define a unique page trait, which will be use to check if page is displayed or not. Example:
+    #trait "BBBTextView marked:'Your library'"
+    #TODO: define elements by using #element keyword:
+    #element :shop_button, "* id:'button_shop'"
   end
 end
-  
+
 module PageObjectModel
   def #{down_cased}
-    @_#{down_cased} ||=page(#{classname})
+    @_#{down_cased} ||= page(#{classname})
   end
-end}
-  
-  File.open("features/pages/#{filename}",'w') { | file |
-     file.write(content)
-  }
+end
+}
+    File.open(filename, 'w') { |file| file.write(content) }
+    puts "Generated page model scaffold: #{filename}"
   end
 end
 
