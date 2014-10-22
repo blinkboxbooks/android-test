@@ -88,4 +88,20 @@ rake calabash:environment_install   # Checks development environment and install
 rake calabash:run_config            # Prints out details about current configuration
 rake calabash:console[apk_file]     # Run calabash-android console with included Calabash::A...
 rake calabash:run[apk_file]         # Runs calabash android
-```	
+```
+
+Execution control variables
+===========================
+There're a few environment variables built into the calabash source code or introduced by us, which are used to control
+ the calabash behaviour during execution:
+ - Calabash will always (re-install the app once for every feature file)[https://git.mobcastdev.com/TEST/android-test/blob/master/features/support/hooks/app_installation_hooks.rb#L18] - we can change it in the app_installation_hooks.rb
+ - REINSTALL_BETWEEN_SCENARIOS - if set to "1", Calabash will re-install the app between scenarios
+ - RESET_BETWEEN_SCENARIOS (custom var) - if set to "true", Calabash will clear_app_data between scenarios
+ - SCREENSHOT_VIA_USB - if set to "true", Calabash will take screenshots from a connected device via USB. Reliable option if you connect device with a cable.
+ For more Calabash Environment variables please refer to its (documentation)[https://github.com/calabash/calabash-android/blob/master/ruby-gem/ENVIRONMENT_VARIABLES.md]
+
+Cucumber tagging convention
+===========================
+Please refer to common convention in (confluence)[http://jira.blinkbox.local/confluence/display/TEST/Cucumber+Tags+Convention]
+- @clear_app_data - clear_app_data before the tagged scenario
+NOTE: right now we do clear_app_data before every scenario
