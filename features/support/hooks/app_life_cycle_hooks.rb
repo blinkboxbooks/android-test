@@ -3,10 +3,8 @@ require 'calabash-android/operations'
 
 Before do |scenario|
   scenario_tags = scenario.source_tag_names
-  # if scenario_tags.include?('@clear_app_data')
   logger.debug "Clearing app data before scenario..."
   clear_app_data
-  # end
   if scenario_tags.include?('@reinstall')
     logger.debug "Reinstalling the app before scenario..."
     reinstall_apk
