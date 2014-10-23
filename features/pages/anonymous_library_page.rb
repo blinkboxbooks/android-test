@@ -34,7 +34,7 @@ module PageObjectModel
     end
 
     def links_on_menu_drawer(links)
-      links.hashes.map { | x |  Element.new("* marked:\'#{x['links']}'").exists?  }
+      links.hashes.map { |x| Element.new("* marked:\'#{x['links']}'").exists? }
     end
 
     def open_option_button

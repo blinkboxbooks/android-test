@@ -26,7 +26,7 @@ module PageObjectModel
     end
 
     def links_on_drawer_menu(links)
-      links.hashes.map { | x |  Element.new("* marked:\'#{x['links']}'").exists?  }
+      links.hashes.map { |x| Element.new("* marked:\'#{x['links']}'").exists? }
     end
 
     def signed_in?
