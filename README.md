@@ -99,7 +99,6 @@ There're a few environment variables built into the calabash source code or intr
 
 - *REINSTALL_BETWEEN_SCENARIOS* (custom var) - if set to "1", Calabash will re-install the app between scenarios
 - *SCREENSHOT_VIA_USB* - if set to "true", Calabash will take screenshots from a connected device via USB. Reliable option if you connect device with a cable.
- ```
 
 Cucumber tagging convention
 ===========================
