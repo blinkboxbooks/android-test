@@ -1,6 +1,5 @@
 module PageObjectModel
   module PageActions
-
     def expect_page(page)
       page.await
       expect(page).to be_displayed
@@ -9,21 +8,23 @@ module PageObjectModel
     end
 
     def enter_app_as_anonymous_user
-      if welcome_page.displayed?
-        welcome_page.goto_library
-      end
+      welcome_page.try_it_out if welcome_page.displayed?
       anonymous_library_page.await
     end
 
     def enter_app_as_existing_user
-      enter_app_as_anonymous_user
-      if anonymous_library_page.logged_out?
+      return if user_library_page.displayed?
+
+      if welcome_page.displayed?
+        welcome_page.sign_up
+      elsif anonymous_library_page.displayed?
         anonymous_library_page.open_menu_and_signin
-        sign_in_page.await
-        username = test_data['users']['existing']['emailaddress']
-        password = test_data['users']['existing']['password']
-        sign_in_page.submit_sign_in_details(username, password)
       end
+      sign_in_page.await
+      username = test_data['users']['existing']['emailaddress']
+      password = test_data['users']['existing']['password']
+      sign_in_page.submit_sign_in_details(username, password)
+      user_library_page.await
     end
   end
 end
