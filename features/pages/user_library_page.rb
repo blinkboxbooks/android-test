@@ -1,6 +1,6 @@
 module PageObjectModel
   class UserLibraryPage < PageObjectModel::Page
-    trait "BBBTextView marked:'Your library'"
+    trait "BBBTextView marked:'Your library'"  
     element :shop_button, "* id:'button_shop'"
     element :book_cover_first, "BookCover index:0"
     element :signout_button, "TextView marked:'Sign out'"

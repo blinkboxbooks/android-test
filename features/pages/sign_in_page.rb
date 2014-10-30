@@ -1,10 +1,11 @@
 module PageObjectModel
   class SignInPage < PageObjectModel::Page
-    trait "TextView marked:'Sign in'"
+    trait "* id:'action_bar_title' text:'Sign in'"
     element :email_field, "* id:'edittext_email'"
     element :password_field, "* id:'edittext_password'"
     element :signin_button, "* id:'button_signin'"
     element :back_button, "* text:'Sign in'"
+    element :button_register, "* id:'button_register'"
 
     def submit_sign_in_details(user_name, password)
       email_field.scroll_to

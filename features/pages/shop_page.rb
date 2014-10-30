@@ -2,6 +2,7 @@ module PageObjectModel
 
   class ShopPage < PageObjectModel::Page
     trait "* id:'action_bar_title' marked:'Shop'"
+    element :search_button, "* id:'search_button'"
     element :search_field, "* id:'search_src_text'"
     element :search_suggestions, "android.widget.ListPopupWindow$DropDownListView"
     element :fiction_tab, "* id:'title' {text BEGINSWITH 'Fiction'}"
@@ -9,6 +10,7 @@ module PageObjectModel
     element :categories_tab, "* id:'title' {text BEGINSWITH 'Categories'}"
 
     def search_suggestions_for(string)
+      search_button.touch
       search_field.set string
       search_field.touch
     end
