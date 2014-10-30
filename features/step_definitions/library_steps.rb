@@ -29,9 +29,9 @@ When(/^I open the menu drawer$/) do
 end
 
 Then(/^I should see refresh icon$/) do
-  anonymous_library_page.refresh_icon
+  expect(anonymous_library_page.refresh_button).to exist
 end
 
 Then(/^I should see refresh image$/) do
-  user_library_page.refresh_image
+  expect(user_library_page.refresh_button).to exist
 end

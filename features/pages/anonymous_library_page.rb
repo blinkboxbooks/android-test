@@ -1,12 +1,15 @@
 module PageObjectModel
   class AnonymousLibraryPage < PageObjectModel::Page
-    trait "BBBTextView id:'textview_title'"
+    trait "BBBTextView id:'textview_title' marked:'Try it out'"
+    #header
     element :home_button, "* id:'togglebutton_home'"
-    element :signin_button, "TextView marked:'Sign in'"
-    element :shop_button, "* id:'button_shop'"
-    element :your_library_label, "BBBTextView marked:'text1' {text ENDSWITH 'library'}"
-    element :book_cover_first, "BookCover index:0"
     element :refresh_button, "* id:'button_sync'"
+    element :shop_button, "* id:'button_shop'"
+    #drawer menu
+    element :menu_your_library_label, "BBBTextView marked:'text1' {text ENDSWITH 'library'}"
+    element :signin_button, "TextView marked:'Sign in'"
+    element :info_button, "TextView marked:'Info'"
+    #books list
     element :book_cover_first, "BookCover index:0"
     # TODO: Be aware multiple element has the same id
     element :option_button, "* id:'btn_options'"
@@ -22,16 +25,16 @@ module PageObjectModel
 
     def open_menu
       home_button.tap_when_element_exists(timeout: timeout_short)
-      your_library_label.wait_for_element_exists(timeout: timeout_short)
-    end
-
-    def links_on_menu_drawer(links)
-      links.hashes.map { | x |  Element.new("* marked:\'#{x['links']}'").exists?  }
+      info_button.wait_for_element_exists(timeout: timeout_short)
     end
 
     def open_menu_and_signin
       open_menu
       signin_button.tap_when_element_exists(timeout: timeout_short)
+    end
+
+    def links_on_menu_drawer(links)
+      links.hashes.map { |x| Element.new("* marked:\'#{x['links']}'").exists? }
     end
 
     def open_option_button
@@ -45,12 +48,8 @@ module PageObjectModel
       option_menu_item.exists?
     end
 
-    def refresh_icon
-      refresh_button.exists?
-    end
-
     def logged_out?
-      !your_library_label.exists?
+      self.displayed?
     end
   end
 end
