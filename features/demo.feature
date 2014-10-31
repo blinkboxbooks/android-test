@@ -1,4 +1,4 @@
-@production
+@production @demo
 Feature: I want to demonstrate what an automation framework looks like in operation
 
   Background:
@@ -22,3 +22,4 @@ Feature: I want to demonstrate what an automation framework looks like in operat
   Examples:
     | shopitem | fpages | bpages |
     | "Robots" | 10     | 10     |
+

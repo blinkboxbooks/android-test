@@ -11,3 +11,8 @@ Then(/^the ([A-Za-z\-\s]*) should be displayed$/) do |page_name|
   page = page_model_instance(page_name)
   expect_page(page)
 end
+
+Then (/^the following (?:error )?message is displayed:?$/) do |message_text|
+  #assert_message_displayed(message_text)
+  assert_text(message_text)
+end

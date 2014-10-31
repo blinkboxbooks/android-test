@@ -44,3 +44,13 @@ When(/^I go back to the Anonymous Library page$/) do
   sign_in_page.go_back_to_library
   anonymous_library_page.await
 end
+
+And(/^I see the Oops! and invalid email address and password error messages$/) do
+  wait_for_text(test_data['errors']['oops_signin'])
+  wait_for_text(test_data['errors']['invalid_email_or_password'])
+  wait_for_text(test_data['errors']['try_again'])
+end
+
+And(/^the Reset password button is displayed$/) do
+  expect(sign_in_page.send_reset_link_button).to exist
+end

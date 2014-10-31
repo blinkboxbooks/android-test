@@ -44,6 +44,10 @@ module PageObjectModel
       enter_text(text)
     end
 
+    def set_checkbox(condition)
+      query(:setChecked=>condition)
+    end
+
     def exists? #a change to existing calabash operations API as well, but I am happy with extensions like this for the sake of proper ruby paradigm behind method names
       calabash_proxy.element_exists(selector)
     end

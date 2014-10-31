@@ -11,6 +11,7 @@ module PageObjectModel
     def sign_up
       sign_up_button.touch
     end
+
   end
 end
 

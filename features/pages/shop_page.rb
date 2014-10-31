@@ -33,7 +33,7 @@ module PageObjectModel
   end
 end
 
-module PageObjectModel  
+module PageObjectModel
   def shop_page
     @_shop_page ||= page(ShopPage)
   end

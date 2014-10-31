@@ -37,6 +37,7 @@ module PageObjectModel
       open_menu
       signout_button.tap_when_element_exists(timeout: timeout_short)
     end
+
   end
 end
 

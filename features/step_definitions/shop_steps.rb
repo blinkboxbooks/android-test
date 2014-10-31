@@ -20,3 +20,7 @@ Then(/^I should see search suggestions$/) do
   shop_page.await
   expect(shop_page).to have_search_suggestions
 end
+
+Then(/^I should see the shop page$/) do
+  shop_page.await
+end
