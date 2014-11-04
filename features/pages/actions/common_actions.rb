@@ -26,7 +26,16 @@ module PageObjectModel
       sign_in_page.submit_sign_in_details(username, password)
       user_library_page.await
     end
+
+    def expect_text_on_screen(page,message_text,timeout=5)
+      expect_page(page)
+      expect_text(message_text,timeout=timeout)
+    end
+
+    def expect_text(text,timeout=5)
+      mark = escape_quotes(text)
+      wait_for_text("#{mark}", :timeout => timeout)
+    end
+
   end
 end
-
-World(PageObjectModel::PageActions)

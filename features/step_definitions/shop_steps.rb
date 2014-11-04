@@ -24,3 +24,7 @@ end
 Then(/^I should see the shop page$/) do
   shop_page.await
 end
+
+And(/^I should see the "([^"]*)" in the search suggestions$/) do |search_string|
+  expect(shop_page.search_results).to include(search_string)
+end

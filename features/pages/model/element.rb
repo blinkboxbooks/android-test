@@ -48,6 +48,10 @@ module PageObjectModel
       query(:setChecked=>condition)
     end
 
+    def get_text
+      query(:text)
+    end
+
     def exists? #a change to existing calabash operations API as well, but I am happy with extensions like this for the sake of proper ruby paradigm behind method names
       calabash_proxy.element_exists(selector)
     end

@@ -10,7 +10,7 @@ Feature: Register a new Blinkbox books user
     And I choose a valid password
     And I accept terms and conditions
     And I submit registration details
-    Then the user library should be displayed
+    Then the user library page should be displayed
     When I open the drawer menu
     Then I can see my name in the menu
 
@@ -20,6 +20,6 @@ Feature: Register a new Blinkbox books user
     When I enter personal details with valid clubcard number
     And I choose a valid password
     And I submit registration details by accepting terms and conditions
-    Then the user library should be displayed
+    Then the user library page should be displayed
     When I open the drawer menu
     Then I can see my name in the menu

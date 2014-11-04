@@ -25,10 +25,6 @@ module PageObjectModel
       info_button.wait_for_element_exists(timeout: timeout_short)
     end
 
-    def links_on_drawer_menu(links)
-      links.hashes.map { |x| Element.new("* marked:\'#{x['links']}'").exists? }
-    end
-
     def signed_in?
       self.displayed?
     end

@@ -15,5 +15,5 @@ Feature: Allow the user to use the library to view free and purchased books
 
   Examples:
     | fpages | bpages |
-    | 1      | 1      |
+    | 5      | 3      |
 

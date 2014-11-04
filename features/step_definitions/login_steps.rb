@@ -54,3 +54,4 @@ end
 And(/^the Reset password button is displayed$/) do
   expect(sign_in_page.send_reset_link_button).to exist
 end
+

@@ -33,19 +33,10 @@ module PageObjectModel
       signin_button.tap_when_element_exists(timeout: timeout_short)
     end
 
-    def links_on_menu_drawer(links)
-      links.hashes.map { |x| Element.new("* marked:\'#{x['links']}'").exists? }
-    end
-
     def open_option_button
       option_button.touch
       option_button.wait_for_element_does_not_exist(timeout: timeout_short)
       embedded_option_menu.wait_for_element_exists(timeout: timeout_short)
-    end
-
-    def option_exists?(option_name)
-      option_menu_item = Element.new("* marked:'#{option_name}'")
-      option_menu_item.exists?
     end
 
     def logged_out?

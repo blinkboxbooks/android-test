@@ -13,6 +13,5 @@ Then(/^the ([A-Za-z\-\s]*) should be displayed$/) do |page_name|
 end
 
 Then (/^the following (?:error )?message is displayed:?$/) do |message_text|
-  #assert_message_displayed(message_text)
-  assert_text(message_text)
+  expect_text(message_text)
 end
