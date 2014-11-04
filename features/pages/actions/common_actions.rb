@@ -28,3 +28,5 @@ module PageObjectModel
     end
   end
 end
+
+World(PageObjectModel::PageActions)
