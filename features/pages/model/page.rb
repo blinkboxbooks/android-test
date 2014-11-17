@@ -25,6 +25,14 @@ module PageObjectModel
       }
     end
 
+    def self.section(identity, classname)
+      class_eval %Q{
+        def #{identity}
+          @_#{identity} ||= page(#{classname})
+        end
+      }
+    end
+
     def timeout_short
       5
     end

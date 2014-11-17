@@ -52,6 +52,31 @@ module PageObjectModel
       query(:text)
     end
 
+    def webview_text
+      query(:textContent).first
+    end
+
+    def enabled?
+      query(:enabled).first
+    end
+
+    def selected?
+      query(:isSelected).first
+    end
+
+    #I would prefer this over the exists? for elements as there is a built in 'small' delay which caters for cases
+    #where you have to wait for a transition or something to animate for a second or so.(i.e. search results)
+    #the only drawback is that it will wait for the delay when you do something like...
+    #drawer_menu.should_not be_visible , but it reads a lot better than drawer_memu.should_not exist.
+    #it can be used with Rspec now as it returns true and false (and not nil or exception)
+    def visible?
+      begin
+      calabash_proxy.when_element_exists(selector, :timeout => 5, :action => lambda {return true})
+      rescue
+        false
+      end
+    end
+
     def exists? #a change to existing calabash operations API as well, but I am happy with extensions like this for the sake of proper ruby paradigm behind method names
       calabash_proxy.element_exists(selector)
     end
