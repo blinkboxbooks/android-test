@@ -19,7 +19,7 @@ module PageObjectModel
         welcome_page.sign_up
       elsif my_library_page.displayed?
         my_library_page.open_menu_and_signin
-    end
+      end
       sign_in_page.await
       username = test_data['users']['existing']['emailaddress']
       password = test_data['users']['existing']['password']
@@ -36,6 +36,5 @@ module PageObjectModel
       mark = escape_quotes(text)
       wait_for_text("#{mark}", :timeout => timeout)
     end
-
   end
 end
