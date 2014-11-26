@@ -11,7 +11,7 @@ Then (/^the following (?:error )?message is displayed:?$/) do |message_text|
   expect_text(message_text)
 end
 
-Given(/^the my library screen is displayed$/) do
+Given(/^the My Library screen is displayed$/) do
   enter_app_as_anonymous_user
   expect_page(my_library_page)
 end

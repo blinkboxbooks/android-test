@@ -1,8 +1,11 @@
 module PageObjectModel
   require 'calabash-android/abase'
+  require_relative '../../../features/pages/actions/common_actions'
 
   class Page < Calabash::ABase
-     include PageOperations
+    include PageOperations
+    include UtilityObjects
+    include PageObjectModel::PageActions
 
     def initialize(world, transition_duration = 0.5)
       logger.debug "Initializing page => #{self.class}"

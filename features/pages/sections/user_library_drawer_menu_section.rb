@@ -23,19 +23,19 @@ module PageObjectModel
     element :contact_us, "* id:'text1' text:'Contact us'"
     element :info, "* id:'text1' text:'Info'"
 
-  def press_info_option
-    faq_option.touch
-  end
+    def press_info_option
+      faq_option.touch
+    end
 
-  def open_menu
-    toggle_button.tap_when_element_exists(timeout: timeout_short)
-    info.wait_for_element_exists(timeout: timeout_short)
-  end
+    def open_menu
+      toggle_button.tap_when_element_exists(timeout: timeout_short)
+      info.wait_for_element_exists(timeout: timeout_short)
+    end
 
-  def sign_out
-    open_menu
-    signout_button.tap_when_element_exists(timeout: timeout_short)
-  end
+    def sign_out
+      open_menu
+      signout_button.tap_when_element_exists(timeout: timeout_short)
+    end
 
     def swipe_in_menu
       unless drawer_menu.exists?
@@ -54,4 +54,3 @@ module PageObjectModel
     end
   end
 end
-

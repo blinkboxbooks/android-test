@@ -2,9 +2,8 @@ Feature: Navigating the user library screen
 
   Background:
     Given a valid user account ready for use on a new device
-    And the anonymous library screen is displayed
     When I sign in
-    Then the user library should be displayed
+    Then the my library should be displayed
 
   @smoke @signed_in
   Scenario: User navigates to the Shop from Library
@@ -21,8 +20,8 @@ Feature: Navigating the user library screen
     When I open the drawer menu
     Then I should see the following links
       | Signed In Drawer Menu Options |
-      | On your device                |
-      | In your cloud                 |
+      | Currently reading             |
+      | My library                    |
       | Refresh your library          |
       | Sign out                      |
       | Shop for more books           |
@@ -33,10 +32,11 @@ Feature: Navigating the user library screen
   @smoke
   Scenario: Verify drawer menu links when user signed out
     When I Sign out
-    And I go back to the Anonymous Library page
-    And I open the menu drawer
+    Given I go back to the My Library page
+    And I open the drawer menu
     Then I should see the following links
       | Signed Out Drawer Menu Options |
+      | Register                       |
       | Sign In                        |
       | Shop for more books            |
       | Frequently asked questions     |
@@ -44,26 +44,24 @@ Feature: Navigating the user library screen
       | Info                           |
 
   @smoke @reinstall
-  Scenario: Verify refresh icon is present when user not signed in
-    When I Sign out
-    And I go back to the Anonymous Library page
-    Then I should see refresh icon
-
-  @smoke @reinstall
-  Scenario: Verify refresh icon is present when user signed in
-    Given I am on the User Library page
-    Then I should see refresh image
-
-  @smoke @reinstall
   Scenario: Verify embedded book option menu
     When I Sign out
-    And I go back to the Anonymous Library page
+    And I go back to the My Library page
     And I click on first embedded book options
     Then I should see the following links
-      | Options                        |
-      | Buy the full book              |
-      | About this book                |
-      | See table of contents          |
-      | Read sample                    |
-      | Mark sample as 'Finished'      |
-      | Remove sample from your device |
+      | Options        |
+      | Buy full ebook |
+      | About          |
+      | Contents       |
+      | Read           |
+      | Remove         |
+
+  @runme
+  Scenario: Verify embedded book option menu as a Signed in user (book not yet downloaded)
+    When I click on first embedded book options
+    Then I should see the following links
+      | Options        |
+      | Buy full ebook |
+      | Download       |
+      | About          |
+      | Remove         |

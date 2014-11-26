@@ -12,7 +12,7 @@ And(/^I choose a valid password$/) do
 end
 
 And(/^I accept terms and conditions$/) do
-  accept_terms_and_conditions(true)
+  set_terms_and_conditions(true)
 end
 
 And(/^I submit registration details$/) do
@@ -23,29 +23,22 @@ And(/^I can see my name in the menu$/) do
   assert_name_in_drawer_menu
 end
 
-When /^I enter personal details with (valid|invalid) clubcard number$/ do |club_card_type|
-  club_card = (test_data['clubcards']['valid_clubcard_number'])
-  if club_card_type.include?('invalid')
-    club_card = (test_data['clubcards']['invalid_clubcard_number'])
-  end
+When /^I enter personal details with a (valid|invalid) clubcard number$/ do |clubcard_type|
+  clubcard = test_data['clubcards']["#{clubcard_type}_clubcard_number"]
   @email_address, @first_name, @last_name = enter_personal_details
-  register_page.fill_in_club_card(club_card)
+  register_page.fill_in_clubcard(clubcard)
 end
 
 And /^I submit registration details by (accepting|not accepting) terms and conditions$/ do |accept_terms|
-  if accept_terms.include?('not')
-    accept_terms_and_conditions(false)
-  else
-    accept_terms_and_conditions(true)
-  end
+  accept_terms.include?('not') ? set_terms_and_conditions(false) : set_terms_and_conditions(true)
   submit_registration_details
 end
 
-When /^I try to sign in with not registered email address$/ do
-  submit_sign_in_details(test_data['emails']['dummy_email'],test_data['passwords']['valid_password'])
+When /^I try to sign in with an unregistered email address$/ do
+  submit_sign_in_details(test_data['emails']['dummy_email'], test_data['passwords']['valid_password'])
 end
 
-When /^I try to sign in with wrong password$/ do
+When /^I try to sign in with an incorrect password$/ do
   submit_sign_in_details(test_data['emails']['happypath_user'], test_data['passwords']['not_matching_password'])
 end
 

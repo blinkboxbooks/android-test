@@ -6,6 +6,6 @@ end
 
 module PageObjectModel
   def empty_cloud_page
-    @_empty_cloud_page ||= page( EmptyCloudPag)
+    @_empty_cloud_page ||= page(EmptyCloudPage)
   end
 end

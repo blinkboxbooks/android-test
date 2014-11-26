@@ -4,7 +4,7 @@ module PageObjectModel
     include Calabash::Android::Operations
     include Logging
 
-    #a  monkey patch stub based on this suggestion, sadly they do not want to address it in calabash itself: https://github.com/calabash/calabash-ios/issues/531
+    # a monkey patch stub based on this suggestion, sadly they do not want to address it in calabash itself: https://github.com/calabash/calabash-ios/issues/531
     def embed(*)
       logger.error "Embed is a Cucumber method and is not available within the context of CalabashProxy"
     end
@@ -45,7 +45,7 @@ module PageObjectModel
     end
 
     def set_checkbox(condition)
-      query(:setChecked=>condition)
+      query(:setChecked => condition)
     end
 
     def get_text
@@ -71,7 +71,7 @@ module PageObjectModel
     #it can be used with Rspec now as it returns true and false (and not nil or exception)
     def visible?
       begin
-        calabash_proxy.when_element_exists(selector, :timeout => 5, :action => lambda {return true})
+        calabash_proxy.when_element_exists(selector, timeout: 5, action: lambda {return true})
       rescue
         false
       end

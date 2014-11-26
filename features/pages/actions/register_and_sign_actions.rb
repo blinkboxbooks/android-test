@@ -1,5 +1,25 @@
 module PageModels
   module RegisterAndSigninActions
+    def enter_app_as_anonymous_user
+      welcome_page.try_it_out if welcome_page.displayed?
+      my_library_page.await
+    end
+
+    def enter_app_as_existing_user
+      return if my_library_page.displayed?
+
+      if welcome_page.displayed?
+        welcome_page.sign_up
+      elsif my_library_page.displayed?
+        my_library_page.open_menu_and_signin
+      end
+      sign_in_page.await
+      username = test_data['users']['existing']['emailaddress']
+      password = test_data['users']['existing']['password']
+      sign_in_page.submit_sign_in_details(username, password)
+      my_library_page.await
+    end
+
     def register_via_welcome_screen
       welcome_page.sign_up
       click_register_button
@@ -14,7 +34,7 @@ module PageModels
       sign_in_page.submit_sign_in_details(email_address, password)
     end
 
-    def enter_personal_details(email_address=@email_address)
+    def enter_personal_details(email_address = @email_address)
       expect_page(register_page)
       email_address ||= generate_random_email_address
       first_name = generate_random_first_name
@@ -27,7 +47,7 @@ module PageModels
       register_page.fill_in_password(value)
     end
 
-    def accept_terms_and_conditions(accept_terms)
+    def set_terms_and_conditions(accept_terms)
       register_page.set_terms_and_conditions(accept_terms)
     end
 
@@ -35,11 +55,8 @@ module PageModels
       register_page.register_button.scroll_to
       register_page.register_button.touch
       puts "Details used for user registration: #{@email_address}, #{@first_name} #{@last_name}"
-      #registration_success_page.wait_for_welcome_label || register_page.wait_for_errors_section
     end
   end
 end
 
 World(PageModels::RegisterAndSigninActions)
-
-

@@ -50,11 +50,6 @@ module PageObjectModel
       book_cover_first.wait_for_element_exists(timeout: timeout_short)
     end
 
-    def go_to_the_shop
-      user_library_top_nav.shop_button.touch
-      sleep 5
-    end
-
     def goto_shop
       user_library_top_nav.shop_button.touch
     end
@@ -72,7 +67,6 @@ module PageObjectModel
     end
 
     def open_option_button
-      sleep 1
       open_first_book_options
     end
 

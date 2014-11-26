@@ -1,10 +1,10 @@
 module PageObjectModel
   class RegisterPage < PageObjectModel::Page
-    trait "* id:'action_bar_title' text:'Register'"
+    trait "* id:'toolbar' TextView text:'Register'"
     element :email_field, "* id:'editext_emailaddress'"
     element :first_name_field, "* id:'editext_firstname'"
     element :last_name_field, "* id:'editext_lastname'"
-    element :club_card_field, "* id:'editext_clubcardno'"
+    element :clubcard_field, "* id:'editext_clubcardno'"
     element :show_password, "* id:'checkbox_showpassword'"
     element :password_field, "* id:'editext_password'"
     element :password_repeat_field, "* id:'editext_reenterpassword'"
@@ -25,9 +25,9 @@ module PageObjectModel
       self.password_repeat_field.set password
     end
 
-    def fill_in_club_card(club_card)
-      self.club_card_field.scroll_to
-      self.club_card_field.set club_card
+    def fill_in_clubcard(clubcard)
+      self.clubcard_field.scroll_to
+      self.clubcard_field.set clubcard
     end
 
     def set_terms_and_conditions(condition)
