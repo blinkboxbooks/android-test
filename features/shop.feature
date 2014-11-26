@@ -9,7 +9,7 @@ Feature: I want to search and purchase titles from the shop
   @smoke @production
   Scenario Outline: Search suggestions appear when user enters more than 1 character into the search field
     When I enter <query> as the search term
-    Then I should see the <query> in the search suggestions
+    Then I should see <query> in the search suggestions
 
   Examples:
     | query         |
