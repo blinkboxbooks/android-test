@@ -5,19 +5,20 @@ module PageModels
       my_library_page.await
     end
 
-    def enter_app_as_existing_user
-      return if my_library_page.displayed?
+    def enter_app_as_existing_user(username = test_data['users']['existing']['emailaddress'], password = test_data['users']['existing']['password'])
+      enter_app_as(username, password)
+    end
 
+    def enter_app_as(username, password)
       if welcome_page.displayed?
         welcome_page.sign_up
       elsif my_library_page.displayed?
         my_library_page.open_menu_and_signin
       end
       sign_in_page.await
-      username = test_data['users']['existing']['emailaddress']
-      password = test_data['users']['existing']['password']
       sign_in_page.submit_sign_in_details(username, password)
       my_library_page.await
+      my_library_page.dismiss_info_panel
     end
 
     def register_via_welcome_screen

@@ -1,19 +1,11 @@
 When(/^I enter (.*) as the search term$/) do |search_string|
   shop_page.await
   shop_page.search_suggestions_for(search_string)
+  hide_soft_keyboard
 end
 
 Then(/^I touch the "(.*?)" button$/) do |button_name|
-  case button_name
-  when "Fiction"
-    shop_page.goto_fiction
-  when "Non-fiction"
-    shop_page.goto_non_fiction
-  when "Categories"
-    shop_page.goto_categories
-  else
-    fail "Unsupported button '#{button_name}' on the Shop page"
-  end
+  shop_page.goto_category(button_name)
 end
 
 Then(/^I should see search suggestions$/) do

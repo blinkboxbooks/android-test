@@ -21,5 +21,12 @@ module PageObjectModel
         false
       end
     end
+
+    #scroll_until_i_see("save 28%",:down), scroll_until_i_see("There's Something I'",:up)
+    def scroll_until_i_see(text, direction = :up)
+      wait_poll(until_exists: "* {text CONTAINS[c] '#{escape_quotes(text)}'}", timeout: 10) do
+        pan("* id:'viewpager'", direction)
+      end
+    end
   end
 end

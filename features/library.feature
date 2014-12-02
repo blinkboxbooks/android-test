@@ -56,7 +56,6 @@ Feature: Navigating the user library screen
       | Read           |
       | Remove         |
 
-  @runme
   Scenario: Verify embedded book option menu as a Signed in user (book not yet downloaded)
     When I click on first embedded book options
     Then I should see the following links

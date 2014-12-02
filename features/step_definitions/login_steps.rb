@@ -53,6 +53,10 @@ end
 
 Given(/^I am signed in as a user who has a credit card$/) do
   pending
+  @email_address, @password = api_helper.create_new_user!
+  @name_on_card = api_helper.add_credit_card
+  @card_type = 'VISA'
+  @card_count = 1
   #sign in as a user with the cc
   #await the my library screen
 end

@@ -27,7 +27,7 @@ Given(/^I capture the current number of books in My Library$/) do
 end
 
 Then(/^the number of books in My Library should decrease by one$/) do
-  expect(my_library_page.current_number_of_books_in_my_library).to be < @my_lib_book_count
+  wait_for(:timeout => 5) { expect(my_library_page.current_number_of_books_in_my_library).to be < @my_lib_book_count }
 end
 
 When(/^I choose to Remove a book from my Library$/) do
@@ -64,7 +64,15 @@ Given(/^I capture the current number of books in Reading$/) do
   @my_lib_reading_book_count = reading_page.current_number_of_books_in_reading
 end
 
-Then(/^The Book Reader page header should show the correct book details$/) do
+Then(/^the Book Reader page header should show the correct book details$/) do
   book_reader_page.get_header_and_footer_text
   expect(book_reader_page.book_title).to start_with(@book_title).and end_with(@book_author)
+end
+
+And(/^I navigate to (.*) in the user library drawer menu$/) do |drawer_menu_item|
+  user_library_page.goto_drawer_option(drawer_menu_item)
+end
+
+Then(/^the page contains (.*) in the toolbar header$/) do |toolbar_title|
+  expect_toolbar_title_to_equal(toolbar_title)
 end

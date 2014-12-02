@@ -220,8 +220,21 @@ module PageObjectModel
       page_book_titles
     end
 
-    def prices_of_books
-      page_book_prices = get_text_array(book_price.selector)
+    def prices_of_free_books
+      prices_of_books(book_price.selector)
+    end
+
+    def pre_discount_price
+      arr = prices_of_books(book_price_original.selector)
+      arr.each { |i| i.sub!(/\s(save)\s\d*(%)/,'') }
+    end
+
+    def final_book_price
+      prices_of_books(book_price.selector)
+    end
+
+    def prices_of_books(selector)
+      page_book_prices = get_text_array(selector)
       @page_book_prices_sorted = page_book_prices.sort_by {|x| x.scan(/\d+\.\d{2}/).map(&:to_f)}
       @page_book_prices_reversed = page_book_prices.sort_by {|x| x.scan(/\d+\.\d{2}/).map(&:to_f)}.reverse
       page_book_prices
@@ -236,6 +249,15 @@ module PageObjectModel
       array.flatten!
       array.uniq!
       array
+    end
+
+    def verify_featured_section_contains_book(featured_section)
+      wait_poll(:until_exists => "* id:'textview_title' text:'#{featured_section}'", :timeout => 10) do
+        pan("* id:'viewpager'", :up)
+      end
+      wait_poll(:until_exists => "* id:'bookcover'", :timeout => 10) do
+        pan("* id:'viewpager'", :up, from: {x: 0, y: 0}, to: {x: 0, y:-25})
+      end
     end
   end
 end

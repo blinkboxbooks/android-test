@@ -42,10 +42,6 @@ module PageObjectModel
       signin_button.touch
     end
 
-    def go_back_to_my_library
-      press_back_button
-    end
-
     def register
       button_register.touch
     end

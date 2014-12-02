@@ -10,6 +10,7 @@ module PageObjectModel
     section :user_library_sliding_tabs, UserLibrarySlidingTabsSection
     section :user_library_drawer_menu, UserLibraryDrawerMenuSection
     section :user_library_options_menu, UserLibraryOptionsMenuSection
+    section :user_library_register, UserLibraryRegisterSection
 
     element :progress_bar, "* id:'progressbar_read'"
 
@@ -33,13 +34,15 @@ module PageObjectModel
     end
 
     def open_first_book_options
-      book_options_first.tap_when_element_exists(timeout: timeout_short)
-      user_library_options_menu.options_menu_panel.wait_for_element_exists(timeout: timeout_short)
+      wait_poll(:until_exists => user_library_options_menu.options_menu_panel.selector, :timeout => timeout_short) do
+        book_options_first.tap_when_element_exists
+        sleep 1
+      end
     end
 
     def from_options_menu_choose(option)
       open_first_book_options
-      touch("* id:'title' marked:'#{option}'")
+      tap_when_element_exists("* id:'title' marked:'#{option}'")
       user_library_options_menu.options_menu_panel.wait_for_element_does_not_exist(timeout: timeout_short)
     end
 
@@ -87,6 +90,10 @@ module PageObjectModel
       user_library_sliding_tabs.my_library_tab.touch
     end
 
+    def goto_drawer_option(drawer_menu_item)
+      open_menu
+      tap_when_element_exists("* id:'text1' {text BEGINSWITH '#{drawer_menu_item}'}",timeout: timeout_short)
+    end
   end
 end
 

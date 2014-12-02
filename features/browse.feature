@@ -38,10 +38,10 @@ Feature: Shop Navigation
 
   Scenario Outline: Verify that there is at least one book present beneath each of the sections in the 'Featured' area
     Given I navigate to the "Featured" section
-    Then I can verify that the <featured_section> has at least one book
+    Then I can verify that the <featured_section> section has at least one book
 
   Examples:
-    | featured_section         |
-    | Fiction top 100          |
-    | Non-fiction top 100      |
-    | Hot New Releases top 100 |
+    | featured_section        |
+    | Fiction top 100         |
+    | Non-fiction top 100     |
+    | Biographies of the Year |
