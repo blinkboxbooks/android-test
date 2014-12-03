@@ -14,7 +14,6 @@ Feature: Register a new Blinkbox books user
     When I open the drawer menu
     Then I can see my name in the menu
 
-  @smoke
   Scenario: Happy path register user with a valid club card number
     Given I choose to register via the the Welcome Screen
     When I enter personal details with a valid clubcard number

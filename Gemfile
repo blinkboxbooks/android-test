@@ -19,6 +19,7 @@ group :api do
   gem 'multi_json'
   gem 'json'
   gem 'httparty'
+  gem 'httpclient'
   gem 'blinkbox-user'
 end
 

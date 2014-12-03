@@ -1,4 +1,3 @@
-@smoke
 Feature: Search results
   Search valid book name, author name and verify search result is displayed
 
@@ -14,8 +13,12 @@ Feature: Search results
     Then I should see search suggestions
     And I should see <query> in the search suggestions
 
+  @smoke
+  Examples:
+    | query                   |
+    | A Brief History Of Time |
+
   Examples:
     | query                   |
     | Malcolm Gladwell        |
     | A Brief History Of Time |
-

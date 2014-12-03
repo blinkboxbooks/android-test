@@ -3,7 +3,7 @@ Feature: Allow the user to use the library to view free and purchased books
   Background:
     Given the My Library screen is displayed
 
-  @smoke @production
+  @production
   Scenario Outline: As an anonymous user I am able to open a book and flip through
     When I open the first book
     And turn <fpages> pages forward

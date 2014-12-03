@@ -5,6 +5,7 @@ Feature: Book Reader drawer menu
     Given the My Library screen is displayed
     When I open the first book on the My Library page
 
+  @smoke
   Scenario: I am able to remove a bookmark by using delete option in the Book Reader - My bookmarks page
     Given I choose to add a bookmark using the Book Reader page
     And I visit the "My bookmarks" page from the Bookmark Reader drawer menu

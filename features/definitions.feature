@@ -6,6 +6,7 @@ Feature: Definitions!
     When I open the first book on the My Library page
     And turn 13 pages forward
 
+  @smoke
   Scenario: I want to know the definition of a word so I look smart!
     Given I invoke the definition functionality on the reader
     Then I should be shown a definition

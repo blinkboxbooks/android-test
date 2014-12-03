@@ -12,6 +12,11 @@ Feature: Shop Navigation
     Then I should be taken to the <tab> page
     And there is at least one book present
 
+  @smoke
+  Examples:
+    | tab                 |
+    | New releases        |
+
   Examples:
     | tab                 |
     | Fiction top 100     |
@@ -23,6 +28,11 @@ Feature: Shop Navigation
     When I choose to go to the <category> category
     Then The <category> page loads
     And there is at least one book present
+
+  @smoke
+  Examples:
+    | category          |
+    | Art & Photography |
 
   Examples:
     | category          |

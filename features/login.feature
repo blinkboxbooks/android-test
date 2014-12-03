@@ -1,4 +1,4 @@
-@smoke @production
+@production
 Feature: Sign in/out into blinkbox books
 
   Background: Deregister devices for an existing user
@@ -23,6 +23,11 @@ Feature: Sign in/out into blinkbox books
     Then sign in is not successful
     And I see the Oops! and invalid email address and password error messages
     And the Reset password button is displayed
+
+  @smoke
+  Examples:
+    | invalid_credentials        |
+    | unregistered email address |
 
   Examples:
     | invalid_credentials        |

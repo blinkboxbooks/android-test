@@ -5,12 +5,10 @@ Feature: Navigating the user library screen
     When I sign in
     Then the my library should be displayed
 
-  @smoke @signed_in
   Scenario: User navigates to the Shop from Library
     Given I touch the shop icon
     Then the Shop page should be displayed
 
-  @smoke @production
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
     Then the shop should be displayed
@@ -29,7 +27,6 @@ Feature: Navigating the user library screen
       | Contact us                    |
       | Info                          |
 
-  @smoke
   Scenario: Verify drawer menu links when user signed out
     When I Sign out
     Given I go back to the My Library page
@@ -43,7 +40,7 @@ Feature: Navigating the user library screen
       | Contact us                     |
       | Info                           |
 
-  @smoke @reinstall
+  @smoke
   Scenario: Verify embedded book option menu
     When I Sign out
     And I go back to the My Library page
