@@ -5,9 +5,9 @@ module PageObjectModel
     trait "* id:'webview_reader'"
 
     #different bookmark icons
-    element :bookmark, "* id:'imageview_bookmark' {width = 80 }"
-    element :add_bookmark_icon, "* id:'imageview_bookmark' {width = 130 }"
-    element :remove_bookmark_icon, "* id:'imageview_bookmark' {width = 131 }"
+    element :bookmark, "* id:'imageview_bookmark' {width = 120 }"
+    element :add_bookmark_icon, "* id:'imageview_bookmark' {width = 195 }"
+    element :remove_bookmark_icon, "* id:'imageview_bookmark' {width = 196 }"
 
     element :help_overlay, "* id:'imageview_overlay'"
     element :webview_reader, "* id:'webview_reader'"
