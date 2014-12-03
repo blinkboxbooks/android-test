@@ -129,7 +129,7 @@ module PageObjectModel
     end
 
     def search_suggestions_for(string)
-      search_button.touch
+      search_button.touch if search_button.exists?
       search_field.set string
       search_field.touch
     end

@@ -18,6 +18,7 @@ module PageObjectModel
     def navigate_back_to_user_library(text)
       wait_poll(until_exists: "* id:'sliding_tabs' TextView {text BEGINSWITH '#{text}'} isSelected:true", timeout: 10) do
         press_back_button
+        sleep 1
       end
     end
   end

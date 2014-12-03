@@ -1,5 +1,4 @@
 When(/^I enter (.*) as the search term$/) do |search_string|
-  shop_page.await
   shop_page.search_suggestions_for(search_string)
   hide_soft_keyboard
 end
