@@ -3,6 +3,7 @@ module PageObjectModel
     trait "* id:'toolbar' android.widget.TextView text:'Table of contents'"
     element :cover_link, "* id:'text1' text:'Cover'"
     element :title_page_link, "* id:'text1' text:'Title Page'"
+    element :title, "* id:'listview' android.widget.TextView"
     section :book_reader_static_toolbar, BookReaderStaticToolbarSection
   end
 end
