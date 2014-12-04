@@ -14,7 +14,6 @@ Feature: Shop Sorting
   Examples:
     | section      | order               | expectation                 |
     | New releases | Price: (High - Low) | Price: (High - Low)         |
-    | Free ebooks  | Title: A - Z        | Title A - Z                 |
 
   Examples:
     | section      | order               | expectation                 |

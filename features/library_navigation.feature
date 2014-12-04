@@ -27,11 +27,6 @@ Feature: Navigating the user library screen
     And I navigate to <drawer_menu_item> in the user library drawer menu
     Then the <page> should be displayed
 
-  @smoke
-  Examples:
-    | drawer_menu_item           | page            |
-    | Currently reading          | reading page    |
-
   Examples:
     | drawer_menu_item           | page            |
     | Currently reading          | reading page    |

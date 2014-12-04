@@ -1,4 +1,4 @@
-@production @demo
+@production @demo @smoke
 Feature: I want to demonstrate what an automation framework looks like in operation
 
   Background:

@@ -40,7 +40,6 @@ Feature: Navigating the user library screen
       | Contact us                     |
       | Info                           |
 
-  @smoke
   Scenario: Verify embedded book option menu
     When I Sign out
     And I go back to the My Library page
