@@ -5,14 +5,22 @@ module PageObjectModel
     trait "* id:'webview_reader'"
 
     #different bookmark icons
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     element :bookmark, "* id:'imageview_bookmark' {width = 120 }"
     element :add_bookmark_icon, "* id:'imageview_bookmark' {width = 195 }"
     element :remove_bookmark_icon, "* id:'imageview_bookmark' {width = 196 }"
 
+=======
+    element :bookmark, "* id:'reader_imageview_bookmark'"
+>>>>>>> Stashed changes
+=======
+    element :bookmark, "* id:'reader_imageview_bookmark'"
+>>>>>>> Stashed changes
     element :help_overlay, "* id:'imageview_overlay'"
     element :webview_reader, "* id:'webview_reader'"
 
-    section :reading_drawer_menu, BookReaderPageDrawerMenuSection
+    section :reading_option_menu, BookReaderPageMenuSection
     section :reading_header_bar, BookReaderPageHeaderSection
     section :reading_footer_bar, BookReaderPageFooterSection
     section :reading_settings, BookReaderReadingSettingsSection
@@ -61,12 +69,6 @@ module PageObjectModel
       definition_page_lookup_word.wait_for_element_exists(timeout: timeout_short)
     end
 
-    begin
-      calabash_proxy.when_element_exists(selector, timeout: 5, action: lambda {return true})
-    rescue
-      false
-    end
-
     def has_help_overlay?
       a = help_overlay.wait_for_element_exists(timeout: timeout_long)
       if a.nil?
@@ -77,52 +79,65 @@ module PageObjectModel
     end
 
     def add_bookmark_via_webview_reader
-      invoke_web_reader_header_and_footer
-      add_bookmark_icon.tap_when_element_exists(timeout: timeout_short)
-      close_web_reader_header_and_footer
-      bookmark.wait_for_element_exists(timeout: timeout_short)
+      tap(90,10)
+      wait_for_bookmark_to_appear
     end
 
     def remove_bookmark_via_webview_reader
-      invoke_web_reader_header_and_footer
-      remove_bookmark_icon.tap_when_element_exists(timeout: timeout_short)
-      close_web_reader_header_and_footer
+      tap(90,10)
       wait_for_bookmark_to_dissapear
     end
 
-    def wait_for_bookmark_to_dissapear
+    def add_bookmark_via_toolbar
+      invoke_web_reader_header_and_footer
+      reading_header_bar.add_bookmark_button.tap_when_element_exists(timeout: timeout_short)
+      bookmark.wait_for_element_exists(timeout: timeout_short)
+    end
+
+    def remove_bookmark_via_toolbar
+      invoke_web_reader_header_and_footer
+      reading_header_bar.remove_bookmark_button.tap_when_element_exists(timeout: timeout_short)
+      #wait_for_bookmark_to_disappear
+      #waiting on ALA-1757
+    end
+
+    def wait_for_bookmark_to_disappear
       bookmark.wait_for_element_does_not_exist(timeout: timeout_short)
     end
 
-    def add_bookmark_via_reading_drawer_menu
+    def wait_for_bookmark_to_appear
+      bookmark.wait_for_element_exists(timeout: timeout_short)
+    end
+
+    def add_bookmark_via_reading_option_menu
       goto_bookmark_this_page
     end
 
-    def remove_bookmark_via_reading_drawer_menu
+    def remove_bookmark_via_reading_option_menu
       goto_remove_bookmark
-      wait_for_bookmark_to_dissapear
+      wait_for_bookmark_to_disappear
     end
 
     def invoke_web_reader_header_and_footer
-      webview_reader.tap_when_element_exists(timeout: timeout_short)
+      unless reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
+        webview_reader.tap_when_element_exists(timeout: timeout_short)
+      end
       wait_for_elements_exist(
           [
               reading_header_bar.header_bar.selector,
-              reading_header_bar.title_label.selector,
               reading_footer_bar.footer_bar.selector,
               reading_footer_bar.chapter_label.selector,
               reading_footer_bar.progress_label.selector
           ],:timeout => timeout_long)
-      capture_header_and_footer_text
+      capture_footer_text
     end
 
     def get_header_and_footer_text
       invoke_web_reader_header_and_footer
-      capture_header_and_footer_text
+      capture_footer_text
     end
 
-    def capture_header_and_footer_text
-      @book_title = reading_header_bar.title_label.text
+    def capture_footer_text
       @book_chapter = reading_footer_bar.chapter_label.text
       book_progress_string = reading_footer_bar.progress_label.text
       @book_progress = book_progress_string.slice(0..(book_progress_string.index(' ')))
@@ -138,34 +153,23 @@ module PageObjectModel
           ],timeout: timeout_short)
     end
 
-    def choose_option_from_reading_drawer_menu(option)
+    def choose_option_from_reading_menu(option)
       invoke_web_reader_header_and_footer
       reading_header_bar.button_options.tap_when_element_exists(timeout: timeout_short)
-      tap_when_element_exists("* marked:'#{option}'")
-      reading_drawer_menu.drawer.wait_for_element_does_not_exist(timeout: timeout_short)
-    end
-
-    def close_reading_page_drawer_menu
-      if reading_drawer_menu.drawer.exists?
-        reading_drawer_menu.button_options.touch
-      end
-      reading_drawer_menu.drawer.wait_for_element_does_not_exist(timeout: timeout_short)
+      tap_when_element_exists("* id:'title' text:'#{option}'")
+      reading_option_menu.option_menu.wait_for_element_does_not_exist(timeout: timeout_short)
     end
 
     def goto_my_bookmarks
-      choose_option_from_reading_drawer_menu("My bookmarks")
+      choose_option_from_reading_menu("My bookmarks")
     end
 
     def goto_remove_bookmark
-      choose_option_from_reading_drawer_menu("Remove bookmark")
+      choose_option_from_reading_menu("Remove bookmark")
     end
 
     def goto_bookmark_this_page
-      choose_option_from_reading_drawer_menu("Bookmark this page")
-    end
-
-    def go_back_to_book_reader_page
-      press_back_button unless webview_reader.exists?
+      choose_option_from_reading_menu("Bookmark this page")
     end
 
     def move_slider_to_position(progress)
