@@ -43,7 +43,7 @@ module PageObjectModel
     def from_options_menu_choose(option)
       open_first_book_options
       tap_when_element_exists("* id:'title' marked:'#{option}'")
-      user_library_options_menu.options_menu_panel.wait_for_element_does_not_exist(timeout: timeout_short)
+      user_library_top_nav.toggle_button.wait_for_element_does_not_exist(timeout: timeout_short)
     end
 
     def remove_book_from_my_library

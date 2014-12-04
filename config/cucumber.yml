@@ -7,3 +7,6 @@ ci-smoke-qa:          <%= ci_opts %> --tags @smoke environment=qa
 ci-regression-qa:     <%= ci_opts %> --tags ~@smoke environment=qa
 
 ci-smoke-production:  <%= ci_opts %> --tags @smoke --tags @production environment=production
+
+ci-smoke-production-debug:  --tags @smoke --format Cucumber::Blinkbox::Formatter::Html -o results/features_report.html --format pretty
+
