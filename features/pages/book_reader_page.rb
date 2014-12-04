@@ -5,18 +5,7 @@ module PageObjectModel
     trait "* id:'webview_reader'"
 
     #different bookmark icons
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    element :bookmark, "* id:'imageview_bookmark' {width = 120 }"
-    element :add_bookmark_icon, "* id:'imageview_bookmark' {width = 195 }"
-    element :remove_bookmark_icon, "* id:'imageview_bookmark' {width = 196 }"
-
-=======
     element :bookmark, "* id:'reader_imageview_bookmark'"
->>>>>>> Stashed changes
-=======
-    element :bookmark, "* id:'reader_imageview_bookmark'"
->>>>>>> Stashed changes
     element :help_overlay, "* id:'imageview_overlay'"
     element :webview_reader, "* id:'webview_reader'"
 
