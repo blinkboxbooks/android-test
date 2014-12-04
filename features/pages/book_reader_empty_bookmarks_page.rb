@@ -1,6 +1,6 @@
 module PageObjectModel
   class BookReaderEmptyMyBookmarksPage < PageObjectModel::Page
-    trait "* id:'textview_empty_list' text:'You do not have any bookmarks.'"
+    trait "* id:'empty' text:'You do not have any bookmarks.'"
     section :book_reader_static_toolbar, BookReaderStaticToolbarSection
   end
 end

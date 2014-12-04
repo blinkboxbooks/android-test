@@ -6,6 +6,10 @@ module PageObjectModel
       end
       expect_page(book_reader_page)
     end
+
+    def go_back_to_book_reader_page
+      book_reader_my_bookmarks_page.book_reader_static_toolbar.go_up_button.touch unless book_reader_page.webview_reader.exists?
+    end
   end
 end
 
