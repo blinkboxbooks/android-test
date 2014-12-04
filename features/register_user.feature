@@ -3,7 +3,6 @@ Feature: Register a new Blinkbox books user
   I want to sign up
   So that I can buy and read books
 
-  @smoke
   Scenario: Happy path-register user from the Welcome Screen
     Given I choose to register via the the Welcome Screen
     When I enter valid personal details
