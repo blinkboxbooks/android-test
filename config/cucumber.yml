@@ -3,11 +3,8 @@
 default: -p local_debug
 local_debug: -r features --tags ~@wip environment=production debug=true --format pretty --color
 
-ci-smoke-qa:          <%= ci_opts %> --tags @smoke environment=qa
-ci-regression-qa:     <%= ci_opts %> --tags ~@smoke environment=qa
-
-ci-smoke-production:  <%= ci_opts %> --tags @smoke --tags @production environment=production
-
-ci-smoke-production-debug: --tags @smoke -f html -o features_report.html
-
-ci-alltests-production-debug: <%= ci_opts %>
+ci-smoke-qa:                    <%= ci_opts %> --tags @smoke environment=qa
+ci-regression-qa:               <%= ci_opts %> --tags ~@smoke environment=qa
+ci-smoke-production:            <%= ci_opts %> --tags @smoke --tags @production environment=production
+ci-alltests-production-debug:   <%= ci_opts %> environment=production
+ci-smoke-production-debug:      <%= ci_opts %> --tags @smoke environment=production-debug
