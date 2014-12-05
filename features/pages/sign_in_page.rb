@@ -30,7 +30,6 @@ module PageObjectModel
     def has_incorrect_credentials_popup?
       expect_text(test_data['errors']['oops_signin'])
       expect_text(test_data['errors']['invalid_email_or_password'])
-      expect_text(test_data['errors']['try_again'])
     end
 
     def submit_sign_in_details(user_name, password)

@@ -44,7 +44,7 @@ end
 
 Then(/^I should see the correct Contents shown$/) do
   expect_page(book_reader_table_of_contents_page)
-  expect(book_reader_table_of_contents_page.title).to start_with(@book_title).and end_with(@book_author)
+  expect(book_reader_table_of_contents_page.title.text).to start_with(@book_title).and end_with(@book_author)
 end
 
 And(/^I open the first book on the (My Library|Reading) page$/) do |negate|
