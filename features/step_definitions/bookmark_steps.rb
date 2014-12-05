@@ -23,10 +23,6 @@ Given(/^I choose to add a bookmark using the drawer menu on the Book Reader page
   book_reader_page.goto_bookmark_this_page
 end
 
-When(/^I remove the bookmark using the Book Reader drawer menu$/) do
-  book_reader_page.remove_bookmark_via_reading_drawer_menu
-end
-
 When(/^I delete the first bookmark$/) do
   book_reader_my_bookmarks_page.delete_first_bookmark
 end

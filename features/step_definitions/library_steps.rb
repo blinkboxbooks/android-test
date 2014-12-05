@@ -1,5 +1,6 @@
 Given(/^I touch the shop icon$/) do
   user_library_page.goto_shop
+  expect_page(shop_page)
 end
 
 And(/^I click on first embedded book options$/) do
@@ -62,11 +63,6 @@ end
 
 Given(/^I capture the current number of books in Reading$/) do
   @my_lib_reading_book_count = reading_page.current_number_of_books_in_reading
-end
-
-Then(/^the Book Reader page header should show the correct book details$/) do
-  book_reader_page.get_header_and_footer_text
-  expect(book_reader_page.book_title).to start_with(@book_title).and end_with(@book_author)
 end
 
 And(/^I navigate to (.*) in the user library drawer menu$/) do |drawer_menu_item|

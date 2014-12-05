@@ -1,6 +1,7 @@
 module PageObjectModel
   class ShopHighlightsSection < PageObjectModel::Page
     trait "* id:'container_highlights' descendant android.widget.TextView text:'Highlights'"
+    element :title, "* id:'container_highlights' descendant android.widget.TextView text:'Highlights'"
     element :left_selection, "* id:'left_selection'"
     element :right_selection, "* id:'right_selection'"
     element :carousel, "* id:'carousel_container'"

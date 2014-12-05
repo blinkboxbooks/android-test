@@ -22,3 +22,7 @@ end
 Then(/^I should see (.+) in the search suggestions$/) do |search_string|
   expect(shop_page.search_results).to include(search_string)
 end
+
+Then(/^I can verify that the there is a Highlights area$/) do
+  expect(shop_page).to have_highlights_section
+end

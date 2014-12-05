@@ -1,3 +1,4 @@
+@unstable
 Feature: Download a sample book and verify it is shown in both device and cloud and labelled 'Sample'
 
   Background:
@@ -16,6 +17,7 @@ Feature: Download a sample book and verify it is shown in both device and cloud 
   Examples:
   | book       |
   | The Target |
+  #Due to the content, this changes all the time
 
 
 

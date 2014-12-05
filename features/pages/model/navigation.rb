@@ -24,6 +24,8 @@ the other big advantage to this is that there is a timeout of 5 seconds, as popu
     end
   end
 
+  alias_method :assert_section, :assert_popup
+
   # wait for a tab/element to be seen as selected...
   def wait_for_mark_to_be_selected(mark)
     wait_for(:timeout => 5) do

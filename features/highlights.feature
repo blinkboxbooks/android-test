@@ -1,3 +1,4 @@
+@manual
 Feature: Highlights
   I am able to highlight some text so that I can annotate
 

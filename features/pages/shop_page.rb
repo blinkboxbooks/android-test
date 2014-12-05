@@ -129,7 +129,10 @@ module PageObjectModel
     end
 
     def search_suggestions_for(string)
-      search_button.touch if search_button.exists?
+      if search_button.exists?
+        search_button.touch
+      end
+      search_field.wait_for_element_exists(timeout: timeout_short)
       search_field.set string
       search_field.touch
     end
@@ -147,6 +150,7 @@ module PageObjectModel
     end
 
     def search_results
+      search_suggestions.wait_for_element_exists(timeout: timeout_short)
       search_suggestions.get_text
     end
 
@@ -258,6 +262,10 @@ module PageObjectModel
       wait_poll(:until_exists => "* id:'bookcover'", :timeout => 10) do
         pan("* id:'viewpager'", :up, from: {x: 0, y: 0}, to: {x: 0, y:-25})
       end
+    end
+
+    def has_highlights_section?
+      assert_section([shop_highlights.title.selector,shop_highlights.carousel.selector])
     end
   end
 end

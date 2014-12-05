@@ -44,7 +44,7 @@ Then(/^I choose to read the first book$/) do
 end
 
 Then(/^number of books I am reading should equal (\d+)$/) do |books_reading|
-  expect(reading_page.current_number_of_books_in_reading).to eql(books_reading.to_i)
+  wait_for(:timeout => 5) { expect(reading_page.current_number_of_books_in_reading).to eql(books_reading.to_i)}
 end
 
 When(/^I go to the Reading page$/) do
