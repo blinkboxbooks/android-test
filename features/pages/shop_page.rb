@@ -172,7 +172,7 @@ module PageObjectModel
 
     def goto_category(category)
       shop_sliding_tabs.sliding_tabs.wait_for_element_exists(timeout: timeout_short)
-      wait_poll(:until_exists => "* id:'sliding_tabs' TextView text:'#{category}'", :timeout => 10) do
+      wait_poll(:until_exists => "* id:'sliding_tabs' android.widget.TextView text:'#{category}'", :timeout => 10) do
         pan(shop_sliding_tabs.sliding_tabs.selector, :right, from: {x: 0, y: 0}, to: {x: -25, y:0})
       end
       tap_mark(category)
