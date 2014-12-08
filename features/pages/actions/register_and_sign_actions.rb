@@ -2,7 +2,7 @@ module PageModels
   module RegisterAndSigninActions
     def enter_app_as_anonymous_user
       welcome_page.try_it_out if welcome_page.displayed?
-      dismiss_info_panel_and_wait_for_my_library_page
+      dismiss_info_panel
     end
 
     def enter_app_as_existing_user(username = test_data['users']['existing']['emailaddress'], password = test_data['users']['existing']['password'])
@@ -17,12 +17,11 @@ module PageModels
       end
       sign_in_page.await
       sign_in_page.submit_sign_in_details(username, password)
-      dismiss_info_panel_and_wait_for_my_library_page
+      dismiss_info_panel
     end
 
-    def dismiss_info_panel_and_wait_for_my_library_page
+    def dismiss_info_panel
       my_library_page.dismiss_info_panel
-      my_library_page.await
     end
 
     def register_via_welcome_screen

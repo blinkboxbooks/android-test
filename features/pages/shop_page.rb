@@ -116,7 +116,7 @@ module PageObjectModel
     end
 
     def category_is_selected(category)
-      wait_for_element_exists("* id:'sliding_tabs' TextView {text BEGINSWITH '#{category}'} isSelected:true", timeout: timeout_short)
+      wait_for_element_exists("* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH '#{category}'} isSelected:true", timeout: timeout_short)
     end
 
     def go_to_the_category

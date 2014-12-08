@@ -1,9 +1,9 @@
 module PageObjectModel
   class MyLibraryPage < UserLibraryPage
 
-    trait "* id:'sliding_tabs' TextView {text BEGINSWITH 'My Library'} isSelected:true"
+    trait "* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH 'My Library'} isSelected:true"
     element :find_more_ebooks, "FrameLayout id:'book_frame' android.widget.TextView text:'Find more\nebooks'"
-    element :my_library_book_counter, "* id:'sliding_tabs' TextView {text BEGINSWITH 'My Library'}"
+    element :my_library_book_counter, "* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH 'My Library'}"
     element :info_panel_button, "* id:'view_information_panel_dismiss_button'"
 
     #Sort by popup
@@ -26,7 +26,6 @@ module PageObjectModel
         info_panel_button.wait_for_elements_do_not_exist(timeout: timeout_short)
       end
     end
-
   end
 end
 
