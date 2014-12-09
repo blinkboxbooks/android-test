@@ -21,6 +21,7 @@ module PageModels
     end
 
     def dismiss_info_panel
+      expect_page(my_library_page)
       my_library_page.dismiss_info_panel
     end
 

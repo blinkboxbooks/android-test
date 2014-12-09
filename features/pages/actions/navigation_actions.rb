@@ -16,14 +16,13 @@ module PageObjectModel
     end
 
     def navigate_back_to_user_library(text)
-      wait_poll(until_exists: "* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH '#{text}'} isSelected:true", timeout: 10) do
+      wait_poll(until_exists: "* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH '#{text}'} isSelected:true", :retry_frequency => 5, timeout: 10) do
         up_button = "android.widget.ImageButton contentDescription:'Navigate up'"
         if element_exists(up_button)
           touch(up_button)
         else
           press_back_button
         end
-        sleep 1
       end
     end
   end

@@ -15,6 +15,7 @@ end
 After do |scenario|
   if scenario.failed?
     screenshot_embed(:prefix => conf_data['project']['log_screenshot_folder'])
+    Cucumber.wants_to_quit = true if scenario.failed?
   end
   shutdown_test_server
 end
