@@ -17,7 +17,7 @@ module PageObjectModel
 
     def navigate_back_to_user_library(text)
       wait_poll(until_exists: "* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH '#{text}'} isSelected:true", timeout: 10) do
-        press_back_button
+        tap_when_element_exists("android.widget.ImageButton contentDescription:'Navigate up'")
         sleep 1
       end
     end

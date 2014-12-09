@@ -25,14 +25,14 @@ module APIMethods
       if with_client
         @device_name = 'Web Site Test Client'
         params.merge!({
-        client_name: @device_name,
-        client_brand: 'Tesco',
-        client_model: 'Hudl',
-        client_os: 'Android'})
+                          client_name: @device_name,
+                          client_brand: 'Tesco',
+                          client_model: 'Hudl',
+                          client_os: 'Android'})
       end
       headers = {'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json'}
       begin
-      response = http_client.post(@@auth_uri, body: params, header: headers)
+        response = http_client.post(@@auth_uri, body: params, header: headers)
       rescue Errno::EPIPE
         puts "Connection broke!"
       end
@@ -59,7 +59,7 @@ module APIMethods
       headers = {'Content-Type' => 'application/vnd.blinkboxbooks.data.v1+json', 'Authorization' => "Bearer #{access_token}"}
       body = {'type' => 'urn:blinkboxbooks:schema:creditcard'}.merge(params)
       begin
-      response = http_client.post(@@credit_card_uri, body: format_body(body), header: headers)
+        response = http_client.post(@@credit_card_uri, body: format_body(body), header: headers)
       rescue Errno::EPIPE
         puts "Connection broke!"
       end
