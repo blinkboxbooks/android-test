@@ -2,7 +2,6 @@ module PageObjectModel
   class BookReaderTableOfContentsPage < PageObjectModel::Page
     trait "* id:'toolbar' android.widget.TextView text:'Table of contents'"
     element :cover_link, "* id:'text1' text:'Cover'"
-    #element :title_page_link, "* id:'text1' text:'Title Page'"
     element :title_page_link, "android.widget.TextView text:'Title page'"
     element :title, "* id:'listview' android.widget.TextView"
     element :save_reading_position, "android.widget.TextView text:'Save your reading position?'"

@@ -14,7 +14,7 @@ Feature: Bookmarking
     When I delete the first bookmark
     Then The Empty Bookmarks page should be seen
    #And the Book Reader page should not have a bookmark
-   # waiting on ALA-1757
+   #waiting on ALA-1757
 
   Scenario: I am able to add a bookmark by using the add button via the Book Reader page toolbar
     Given I choose to add a bookmark using the Book Reader page toolbar
