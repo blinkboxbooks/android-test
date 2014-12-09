@@ -58,6 +58,10 @@ module PageObjectModel
     element :i_need_a_new_password, "* id:'textview_forgotten_password' text:'I need a new password'"
     element :confirm_password, "* id:'button_sign_in' text:'Confirm password'"
 
+    #shop sort pop-up (from action bar)
+    element :sort_action, "* id:'action_sort'"
+    element :sort_popup, "* id:'fragment_dialog_radio_options_title' text:'Sort by'"
+
     #####
     section :shop_sliding_tabs, ShopSlidingTabsNavigationSection
     section :shop_highlights, ShopHighlightsSection
@@ -211,8 +215,12 @@ module PageObjectModel
     end
 
     def sort_books_by(sort_option)
-      sort_spinner.wait_for_element_exists(timeout: timeout_long)
-      select_item_from_spinner("* text:'#{sort_option}'")
+      sort_action.tap_when_element_exists(timeout: timeout_long)
+      sort_popup.wait_for_element_exists(timeout: timeout_short)
+      #sort_spinner.wait_for_element_exists(timeout: timeout_long)
+      touch("* id:'list_item_radio_button' text:'#{sort_option}'")
+      #sort_spinner.wait_for_element_exists(timeout: timeout_long)
+      #select_item_from_spinner("* text:'#{sort_option}'")
       book_buy_button.wait_for_element_exists(timeout: timeout_long)
       sleep 1
     end
