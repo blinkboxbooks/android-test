@@ -8,6 +8,8 @@ module PageObjectModel
     element :bookmark, "* id:'reader_imageview_bookmark'"
     element :help_overlay, "* id:'imageview_overlay'"
     element :webview_reader, "* id:'webview_reader'"
+    element :back_to_saved_position, "* id:'button_go_to_previous'"
+    element :dismiss_button, "* id:'button_dismiss_go_to_previous'"
 
     section :reading_option_menu, BookReaderPageMenuSection
     section :reading_header_bar, BookReaderPageHeaderSection
@@ -107,10 +109,20 @@ module PageObjectModel
       wait_for_bookmark_to_disappear
     end
 
+    def go_back_to_saved_reading_position
+      back_to_saved_position.tap_when_element_exists(timeout: timeout_short)
+    end
+
     def invoke_web_reader_header_and_footer
       unless reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
-        webview_reader.tap_when_element_exists(timeout: timeout_short)
+        wait_poll(until_exists: reading_header_bar.button_options.selector, timeout: timeout_short) do
+          webview_reader.tap_when_element_exists(timeout: timeout_short)
+          sleep 1
       end
+    end
+      #unless reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
+        #webview_reader.tap_when_element_exists(timeout: timeout_short)
+      #end
       wait_for_elements_exist(
           [
               reading_header_bar.header_bar.selector,
@@ -129,7 +141,9 @@ module PageObjectModel
     def capture_footer_text
       @book_chapter = reading_footer_bar.chapter_label.text
       book_progress_string = reading_footer_bar.progress_label.text
-      @book_progress = book_progress_string.slice(0..(book_progress_string.index(' ')))
+      @book_progress = book_progress_string.slice(0..(book_progress_string.index('%')))
+      puts @book_chapter
+      puts @book_progress
     end
 
     def close_web_reader_header_and_footer
@@ -146,7 +160,7 @@ module PageObjectModel
       invoke_web_reader_header_and_footer
       reading_header_bar.button_options.tap_when_element_exists(timeout: timeout_short)
       tap_when_element_exists("* id:'title' text:'#{option}'")
-      reading_option_menu.option_menu.wait_for_element_does_not_exist(timeout: timeout_short)
+      #reading_option_menu.option_menu.wait_for_element_does_not_exist(timeout: timeout_short)
     end
 
     def goto_my_bookmarks

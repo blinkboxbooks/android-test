@@ -101,7 +101,7 @@ DEPENDENCIES
   activesupport
   blinkbox-rubocop
   blinkbox-user
-  calabash-android
+  calabash-android (~> 0.5.0)
   cucumber
   cucumber-blinkbox
   cuporter
