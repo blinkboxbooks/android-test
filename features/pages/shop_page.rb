@@ -267,6 +267,10 @@ module PageObjectModel
     def has_highlights_section?
       assert_section([shop_highlights.title.selector,shop_highlights.carousel.selector])
     end
+
+    def number_of_books
+      query(bookcover.selector).size
+    end
   end
 end
 

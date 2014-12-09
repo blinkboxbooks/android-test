@@ -29,4 +29,4 @@ require_all File.expand_path('../pages/asserts', File.dirname(__FILE__))
 
 World(PageObjectModel)
 World(PageObjectModel::PageActions)
-World(PageObjectModel::PageAsserts)
+#World(PageObjectModel::PageAsserts)

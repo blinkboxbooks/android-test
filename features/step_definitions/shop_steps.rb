@@ -1,5 +1,6 @@
 When(/^I enter (.*) as the search term$/) do |search_string|
-  shop_page.search_suggestions_for(search_string)
+  @search_word = search_string
+  shop_page.search_suggestions_for(@search_word)
   hide_soft_keyboard
 end
 
