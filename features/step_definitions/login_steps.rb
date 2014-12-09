@@ -59,3 +59,8 @@ Given(/^I am signed in as a user who has a credit card$/) do
   #sign in as a user with the cc
   #await the my library screen
 end
+
+Given(/^I am signed in as a new user$/) do
+  @email_address, @password = api_helper.create_new_user!
+  enter_app_as(@email_address, @password)
+end

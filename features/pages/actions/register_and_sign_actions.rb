@@ -5,8 +5,12 @@ module PageModels
       dismiss_info_panel
     end
 
-    def enter_app_as_existing_user(username = test_data['users']['existing']['emailaddress'], password = test_data['users']['existing']['password'])
-      enter_app_as(username, password)
+    def enter_app_as_existing_user
+      enter_app_as(test_data['users']['existing']['emailaddress'], test_data['users']['existing']['password'])
+    end
+
+    def enter_app_as_existing_user_with_a_card
+      enter_app_as(test_data['users']['withcard']['emailaddress'], test_data['users']['withcard']['password'])
     end
 
     def enter_app_as(username, password)
