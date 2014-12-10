@@ -59,3 +59,7 @@ end
 And(/^I should see the Empty Reading Page$/) do
   expect_page(empty_reading_page)
 end
+
+And(/^I set the book slider position to (\d+)$/) do |position|
+  book_reader_page.move_slider_to_position(position)
+end
