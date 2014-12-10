@@ -5,7 +5,7 @@ module PageObjectModel
     trait "* id:'webview_reader'"
 
     #different bookmark icons
-    element :bookmark, "* id:'reader_imageview_bookmark'"
+    element :bookmark, "* id:'reader_imageview_bookmark' contentDescription:'Remove bookmark'"
     element :help_overlay, "* id:'imageview_overlay'"
     element :webview_reader, "* id:'webview_reader'"
     element :back_to_saved_position, "* id:'button_go_to_previous'"
@@ -35,6 +35,10 @@ module PageObjectModel
     end
 
     def has_bookmark?
+      bookmark.visible?
+    end
+
+    def not_visible?
       bookmark.visible?
     end
 
@@ -76,7 +80,7 @@ module PageObjectModel
 
     def remove_bookmark_via_webview_reader
       tap(90,10)
-      wait_for_bookmark_to_dissapear
+      wait_for_bookmark_to_disappear
     end
 
     def add_bookmark_via_toolbar
@@ -88,8 +92,7 @@ module PageObjectModel
     def remove_bookmark_via_toolbar
       invoke_web_reader_header_and_footer
       reading_header_bar.remove_bookmark_button.tap_when_element_exists(timeout: timeout_short)
-      #wait_for_bookmark_to_disappear
-      #waiting on ALA-1757
+      wait_for_bookmark_to_disappear
     end
 
     def wait_for_bookmark_to_disappear
@@ -98,15 +101,6 @@ module PageObjectModel
 
     def wait_for_bookmark_to_appear
       bookmark.wait_for_element_exists(timeout: timeout_short)
-    end
-
-    def add_bookmark_via_reading_option_menu
-      goto_bookmark_this_page
-    end
-
-    def remove_bookmark_via_reading_option_menu
-      goto_remove_bookmark
-      wait_for_bookmark_to_disappear
     end
 
     def go_back_to_saved_reading_position
@@ -164,17 +158,10 @@ module PageObjectModel
       choose_option_from_reading_menu("My bookmarks")
     end
 
-    def goto_remove_bookmark
-      choose_option_from_reading_menu("Remove bookmark")
-    end
-
-    def goto_bookmark_this_page
-      choose_option_from_reading_menu("Bookmark this page")
-    end
-
     def move_slider_to_position(progress)
       invoke_web_reader_header_and_footer
       pan("* id:'progress'",:right, from: {x: 0, y: 0}, to: {x:progress.to_i , y:0})
+      close_web_reader_header_and_footer
     end
   end
 end
