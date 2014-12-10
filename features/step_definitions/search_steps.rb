@@ -22,3 +22,7 @@ end
 Then /^author name should be "(.*?)"$/ do |author_name|
   assert_author_name author_name
 end
+
+And(/^I press enter$/) do
+  press_enter_button
+end

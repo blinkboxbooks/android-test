@@ -13,7 +13,7 @@ Then(/^I should see search suggestions$/) do
 end
 
 Then(/^I should see the shop page$/) do
-  shop_page.await
+  expect_page(shop_page)
 end
 
 And(/^I navigate back until I get to the My Library page$/) do
