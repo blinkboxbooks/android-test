@@ -4,7 +4,7 @@ Feature: Bookmarking
   Background:
     Given the My Library screen is displayed
     When I open the first book on the My Library page
-    And I set the book slider position to 20
+    And I set the book slider position to 10
 
   @smoke
   Scenario: I am able to add and remove a bookmark by using delete option in the Book Reader - My bookmarks page
