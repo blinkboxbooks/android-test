@@ -40,6 +40,10 @@ module PageObjectModel
       5
     end
 
+    def timeout_medium
+      timeout_page_transition
+    end
+
     def timeout_page_transition
       10
     end

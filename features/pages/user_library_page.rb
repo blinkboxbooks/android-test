@@ -34,7 +34,7 @@ module PageObjectModel
     end
 
     def open_first_book_options
-      wait_poll(:until_exists => user_library_options_menu.options_menu_panel.selector, :retry_frequency => 2, :timeout => timeout_short) do
+      wait_poll(:until_exists => user_library_options_menu.options_menu_panel.selector, :retry_frequency => 3, :timeout => timeout_medium) do
         book_options_first.tap_when_element_exists
       end
     end
