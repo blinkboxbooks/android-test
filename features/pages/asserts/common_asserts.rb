@@ -12,6 +12,7 @@ end
 module AssertSearch
 
   def assert_search_results(search_word)
+    expect_activity("SearchActivity")
     expect_page(search_results_page)
     expect(search_results_page.search_field.text).to eq(search_word)
   end

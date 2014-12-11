@@ -7,6 +7,12 @@ module PageObjectModel
       raise RSpec::Expectations::ExpectationNotMetError, "Page verification failed\n   Expected page: '#{page.class.to_s.demodulize}' with trait \"#{page.trait}\"\n \nTimeout: #{e.message}"
     end
 
+    def expect_activity(activity)
+      wait_for(:timeout => 15 ) { expect(current_activity).to include(activity) }
+     rescue => e
+      raise RSpec::Expectations::ExpectationNotMetError, "Activity verification failed\n   Expected Activity: '#{activity}' \nTimeout: #{e.message}"
+    end
+
     def expect_text_on_screen(page, message_text, timeout = 5)
       expect_page(page)
       expect_text(message_text, timeout = timeout)
