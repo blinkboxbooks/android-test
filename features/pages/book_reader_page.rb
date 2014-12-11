@@ -74,12 +74,12 @@ module PageObjectModel
     end
 
     def add_bookmark_via_webview_reader
-      tap(90,10)
+      tap_top_right
       wait_for_bookmark_to_appear
     end
 
     def remove_bookmark_via_webview_reader
-      tap(90,10)
+      tap_top_right
       wait_for_bookmark_to_disappear
     end
 
@@ -140,12 +140,9 @@ module PageObjectModel
 
     def close_web_reader_header_and_footer
       if reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
-        webview_reader.touch
+        until_element_does_not_exist(reading_header_bar.button_options.selector, :action => lambda { tap_middle }, :retry_frequency => timeout_short, :timeout => timeout_page_transition)
+        reading_footer_bar.progress_bar.wait_for_element_does_not_exist(timeout: timeout_short)
       end
-      wait_for_elements_do_not_exist(
-          [reading_header_bar.button_options.selector,
-           reading_footer_bar.progress_bar.selector
-          ],timeout: timeout_short)
     end
 
     def choose_option_from_reading_menu(option)
