@@ -10,21 +10,31 @@ module PageObjectModel
     element :send_reset_link_button, "* id:'button_send_reset'"
     element :generic_error_message, "* id:'textview_error_generic'"
     element :error_message, "* id:'textview_error'"
+    element :forgotten_password_link, "* id:'textview_forgotten_password'"
+    element :reset_password_popup, "* id:'alert_dialog_container'"
 
     #reset your password popup
-    element :email_address_reset_field, "* id:'editext_emailaddress' text:'the email adderess you have entered'"
-    element :i_cant_remember_my_email_address_link, "* id:'textview_go_to_faq' text:'I can't remember my email address either!'"
+    element :email_address_reset_field, "* id:'editext_emailaddress'"
+    element :i_cant_remember_my_email_address_link, "* id:'textview_go_to_faq'"
     element :send_reset_button, "* id:'button_send' text:'Send reset link'"
+    element :ok_button_email_sent_message, "android.widget.Button text:'OK'"
+    element :error_message_for_email, "android.widget.TextView text:'Please enter a valid email address'"
 
     def has_reset_your_password_popup?
       assert_popup([
                        "* id:'parentPanel'",
                        "android.widget.TextView text:'Reset your password'",
-                       "android.widget.TextView text:'Enter the email you used to register, and we'll email you a reset link.'",
+                       "android.widget.TextView text:'Enter the email you used to register, and we\\'ll email you a reset link.'",
                        email_address_reset_field.selector,
                        i_cant_remember_my_email_address_link.selector,
                        send_reset_button.selector
                    ])
+    end
+
+    def has_email_sent_confirmation_popup?
+      assert_popup([  "android.widget.TextView text:'We\\'ve sent you a link'",
+                 "android.widget.TextView text:'You should receive an email in the next 24 hours. Once you\\'ve chosen a new password, please try again.'",
+                 ok_button_email_sent_message.selector, ])
     end
 
     def has_incorrect_credentials_popup?
@@ -41,10 +51,29 @@ module PageObjectModel
       signin_button.touch
     end
 
+    def fill_in_email_address(username)
+      email_address_reset_field.set username
+    end
+
     def register
       button_register.touch
     end
 
+    def tap_send_reset_link
+      send_reset_button.touch
+    end
+
+    def tap_forgotten_password_link
+      forgotten_password_link.touch
+    end
+
+    def reset_password_popup
+      reset_password_popup.wait_for_element_exists(timeout: timeout_short)
+    end
+
+    def error_message_for_email_address
+      error_message_for_email.wait_for_element_exists(timeout: timeout_short)
+    end
   end
 end
 
