@@ -1,5 +1,5 @@
 @production
-Feature: Sign in/out into blinkbox books
+Feature: Sign in into blinkbox books
 
   Background: Deregister devices for an existing user
     Given a valid user account ready for use on a new device
@@ -11,10 +11,12 @@ Feature: Sign in/out into blinkbox books
     Then the my library page should be displayed
     And I should see sign out option in the drawer menu
 
-  Scenario: User successfully signs out
-    Given I am signed in as an existing user
-    When I use drawer menu to sign out
-    Then the sign in page should be displayed
+   @qa-smoke
+   Scenario: New user successfully signs in
+     Given the My Library screen is displayed
+     When I register to proceed to sign in
+     Then the my library page should be displayed
+     And I should see sign out option in the drawer menu
 
   Scenario Outline: Sign in with invalid email or password
     Given the My Library screen is displayed

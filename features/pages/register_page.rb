@@ -1,6 +1,6 @@
 module PageObjectModel
   class RegisterPage < PageObjectModel::Page
-    trait "* id:'toolbar' TextView text:'Register'"
+    trait "* id:'toolbar' TextView text:'Registration'"
     element :email_field, "* id:'editext_emailaddress'"
     element :first_name_field, "* id:'editext_firstname'"
     element :last_name_field, "* id:'editext_lastname'"

@@ -52,6 +52,16 @@ module PageModels
       return email_address, first_name, last_name
     end
 
+    def register_new_user(provide_clubcard = 'without', clubcard_number = '')
+      @email_address, @first_name, @last_name = enter_personal_details
+      enter_password(test_data['passwords']['valid_password'])
+      register_page.fill_in_clubcard(clubcard_number) if provide_clubcard.eql?('with')
+      set_terms_and_conditions(true)
+      submit_registration_details
+      puts "Email address used for user registration: #{@email_address}, #{@first_name} #{@last_name}"
+      return @password, @email_address, @first_name, @last_name
+    end
+
     def enter_password(value)
       register_page.fill_in_password(value)
     end
