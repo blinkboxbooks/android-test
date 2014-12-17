@@ -6,7 +6,7 @@ Feature: Bookmarking
     When I open the first book on the My Library page
     And I set the book slider position to 10
 
-  @smoke
+  @unstable
   Scenario: I am able to add and remove a bookmark by using delete option in the Book Reader - My bookmarks page
     Given I choose to add a bookmark using the Book Reader page
     And I visit the "My bookmarks" page from the Reader option menu
