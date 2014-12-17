@@ -1,6 +1,6 @@
 module PageObjectModel
   class RegisterPage < PageObjectModel::Page
-    trait "* id:'toolbar' TextView text:'Register'"
+    trait "* id:'toolbar' TextView text:'Registration'"
     element :email_field, "* id:'editext_emailaddress'"
     element :first_name_field, "* id:'editext_firstname'"
     element :last_name_field, "* id:'editext_lastname'"
@@ -15,6 +15,7 @@ module PageObjectModel
     def fill_in_personal_details(first_name, last_name, email)
       self.email_field.set email
       self.first_name_field.set first_name
+      self.last_name_field.scroll_to
       self.last_name_field.set last_name
     end
 
