@@ -11,6 +11,7 @@ module PageObjectModel
     element :offers_checkbox, "* id:'checkbox_offers'"
     element :terms_and_conditions_checkbox, "* id:'checkbox_terms'"
     element :register_button, "BBBButton marked:'Register'"
+    element :sign_in_with_this_email_button, "* id:'signin_with_this_email_button'"
 
     def fill_in_personal_details(first_name, last_name, email)
       self.email_field.set email
@@ -35,6 +36,48 @@ module PageObjectModel
       self.terms_and_conditions_checkbox.scroll_to
       self.terms_and_conditions_checkbox.set_checkbox(condition)
     end
+
+    def enter_not_matching_password
+      password_field.set test_data['passwords']['valid_password']
+      password_repeat_field.set test_data['passwords']['not_matching_password']
+    end
+
+    def click_on_sign_in_with_this_email_button
+      sign_in_with_this_email_button.touch
+    end
+
+    def show_oops_signin_message
+      expect_text(test_data['errors']['oops_signin'])
+    end
+
+    def has_accept_terms_and_condition_message?
+      show_oops_signin_message
+      self.terms_and_conditions_checkbox.scroll_to
+      expect_text(test_data['errors']['accept_term_and_condition'])
+    end
+
+    def has_password_dont_match_message?
+      show_oops_signin_message
+      self.password_repeat_field.scroll_to
+      expect_text(test_data['errors']['password_dont_match'])
+    end
+
+    def has_password_invalid_message?
+      show_oops_signin_message
+      self.show_password.scroll_to
+      expect_text(test_data['errors']['invalid_password'])
+    end
+
+    def has_email_already_registered_message?
+      expect_text(test_data['errors']['already_registered'])
+    end
+
+    def has_invalid_clubcard_message?
+      show_oops_signin_message
+      self.clubcard_field.scroll_to
+      expect_text(test_data['errors']['invalid_clubcard'])
+    end
+
   end
 end
 

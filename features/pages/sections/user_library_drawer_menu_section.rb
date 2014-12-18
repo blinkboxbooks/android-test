@@ -9,7 +9,7 @@ module PageObjectModel
     element :signin_button, "* id:'text1' text:'Sign in'"
 
     #logged in user
-    element :signed_in_library_label, "android.widget.TextView id:'text1' index:0"
+    element :signed_in_library_label, "android.widget.TextView id:'text1' index:2"
     element :currently_reading, "* id:'text1' {text BEGINSWITH 'Currently reading'}"
     element :my_library, "* id:'text1' {text BEGINSWITH 'My library'}"
     element :refresh_library, "* id:'text1' text:'Refresh your library'"
