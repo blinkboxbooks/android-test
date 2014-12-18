@@ -64,6 +64,16 @@ module PageObjectModel
       query(:isSelected).first
     end
 
+    def size
+      query.size
+    end
+
+    alias :count :size
+
+    def with_text(text)
+      puts "#{selector.to_s} text:'#{text}'"
+    end
+
     #I would prefer this over the exists? for elements as there is a built in 'small' delay which caters for cases
     #where you have to wait for a transition or something to animate for a second or so.(i.e. search results)
     #the only drawback is that it will wait for the delay when you do something like...

@@ -13,6 +13,12 @@ module PageModels
       enter_app_as(test_data['users']['withcard']['emailaddress'], test_data['users']['withcard']['password'])
     end
 
+    def enter_app_as_newly_registered_user
+      register_via_welcome_screen
+      register_as_new_user
+      dismiss_info_panel
+    end
+
     def enter_app_as(username, password)
       if welcome_page.displayed?
         welcome_page.sign_up
@@ -52,16 +58,6 @@ module PageModels
       return email_address, first_name, last_name
     end
 
-    def register_new_user(provide_clubcard = 'without', clubcard_number = '')
-      @email_address, @first_name, @last_name = enter_personal_details
-      enter_password(test_data['passwords']['valid_password'])
-      register_page.fill_in_clubcard(clubcard_number) if provide_clubcard.eql?('with')
-      set_terms_and_conditions(true)
-      submit_registration_details
-      puts "Email address used for user registration: #{@email_address}, #{@first_name} #{@last_name}"
-      return @password, @email_address, @first_name, @last_name
-    end
-
     def enter_password(value)
       register_page.fill_in_password(value)
     end
@@ -74,6 +70,13 @@ module PageModels
       register_page.register_button.scroll_to
       register_page.register_button.touch
       puts "Details used for user registration: #{@email_address}, #{@first_name} #{@last_name}"
+    end
+
+    def register_as_new_user
+      @email_address, @first_name, @last_name = enter_personal_details
+      enter_password(test_data['passwords']['valid_password'])
+      set_terms_and_conditions(true)
+      submit_registration_details
     end
   end
 end

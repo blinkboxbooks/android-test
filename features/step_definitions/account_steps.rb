@@ -29,10 +29,9 @@ When /^I enter personal details with a (valid|invalid) clubcard number$/ do |clu
   register_page.fill_in_clubcard(clubcard)
 end
 
-When(/^I register to proceed to sign in$/) do
+When(/^I have registered and signed in as new user$/) do
   my_library_page.open_menu_and_register
-  register_page.await
-  register_new_user
+  register_as_new_user
 end
 
 And /^I submit registration details by (accepting|not accepting) terms and conditions$/ do |accept_terms|

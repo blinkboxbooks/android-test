@@ -16,6 +16,7 @@ module PageObjectModel
     def fill_in_personal_details(first_name, last_name, email)
       self.email_field.set email
       self.first_name_field.set first_name
+      self.last_name_field.scroll_to
       self.last_name_field.set last_name
     end
 
