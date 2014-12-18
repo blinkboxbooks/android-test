@@ -90,13 +90,17 @@ namespace :android do
   desc "builds and resigns the apk"
   task :resign, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
+    puts "I'm resigning ..."+apk_file
     resign_apk(apk_file)
+    puts "I resigned ..."+apk_file
   end
 
   desc "Installs the apk and test server (will reinstall if installed)"
   task :install_apk, [:apk_file] do |_, args|
     apk_file = args[:apk_file] || default_apk
+    puts "I'm installing ..."+apk_file
     `adb install -r #{apk_file}`
+    puts "I installed ..."+apk_file
   end
 
   desc "Gets the latest apk, resigns it and installs the apk, optional argument for a specified build"
@@ -118,6 +122,17 @@ namespace :android do
   task :display_installed_apk do
     display_installed_apk
   end
+
+  desc "Removes installed blinkbox packages on device (Requires connected device)"
+  task :uninstall_apk do
+    base_package = "com.blinkboxbooks.android"
+    packages = [base_package, base_package+".qa", base_package+".qa.test", base_package+".test", base_package+".dev"]
+    packages.each do |package|
+      puts "I am now uninstalling...#{package}"
+      `adb shell pm uninstall #{package}`
+    end
+  end
+
 end
 
 #calabash rake tasks
@@ -165,7 +180,9 @@ namespace :calabash do
     profile = args[:profile] || 'default'
     apk_file = args[:apk_file] || default_apk
     puts "REMEMBER: to run 'rake android:resign[#{apk_file}]', if you have issues running this APK"
-
+    puts "The env is...#{ENV['environment']}"
+    puts "You are running with the apk...#{apk_file}"
+    puts "You are running with the profile...#{profile}"
     exec("calabash-android run #{apk_file} -p #{profile}")
   end
 end

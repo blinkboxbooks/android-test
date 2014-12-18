@@ -1,4 +1,4 @@
-@smoke-qa
+@new_data
 Feature: Register a new Blinkbox books user
   As a guest user of Blinkbox books
   I want to sign up
