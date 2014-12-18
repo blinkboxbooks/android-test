@@ -77,6 +77,11 @@ module PageObjectModel
       user_library_drawer_menu.signin_button.tap_when_element_exists(timeout: timeout_short)
     end
 
+    def open_menu_and_register
+      open_menu
+      user_library_drawer_menu.register.tap_when_element_exists(timeout: timeout_short)
+    end
+
     def choose_about_option
       user_library_options_menu.about.touch
     end
