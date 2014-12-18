@@ -11,6 +11,10 @@ When(/^I navigate to the Sign in page$/) do
   sign_in_page.await
 end
 
+And(/^I register with new account$/) do
+  register_page.register_new_user
+end
+
 When(/^I submit valid sign in details$/) do
   username = test_data['users']['existing']['emailaddress']
   password = test_data['users']['existing']['password']
