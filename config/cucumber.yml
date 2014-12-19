@@ -6,4 +6,6 @@ local_debug: -r features --tags ~@wip environment=production debug=true --format
 ci-smoke-qa-debug:              <%= ci_opts %> --tags @smoke --tags @new_data
 ci-smoke-production-debug:      <%= ci_opts %> --tags @smoke
 ci-regression-qa-debug:         <%= ci_opts %>
-ci-regression-production-debug:   <%= ci_opts %> --tags ~@new_data
+ci-regression-production-debug: <%= ci_opts %> --tags ~@new_data
+ci-smoke-dev-debug:             <%= ci_opts %> --tags @smoke --tags @new_data
+ci-regression-dev-debug:        <%= ci_opts %>
