@@ -1,11 +1,11 @@
 <% ci_opts = " -r features --color --tags ~@on_demand --tags ~@wip --tags ~@unstable --tags ~@manual --tags ~@pending --format junit -o results/junit/ --format Cucumber::Blinkbox::Formatter::Html -o features_report.html --format pretty"  %>
 
-default: -p local_debug
-local_debug: -r features --tags ~@wip environment=production debug=true --format pretty --color
+#default: -p local_debug
+#local_debug: -r features --tags ~@wip environment=production debug=true --format pretty --color
 
-ci-smoke-qa-debug:              <%= ci_opts %> --tags @smoke --tags @new_data
-ci-smoke-production-debug:      <%= ci_opts %> --tags @smoke
-ci-regression-qa-debug:         <%= ci_opts %>
-ci-regression-production-debug: <%= ci_opts %> --tags ~@new_data
-ci-smoke-dev-debug:             <%= ci_opts %> --tags @smoke --tags @new_data
-ci-regression-dev-debug:        <%= ci_opts %>
+ci-smoke-qa-debug:              <%= ci_opts %> --tags @smoke --tags @new_data environment=qa-debug
+ci-smoke-production-debug:      <%= ci_opts %> --tags @smoke environment=production-debug
+ci-regression-qa-debug:         <%= ci_opts %> environment=qa-debug
+ci-regression-production-debug: <%= ci_opts %> --tags ~@new_data environment=production-debug
+ci-smoke-dev-debug:             <%= ci_opts %> --tags @smoke --tags @new_data environment=dev-debug
+ci-regression-dev-debug:        <%= ci_opts %> environment=dev-debug
