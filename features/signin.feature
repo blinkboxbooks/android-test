@@ -11,7 +11,7 @@ Feature: Sign in into blinkbox books
     Then the my library page should be displayed
     And I should see sign out option in the drawer menu
 
-   @qa-smoke
+   @new_data
    Scenario: New user successfully signs in
      Given the My Library screen is displayed
      When I have registered and signed in as new user
