@@ -1,4 +1,3 @@
-@new_data
 Feature: Register a new Blinkbox books user
   As a guest user of Blinkbox books
   I want to sign up
@@ -7,6 +6,7 @@ Feature: Register a new Blinkbox books user
   Background:
     Given I choose to register via the the Welcome Screen
 
+  @new_data
   Scenario: Happy path-register user from the Welcome Screen
     When I enter valid registration details
     And I accept terms and conditions

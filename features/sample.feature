@@ -13,8 +13,8 @@ Feature: Download a sample book and verify it is shown in both device and cloud 
     Then I see that the sample <book> is there
 
   Examples:
-  | book        |
-  | The Sunrise |
+  | book    |
+  | Respect |
 
 
 
