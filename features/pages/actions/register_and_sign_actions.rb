@@ -78,6 +78,21 @@ module PageModels
       set_terms_and_conditions(true)
       submit_registration_details
     end
+
+    def create_new_user
+      @email_address, @password = api_helper.create_new_user!
+      puts "Details used for user creation via api: #{@email_address}, #{@password}"
+    end
+
+    def create_new_user_with_credit_card
+      create_new_user
+      @name_on_card = api_helper.add_credit_card
+    end
+
+    def sign_in_new_user_with_credit_card
+      create_new_user_with_credit_card
+      enter_app_as(@email_address, @password)
+    end
   end
 end
 

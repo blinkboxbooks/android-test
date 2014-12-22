@@ -34,5 +34,10 @@ module PageObjectModel
         pan("* id:'viewpager'", direction)
       end
     end
+
+    def scroll_and_touch_text(text_to_touch, direction = :up)
+      scroll_until_i_see(text_to_touch, direction = :up)
+      touch("* marked:'#{text_to_touch}'")
+    end
   end
 end

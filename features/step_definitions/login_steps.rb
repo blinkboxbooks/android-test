@@ -57,17 +57,8 @@ end
 
 Given(/^I am signed in as a user who has a credit card$/) do
   enter_app_as_existing_user_with_a_card
-  #@email_address, @password = api_helper.create_new_user!
-  #@name_on_card = api_helper.add_credit_card
-  #@card_type = 'VISA'
-  #@card_count = 1
-  #sign in as a user with the cc
-  #await the my library screen
 end
 
-Given(/^I am signed in as a new user$/) do
-  @email_address, @password = api_helper.create_new_user!
-  puts @email_address
-  puts @password
-  enter_app_as(@email_address, @password)
+Given(/^I am signed in as a newly created user$/) do
+  sign_in_new_user_with_credit_card
 end
