@@ -159,7 +159,6 @@ module PageObjectModel
       invoke_web_reader_header_and_footer
       pan("* id:'progress'",:right, from: {x: 0, y: 0}, to: {x:progress.to_i , y:0})
       sleep 1
-      #close_web_reader_header_and_footer
     end
   end
 end
