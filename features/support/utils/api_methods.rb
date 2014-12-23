@@ -87,8 +87,10 @@ module APIMethods
       }
       headers = {'Content-Type' => 'application/vnd.blinkboxbooks.data.v1+json', 'Authorization' => "Bearer #{access_token}"}
       body = {'type' => 'urn:blinkboxbooks:schema:creditcard'}.merge(params)
+
       begin
         response = http_client.post(@credit_card_uri, body: format_body(body), header: headers)
+
       rescue Errno::EPIPE
         puts "Connection broke!"
       end
@@ -125,6 +127,7 @@ module APIMethods
     current_env = ENV['environment']
     @api_helper||=APIMethods::User.new(test_conf_data['environments'][current_env]['auth_url'],
                                        test_conf_data['environments'][current_env]['api_url'])
+
   end
 end
 

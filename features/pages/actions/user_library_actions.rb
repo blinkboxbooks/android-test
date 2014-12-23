@@ -12,6 +12,10 @@ module PageObjectModel
       user_library_page.from_options_menu_choose("Read")
       wait_for_book_reader_page
     end
+
+    def user_purchase_first_book
+      user_library_page.from_options_menu_choose("Buy full ebook")
+    end
   end
 end
 
