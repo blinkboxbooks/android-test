@@ -18,6 +18,11 @@ module PageObjectModel
     element :ok_button, "* id:'button1' text:'OK'"
     element :cancel_button, "* id:'button2' text:'Cancel'"
 
+    #payment card pop up
+    section :user_library_saved_card_popup, UserLibrarySavedCardPopupSection
+    section :user_library_payment_confirmation_popup, UserLibraryPaymentConfirmationPopupSection
+    section :new_book_downloading_popup, UserLibraryNewBookDownloadingPopupSection
+
     def assert_remove_read_popup
       wait_for_elements_exist(
           [
@@ -27,6 +32,37 @@ module PageObjectModel
               cancel_button.selector,
               ok_button.selector
           ],:timeout => 5)
+    end
+
+    def has_saved_card_popup?
+      assert_popup([
+                      user_library_saved_card_popup.how_would_you_like_to_pay.selector,
+                      user_library_saved_card_popup.saved_card_info.selector,
+                      user_library_saved_card_popup.payment_card_image.selector,
+                      user_library_saved_card_popup.payment_card_type.selector,
+                      user_library_saved_card_popup.payment_card_number.selector,
+                      user_library_saved_card_popup.add_new_card_button.selector
+                  ])
+    end
+
+    def has_payment_confirmation_popup?
+      assert_popup([
+                      user_library_payment_confirmation_popup.book_cover.selector,
+                      user_library_payment_confirmation_popup.book_title.selector,
+                      user_library_payment_confirmation_popup.payment_card_number.selector,
+                      user_library_payment_confirmation_popup.payment_card_type.selector,
+                      user_library_payment_confirmation_popup.book_price.selector,
+                      user_library_payment_confirmation_popup.pay_now_button.selector,
+                      user_library_payment_confirmation_popup.change_button.selector
+                  ])
+    end
+
+    def has_new_book_downloading_popup?
+       assert_popup([
+                      new_book_downloading_popup.new_book_downloading_text.selector,
+                      new_book_downloading_popup.goto_my_library_button.selector,
+                      new_book_downloading_popup.find_more_books_button.selector
+                   ])
     end
 
     def open_first_book
