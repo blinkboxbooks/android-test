@@ -23,8 +23,6 @@ module PageObjectModel
     element :email_sent_ok_button, "android.widget.Button text:'OK'"
     element :error_message_for_email, "android.widget.TextView text:'Please enter a valid email address'"
 
-
-
     def has_register_and_signin_pop_up?
       assert_popup([
                        "* id:'alert_dialog_container'",
@@ -38,7 +36,6 @@ module PageObjectModel
                        signin_button.selector
                    ])
     end
-
 
     def has_reset_your_password_popup?
       assert_popup([

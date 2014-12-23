@@ -111,10 +111,3 @@ end
 And(/^how would like to pay pop up is displayed$/) do
   expect(shop_page).to have_would_you_like_to_pay_popup
 end
-
-
-
-
-
-
-
