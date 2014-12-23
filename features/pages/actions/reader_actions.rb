@@ -18,6 +18,13 @@ module PageObjectModel
       expect(prev_chapter).to match(book_reader_page.book_chapter)
       expect(prev_progress).to match(book_reader_page.book_progress)
     end
+
+    def go_to_end_of_the_book
+      book_reader_page.move_slider_to_position(100)
+      book_reader_page.close_web_reader_header_and_footer
+      book_reader_page.turn_pages(1)
+      assert_end_of_book
+    end
   end
 end
 

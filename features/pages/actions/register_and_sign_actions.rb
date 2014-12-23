@@ -93,6 +93,13 @@ module PageModels
       create_new_user_with_credit_card
       enter_app_as(@email_address, @password)
     end
+
+    def register_via_create_bbb_account_pop_up
+      expect(sign_in_page).to have_register_and_signin_pop_up
+      sign_in_page.create_my_account.touch
+      register_as_new_user
+    end
+
   end
 end
 
