@@ -28,6 +28,7 @@ Given(/^I capture the current number of books in My Library$/) do
 end
 
 Then(/^the number of books in My Library should decrease by one$/) do
+  expect_page(my_library_page)
   wait_for(:timeout => 5) { expect(my_library_page.current_number_of_books_in_my_library).to be < @my_lib_book_count }
 end
 

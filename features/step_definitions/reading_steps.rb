@@ -63,3 +63,51 @@ end
 And(/^I set the book slider position to (\d+)$/) do |position|
   book_reader_page.move_slider_to_position(position)
 end
+
+And(/^I go to end of the book$/) do
+  go_to_end_of_the_book
+end
+
+When(/^I choose to purchase the book$/) do
+  end_of_book_page.click_on_buy_button
+end
+
+When(/^I click on shop for more books button$/) do
+  end_of_book_page.click_on_shop_for_more_books_button
+end
+
+When(/^I click to go back to library screen$/) do
+  end_of_book_page.click_on_go_to_library_button
+end
+
+When(/^I click on to view more books$/) do
+  end_of_book_page.click_on_view_more_books_in_the_shop
+end
+
+When(/^I click on book that I like to see$/) do
+  end_of_book_page.click_on_more_books_you_like_book_cover
+end
+
+Then(/^goes to shop screen$/) do
+  expect_page(shop_page)
+end
+
+Then(/^goes back to library screen$/) do
+  expect_page(my_library_page)
+end
+
+Then(/^goes to search result$/) do
+  expect_activity("SearchActivity")
+end
+
+And(/^I remove the book$/) do
+  end_of_book_page.remove_sample
+end
+
+And(/^I am prompted to register and proceed$/) do
+  register_via_create_bbb_account_pop_up
+end
+
+And(/^how would like to pay pop up is displayed$/) do
+  expect(shop_page).to have_would_you_like_to_pay_popup
+end

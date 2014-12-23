@@ -141,7 +141,7 @@ module PageObjectModel
     def close_web_reader_header_and_footer
       if reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
         until_element_does_not_exist(reading_header_bar.button_options.selector, :action => lambda { tap_middle }, :retry_frequency => timeout_short, :timeout => timeout_page_transition)
-        reading_footer_bar.progress_bar.wait_for_element_does_not_exist(timeout: timeout_short)
+        reading_footer_bar.progress_bar.wait_for_element_does_not_exist(timeout: timeout_medium)
       end
     end
 
@@ -159,7 +159,6 @@ module PageObjectModel
       invoke_web_reader_header_and_footer
       pan("* id:'progress'",:right, from: {x: 0, y: 0}, to: {x:progress.to_i , y:0})
       sleep 1
-      close_web_reader_header_and_footer
     end
   end
 end
