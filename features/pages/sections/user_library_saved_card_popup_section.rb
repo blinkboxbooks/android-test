@@ -1,6 +1,6 @@
 module PageObjectModel
   class UserLibrarySavedCardPopupSection < PageObjectModel::Page
-    trait "android.widget.LinearLayout"
+    trait "* id:'customPanel' android.widget.Textview text:'How would you like to pay?'"
     element :how_would_you_like_to_pay, "* id:'textview_title' text:'How would you like to pay?'"
     element :saved_card_info, "* id:'textview_subtext'"
     element :payment_card_image, "* id:'imageview_cc_image'"

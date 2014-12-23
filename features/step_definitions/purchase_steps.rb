@@ -17,6 +17,7 @@ end
 And(/^I choose to go My Library$/) do
   wait_for(:timeout => 5) { expect(user_library_page).to have_new_book_downloading_popup }
   tap_on_goto_my_library_button
+  expect(user_library_page)
 end
 
 Then(/^The I can see the newly purchased book added to My Library$/) do
@@ -30,15 +31,14 @@ And(/^I can verify its contents$/) do
 end
 
 Given(/^I am on user library page$/) do
-  expect_page(MyLibraryPage)
+  expect_page(user_library_page)
 end
 
 When(/^I choose to purchase first book using options button$/) do
-  signin_user_purchase_first_book
+  user_purchase_first_book
 end
 
 Then(/^I should not see buy option in Options menu$/) do
-  expect(user_library_page)
   user_library_page.open_first_book_options
   user_library_page.user_library_options_menu.buy_full_ebook.should_not be_visible
 end

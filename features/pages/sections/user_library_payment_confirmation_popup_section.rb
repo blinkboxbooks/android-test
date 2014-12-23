@@ -1,6 +1,6 @@
 module PageObjectModel
   class UserLibraryPaymentConfirmationPopupSection < PageObjectModel::Page
-    trait "* id:'customPanel'"
+    trait "* id:'customPanel' android.widget.Button text:'Pay now'"
     element :book_cover, "* id:'bookcover'"
     element :book_title, "* id:'textview_title'"
     element :payment_card_number, "* id:'textview_cc_number'"

@@ -13,7 +13,7 @@ module PageObjectModel
       wait_for_book_reader_page
     end
 
-    def signin_user_purchase_first_book
+    def user_purchase_first_book
       user_library_page.from_options_menu_choose("Buy full ebook")
     end
   end
