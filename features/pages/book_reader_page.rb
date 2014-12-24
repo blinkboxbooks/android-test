@@ -74,11 +74,13 @@ module PageObjectModel
     end
 
     def add_bookmark_via_webview_reader
+      close_web_reader_header_and_footer
       tap_top_right
       wait_for_bookmark_to_appear
     end
 
     def remove_bookmark_via_webview_reader
+      close_web_reader_header_and_footer
       tap_top_right
       wait_for_bookmark_to_disappear
     end
@@ -159,6 +161,7 @@ module PageObjectModel
       invoke_web_reader_header_and_footer
       pan("* id:'progress'",:right, from: {x: 0, y: 0}, to: {x:progress.to_i , y:0})
       sleep 1
+      close_web_reader_header_and_footer
     end
   end
 end
