@@ -2,8 +2,8 @@ Feature: Navigating the user library screen
 
   Background:
     Given a valid user account ready for use on a new device
-  #  When I sign in
-  #  Then the my library should be displayed
+    When I sign in
+    Then the my library should be displayed
 
   Scenario: User navigates to the Shop from Library
     Given I touch the shop icon
