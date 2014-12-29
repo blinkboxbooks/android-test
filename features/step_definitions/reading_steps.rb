@@ -88,15 +88,15 @@ When(/^I click on book that I like to see$/) do
   end_of_book_page.click_on_more_books_you_like_book_cover
 end
 
-Then(/^goes to shop screen$/) do
+Then(/^shop screen is displayed$/) do
   expect_page(shop_page)
 end
 
-Then(/^goes back to library screen$/) do
+Then(/^library screen is displayed$/) do
   expect_page(my_library_page)
 end
 
-Then(/^goes to search result$/) do
+Then(/^goes to search result screen$/) do
   expect_activity("SearchActivity")
 end
 
