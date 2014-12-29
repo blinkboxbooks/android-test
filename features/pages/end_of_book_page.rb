@@ -13,7 +13,7 @@ module PageObjectModel
     element :ok_button, "* id:'button1' text:'OK'"
 
 
-    def has_delete_sample_pop_up
+    def has_delete_sample_pop_up?
       assert_popup([
                       "* id:'parentPanel'",
                       "* id:'textview_title' text:'Delete'",
