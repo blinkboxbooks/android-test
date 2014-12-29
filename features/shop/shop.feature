@@ -6,7 +6,6 @@ Feature: I want to search and purchase titles from the shop
     Then I am on the My Library page
     And I touch the shop icon
 
-  @production
   Scenario Outline: Search suggestions appear when user enters more than 1 character into the search field
     When I enter <query> as the search term
     Then I should see <query> in the search suggestions
