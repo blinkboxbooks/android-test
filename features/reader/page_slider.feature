@@ -45,6 +45,3 @@ Feature: Page slider
     And I save last reading position from TOC page
     And I am on selected chapter
     Then verify last reading position on reader slider
-
-
-
