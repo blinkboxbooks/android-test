@@ -213,15 +213,6 @@ module PageObjectModel
       toolbar_title.wait_for_element_exists(timeout: timeout_short)
     end
 
-    def find_book_to_purchase_from
-
-    end
-
-    def select_free_book_for_purchase
-      free_book_buy_button.wait_for_element_exists(timeout: timeout_short)
-      free_book_buy_button.touch
-    end
-
     def assert_book_exists
       wait_for_elements_exist(
           [
