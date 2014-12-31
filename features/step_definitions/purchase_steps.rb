@@ -5,17 +5,17 @@ Given(/^I choose to purchase a book from the "([^"]*)" section$/) do |arg|
 end
 
 And(/^I use my default card$/) do
-  wait_for(:timeout => 5) { expect(user_library_page).to have_saved_card_popup }
+  wait_for{ expect(user_library_page).to have_saved_card_popup }
   tap_on_saved_card
 end
 
 When(/^I complete the purchase$/) do
-  wait_for(:timeout => 5) { expect(user_library_page).to have_payment_confirmation_popup }
+  wait_for{ expect(user_library_page).to have_payment_confirmation_popup }
   tap_on_pay_now_button
 end
 
 And(/^I choose to go My Library$/) do
-  wait_for(:timeout => 5) { expect(user_library_page).to have_new_book_downloading_popup }
+  wait_for{ expect(user_library_page).to have_new_book_downloading_popup }
   tap_on_goto_my_library_button
   expect(user_library_page)
 end
@@ -41,4 +41,13 @@ end
 Then(/^I should not see buy option in Options menu$/) do
   user_library_page.open_first_book_options
   user_library_page.user_library_options_menu.buy_full_ebook.should_not be_visible
+end
+
+
+And(/^I choose to purchase a free book$/) do
+  shop_page.select_free_book_for_purchase
+end
+
+Then(/^the add new card pop up is displayed$/) do
+  wait_for{ expect(shop_page).to have_add_new_card_popup }
 end
