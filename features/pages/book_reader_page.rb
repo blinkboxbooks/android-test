@@ -142,8 +142,10 @@ module PageObjectModel
 
     def close_web_reader_header_and_footer
       if reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
-        until_element_does_not_exist(reading_header_bar.button_options.selector, :action => lambda { tap_middle }, :retry_frequency => timeout_short, :timeout => timeout_page_transition)
-        reading_footer_bar.progress_bar.wait_for_element_does_not_exist(timeout: timeout_medium)
+        tap_middle
+        sleep 2
+        reading_header_bar.header_bar.wait_for_element_does_not_exist(timeout: timeout_medium)
+        reading_footer_bar.footer_bar.wait_for_element_does_not_exist(timeout: timeout_medium)
       end
     end
 
@@ -157,9 +159,9 @@ module PageObjectModel
       choose_option_from_reading_menu("My bookmarks")
     end
 
-    def move_slider_to_position(progress)
+    def move_slider_to_position(progress, direction = :right)
       invoke_web_reader_header_and_footer
-      pan("* id:'progress'",:right, from: {x: 0, y: 0}, to: {x:progress.to_i , y:0})
+      pan("* id:'progress'", direction, from: {x: 0, y: 0}, to: {x:progress.to_i , y:0})
       sleep 1
       close_web_reader_header_and_footer
     end
