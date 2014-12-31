@@ -33,6 +33,7 @@ module PageObjectModel
     element :book_price, "* id:'textview_price'"
     element :book_price_original, "* id:'textview_price_original'"
     element :book_buy_button, "* id:'button_buy' text:'BUY'"
+    element :free_book_buy_button, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView text:'BUY' id:'button_buy' index:4"
 
     #generic popup/common
     element :parent_panel, "* id:'parentPanel'"
@@ -43,6 +44,7 @@ module PageObjectModel
     #How would you like to pay popup
     element :add_new_card_button, "* id:'button_add_new_card' text:'Add a new card'"
     element :how_would_you_like_to_pay_make_selection, "android.widget.RelativeLayout"
+    element :add_new_card_popup_title, "android.widget.TextView text:'How would you like to pay?'"
 
     #pay now popup
     element :change_card, "* id:'button_change' text:'Change'"
@@ -66,7 +68,7 @@ module PageObjectModel
     section :shop_sliding_tabs, ShopSlidingTabsNavigationSection
     section :shop_highlights, ShopHighlightsSection
 
-    def has_pay_now_popup
+    def has_pay_now_popup?
       assert_popup([
                        parent_panel.selector,
                        bookcover.selector,
@@ -83,7 +85,7 @@ module PageObjectModel
                    ])
     end
 
-    def has_re_enter_your_password_popup
+    def has_re_enter_your_password_popup?
       assert_popup([
                        parent_panel.selector,
                        "* id:'textview_title' text:'Please re-enter your password'",
@@ -95,7 +97,7 @@ module PageObjectModel
     end
 
 
-    def has_would_you_like_to_pay_popup
+    def has_would_you_like_to_pay_popup?
       assert_popup([
                       "android.widget.TextView text:'How would you like to pay?'",
                       "* id:'textview_subtext' {text BEGINSWITH 'Here is the saved payment info for'}",
@@ -108,7 +110,15 @@ module PageObjectModel
                    ])
     end
 
-    def has_your_new_book_is_downloading_popup
+    def has_add_new_card_popup?
+      assert_popup([
+                    "* id:'customPanel'",
+                    add_new_card_popup_title.selector,
+                    add_new_card_button.selector
+                   ])
+    end
+
+    def has_your_new_book_is_downloading_popup?
       assert_popup([
                        parent_panel.selector,
                        "* id:'textview_header' text:'Your new book is downloading'",
@@ -201,6 +211,15 @@ module PageObjectModel
       end
       touch("* marked:'#{category_name}'")
       toolbar_title.wait_for_element_exists(timeout: timeout_short)
+    end
+
+    def find_book_to_purchase_from
+
+    end
+
+    def select_free_book_for_purchase
+      free_book_buy_button.wait_for_element_exists(timeout: timeout_short)
+      free_book_buy_button.touch
     end
 
     def assert_book_exists
