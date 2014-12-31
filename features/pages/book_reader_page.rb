@@ -143,8 +143,12 @@ module PageObjectModel
     def close_web_reader_header_and_footer
       if reading_header_bar.button_options.exists? and reading_footer_bar.progress_bar.exists?
         tap_middle
-        wait_for_elements_do_not_exist([reading_header_bar.header_bar,reading_footer_bar.footer_bar], timeout: timeout_medium)
+        sleep 3
+        if reading_header_bar.header_bar.visible?
+          tap_middle
+        end
       end
+      wait_for_elements_do_not_exist([reading_header_bar.header_bar.selector,reading_footer_bar.footer_bar.selector], timeout: timeout_medium)
     end
 
     def choose_option_from_reading_menu(option)
