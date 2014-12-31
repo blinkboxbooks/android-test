@@ -41,7 +41,7 @@ module APIMethods
       begin
        response = http_client.post(@auth_uri, body: params, header: headers)
       rescue Exception => e
-        puts "Connection broke!"
+        puts "Connection broke, when trying to create user!"
         tries -= 1
         if tries > 0
           retry
@@ -73,7 +73,7 @@ module APIMethods
       begin
         response = http_client.post(@credit_card_uri, body: format_body(body), header: headers)
       rescue Exception => e
-        puts "Connection broke!"
+        puts "Connection broke, when trying to add card!"
         tries -= 1
         if tries > 0
           retry
