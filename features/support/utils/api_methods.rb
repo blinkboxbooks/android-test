@@ -5,6 +5,7 @@ module APIMethods
 
   class User
     include Utilities
+    include UtilityObjects
 
     def initialize(auth, api)
       @auth_uri = "#{auth}/oauth2/token"
@@ -15,9 +16,10 @@ module APIMethods
       with_client = options[:with_client]
       @email_address = generate_random_email_address
       @password = 'test1234'
+      @first_name = generate_random_first_name
       params = {
           grant_type: 'urn:blinkbox:oauth:grant-type:registration',
-          first_name: generate_random_first_name,
+          first_name: @first_name,
           last_name: generate_random_last_name,
           username: @email_address,
           password: @password,
@@ -33,44 +35,95 @@ module APIMethods
                           client_os: 'Android'})
       end
       headers = {'Content-Type' => 'application/x-www-form-urlencoded', 'Accept' => 'application/json'}
+
+      ### initial try at some retry handling code.
+      tries = 10
       begin
-        response = http_client.post(@auth_uri, body: params, header: headers)
-      rescue Errno::EPIPE
+       response = http_client.post(@auth_uri, body: params, header: headers)
+      rescue Exception => e
         puts "Connection broke!"
+        tries -= 1
+        if tries > 0
+          retry
+        else
+          abort 'Test Error: Failed to register new user'
+        end
       end
-      raise 'Test Error: Failed to register new user' unless response.status == 200
+      abort 'Test Error: Failed to register new user' unless response.status == 200
       user_props = MultiJson.load(response.body)
       @access_token = user_props['access_token']
-      return @email_address, @password, @device_name
+      return @first_name, @email_address, @password, @device_name
     end
 
-=begin
     def add_credit_card(access_token = @access_token)
+      current_env = ENV['environment']
       params = {
           default: true,
-          # 4111 1111 1111 1111
-          number: '$bt4|javascript_1_3_9$Qrai2HEKdt+NeE1vmgldgi9dR6FB/g1daeYVsFDAv1QP0j2zb5BCnsJlYd1C5/YCFP0H6WzRgRDYOGLtpQOUNdIkMhzWevHlAGcSk/6nIJ/xJR510cjCc9yW/SazCdoYZI3RRsGSwTpLyEgtWbbpQqURjfF3Cthsiw1OLe4xvVFZdY2w4d8jBZRNaq1BUSW2TOzy6N8DHjGAFS1VcXqVYBl5TTFB2luejMaufsd5O+XncVZDZ/xq+zKI3loTju7sh23+58AHsOSfql24Qh3L/2BleQn2kmoDNy36AN7XIGLyjr2aq9pAYN+FwFNVKbzDnlQB4slg7CqVlTucYKMfAQ==$x4/61cGZ0AXi0wX0+gvg17cmbMlLliiSbsrcsJEKlg0K1MuIFVxE/XNulj/zR43n$i/XZ5Eu0EKZYtznlOM9KeEM6bDlr+FkMkq9nOl4TNDQ=',
-          # 123
-          cvv: '$bt4|javascript_1_3_9$3haiYOneu3FWSGAE0hkbZIHuwxVi0b/IcACsE9n/xE5xI4ZjTP8hFY+gC/9P4OdY1oyYz6KrEn5/3fg1vTjZRtIxECmP6gB6V6FOW8RW737t5HBaHe2NePpT2dhiXLLhkyblBV9xQfOnR+GkWRvbNjsmoBFyYgZSkLVuV+BVVjnpmox/l+6yisrcTKaEGfBKgjw4yoogyMuesCS6DcPsQPjuEi6hjMYoQWp+9fwIG4xCoDBU1ypxLNBRrWtGVYHsQrwAYE/gYIeK+SmE1WSWXBjOziYV/I01nFPWcumrmm9gEryhMG3k6LbBYq2JW1hKXcWJtinfOhjvAh5RlEJi4A==$ZzvdJg5LaPaDvaHTHDQOnkN3iMgAhvINxxCWP6CUGII=$yb3ZE9dN///eWTspPlsf979XEaTyMV+KqYRgnApcn5g=',
-          # 12
-          expirationMonth: '$bt4|javascript_1_3_9$n2q6jmFvVafmdNfSfSU9MF3yPCqhwBBY82zuqs6XyX6aTfRa0oNfzZqUvT9anec50xxfDV0JaleHKPhMI7GMHGwCRlb+L2453iJLpEwOoDniQZPugup4kwGQ8nC8WWsCUsIM1nerCIhdXqM/z39YokLSTSTxdLr+3PNVsO4IpPimlMykHNNd1RDM4WFBnUD5BF4/wf3DdEsoiRtqqdQ/kodMghnoAXIdSEEAPksFU7D6qwzlIrmsH/5Q+JJthMHj/R9zUKnKgMwVju8eauxfPPSA3LiaJNectc/AiIljKy9KEoX8PHLVaLo3/iJN9Mi8E/qyFHhcXy+37rArQSt3LQ==$1jLFMrOV5mBs/n2EYMO9bHlDqd39z6vpzaAIBmvG7VU=$eWKOliParBgfOevW57CLi1Ygqca3n82MnrlgUlDIBRA=',
-          # 2023
-          expirationYear: '$bt4|javascript_1_3_9$x+84iiS/jkyEGFzM2rNlMefyeCsOYZAq5ZNR2r4sjEd9UqTlxQCLd+KOx9OetxNm8535vhNWpEX/p1xinRyt4kZ/nPyJZLBKY4jOMQIFijlJnJlf0gdOK47Za3scoU9T6+rzGSRzcyk5Y5Mmy1+P3srqhcAmrtXO66xGZV7qVgm1iL4wROyErTHOuED+Vsf3wsf2m3Bw4iwvUL25Deh76HCkvVXEYuMZXyyjjfjE7MoDlYAlVrTy153oN4Ftl5XGMmYW1fpjVI+qaqynl4YHsAdZS/WKxuyAMHpRFB4iqxKZKnVUYLBtlpwJzs+AgZdhhdcrvxPE7g1jZfDrMC457g==$OlcKDixSrSU2bh0fdPYHvIaFyIZU8YBZVAH1b1kz72A=$oPAHMTI5eBEYMXFlNVmdxTGkUM8ocs38gGroUM5GXSg=',
+          number: test_conf_data[current_env]['encrypted_card_details']['number'],
+          cvv: test_conf_data[current_env]['encrypted_card_details']['cvv'],
+          expirationMonth: test_conf_data[current_env]['encrypted_card_details']['expirationMonth'],
+          expirationYear: test_conf_data[current_env]['encrypted_card_details']['expirationYear'],
           cardholderName: 'jamie jones',
           billingAddress: {line1: '123 my street', line2: '', locality: 'mytown', postcode: 'wc1x8aq'}
       }
       headers = {'Content-Type' => 'application/vnd.blinkboxbooks.data.v1+json', 'Authorization' => "Bearer #{access_token}"}
       body = {'type' => 'urn:blinkboxbooks:schema:creditcard'}.merge(params)
+
+      tries = 10
       begin
-        response = http_client.post(@@credit_card_uri, body: format_body(body), header: headers)
-      rescue Errno::EPIPE
+        response = http_client.post(@credit_card_uri, body: format_body(body), header: headers)
+      rescue Exception => e
         puts "Connection broke!"
+        tries -= 1
+        if tries > 0
+          retry
+        else
+          abort 'Adding credit card failed'
+        end
       end
-      raise 'Adding credit card failed' unless response.status == 201
+      abort 'Adding credit card failed' unless response.status == 201
+      params[:cardholderName]
+    end
+
+=begin
+    #qa
+    def add_credit_card(access_token = @access_token)
+      params = test_data(['qa-debug']['encrypted_card_details'])
+      #params = {
+      #    default: true,
+      #    # 4111 1111 1111 1111
+      #    number: '$bt4|javascript_1_3_9$UKu5OQaEdqxzY2K/RFKqFc+7wJjjbhIiq3T0fNnu/JyAhe/WzEevAYejVubwAKJ4k0ftmFmYB2qvxVSMCat50Src8VnTybU5bWzaEyPZnKTV0YVaOOpYdEkT7dAx3bqGbmHvKh2YMo0mB0EZgD0bom6ti/ANOszyslwRuNC9/LX7NURpXVy/UwjTAKDvOTNFl+C/rYykygaOhRuk45lvKV6roJUi2++TDPhWWXc9guQZh10pTng5nzYwxS7OqvaEsmY6ord6K2Yh38opp//q6uTGJqxOl0cTTs36i6lYiTeJgiRP8BIPq1iMaFbTgjRTwTX7fKWtK0GlwBQfg27AkQ==$IUMEI4k/dxXKDqbl6BQbR+kVyyQtMLV3uDviXiFhwkQG/F5IiEAt5IwgmHUpTsTv$N0zI+s3CDBqdHqG8v79I25ldgi2B0iAL1oM4FGblnQU=',
+      #    # 123
+      #    cvv: '$bt4|javascript_1_3_9$dBma/4JOk2iuA24vVaTCjpHaAVLkfY6I3a2hEvF2+ulQcew6sh8f0NkSfpMeIi9vJTmR/0Vt6GMyrAolZYT5U341zQpJR3HVB3o5ZchiZ10sTk3Ddv6dxLe/YY3+8mFpALKRWrzn7bqYbQIXDn6FsQuNihx0oAD2TYoWOQ/XRILWGacb9D17TC3MIVINQpsiBjf1ojkSvqLAiCwjrK9eW++ZHuqvtLGFC8CS6I+1iccULvjw0Gi7FID2353Z2AUHTGy/pHOqbXyTpetexKBt/P0ePvC/QNDItro86t9Mk4CliShInO/+uh8yaLVNj+A0LD46IWUWShKMxKiqD35r2A==$vFKasTC82c/wGuwmCcT0MYRssCWWq3PVVi00m8xT25Q=$d1/DpRLio64HCLlwBMiXSQECGbPhqF+caTbLneMXrRI=',
+      #    # 12
+      #    expirationMonth: '$bt4|javascript_1_3_9$d2Lg1CR/whPsgT0GkIq58wy4npDR9233wrDSW1haN7V1xuYosrHHtyCxESEsdfcvrVMgeZOpihf5Ia7ZtR+ZG5fO51cU0+aOWthvTCG/sMi6Wan9xHKNaCdEVDqSAgP6LDctHuZz6RRghNeIY3Vd4vbe5UCKQSZeM8RnWIrNiRKwREFDd+jS4hHgumuCXafHnGhhwWKFcmCpHhnwc0DiMtpz3OKLof7MLzhcZI8uuIcmTmKMqR9eLuzGW72/V3WEC3DrXumspQhYK/XsWpYLRbOQ/A/JZxfGd4k0jyktREefwh1wWxe3YP6dl1zovitF554U6BGPoRCFz9WccExyhA==$kdANOxNFicySPt4E8nGpHj9pMlXgTE/m6MUnK46LEXg=$azyfsPSgNmr5/ZWvE6nQJOcARlyOl4eg7Oz4hv8btLk=',
+      #    # 2023
+      #    expirationYear: '$bt4|javascript_1_3_9$ITZqKHcpoeleHUGBOnjrYMZy4uhahUpcbY50dcD2f9BYir/wzczc6GZsYSYStsSzU1ygNavG7yiAcL7zpc+nTZuR3nPi/Fru2iCuWmZ31fXpxrSW5iPkstu8EWCL6VlVSaVIRKZndki14+22aQt6wGnEL4F0xMyi+Lgp5ruqKAZJn5B2sak3VPOAsruMst1/RyoqnXH1ENlHaFQdGjNWqoc8glBzUGw+GBAzF6sB8f/Hjx2m7pCkEELuD5Xd8GUHACGKnN+16ZrNEojMnYCjtEsvfgaBCeVEKZul+7fOqkUn9MMljLfBrDFD881F1u80dXkWF+gIA6++BO8dGfeIpg==$Tt3r3zw5GGbql+IB1rv77hXXG8O5+4HovJvhb8TYvQA=$nxr03lZvlhMT5X8dmIAQLD4HIf24PZWX0jRl9sjM3m4=',
+      #    cardholderName: 'jamie jones',
+      #    billingAddress: {line1: '123 my street', line2: '', locality: 'mytown', postcode: 'wc1x8aq'}
+      #}
+      headers = {'Content-Type' => 'application/vnd.blinkboxbooks.data.v1+json', 'Authorization' => "Bearer #{access_token}"}
+      body = {'type' => 'urn:blinkboxbooks:schema:creditcard'}.merge(params)
+
+      tries = 10
+      begin
+        response = http_client.post(@credit_card_uri, body: format_body(body), header: headers)
+      rescue Errno::EPIPE => e
+        puts "Connection broke!"
+        tries -= 1
+        if tries > 0
+          retry
+        else
+          abort 'Adding credit card failed'
+        end
+      end
+      abort 'Adding credit card failed' unless response.status == 201
       params[:cardholderName]
     end
 =end
 
+=begin
+    #dev
     def add_credit_card(access_token = @access_token)
       params = {
           default: true,
@@ -88,16 +141,22 @@ module APIMethods
       headers = {'Content-Type' => 'application/vnd.blinkboxbooks.data.v1+json', 'Authorization' => "Bearer #{access_token}"}
       body = {'type' => 'urn:blinkboxbooks:schema:creditcard'}.merge(params)
 
+      tries = 10
       begin
         response = http_client.post(@credit_card_uri, body: format_body(body), header: headers)
-
-      rescue Errno::EPIPE
+      rescue Errno::EPIPE => e
         puts "Connection broke!"
+        tries -= 1
+        if tries > 0
+          retry
+        else
+          abort 'Test Error: Failed to register new user'
+        end
       end
-      raise 'Adding credit card failed' unless response.status == 201
+      abort 'Adding credit card failed' unless response.status == 201
       params[:cardholderName]
     end
-
+=end
     def buy_a_book
 
     end

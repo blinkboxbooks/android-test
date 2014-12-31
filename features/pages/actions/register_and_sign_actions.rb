@@ -80,8 +80,8 @@ module PageModels
     end
 
     def create_new_user
-      @email_address, @password = api_helper.create_new_user!
-      puts "Details used for user creation via api: #{@email_address}, #{@password}"
+      @first_name, @email_address, @password = api_helper.create_new_user!
+      puts "Details used for user creation via api: #{@first_name}, #{@email_address}, #{@password}"
     end
 
     def create_new_user_with_credit_card
