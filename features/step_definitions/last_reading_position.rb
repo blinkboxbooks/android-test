@@ -2,6 +2,10 @@ Given(/^I have read the book to certain position$/) do
   book_reader_page.invoke_web_reader_header_and_footer
 end
 
+Given(/^I have to close the page slider$/) do
+  book_reader_page.close_web_reader_header_and_footer
+end
+
 Given(/^I exit the book$/) do
   navigate_back_until_my_library_page_present
 end
@@ -61,6 +65,11 @@ Given(/^I am on selected chapter$/) do
   expect_page(book_reader_page)
 end
 
+Given(/^verify last reading position on reader slider$/) do
+  verify_last_reading_position_on_reader_slider
+end
 
-
-
+Given(/^I am on reader screen$/) do
+  book_reader_page.close_web_reader_header_and_footer
+  expect_page(book_reader_page)
+end

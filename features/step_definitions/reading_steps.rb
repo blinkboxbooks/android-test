@@ -64,6 +64,10 @@ And(/^I set the book slider position to (\d+)$/) do |position|
   book_reader_page.move_slider_to_position(position)
 end
 
+And(/^I set the book slider position back to (\d+)$/) do |position|
+  book_reader_page.move_slider_to_position(position, :left)
+end
+
 And(/^I go to end of the book$/) do
   go_to_end_of_the_book
 end
@@ -110,4 +114,12 @@ end
 
 And(/^how would like to pay pop up is displayed$/) do
   expect(shop_page).to have_would_you_like_to_pay_popup
+end
+
+And(/^I capture progress and chapter$/) do
+  book_reader_page.get_header_and_footer_text
+end
+
+And(/^I close the reader slider$/) do
+  book_reader_page.close_web_reader_header_and_footer
 end

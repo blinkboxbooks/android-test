@@ -187,7 +187,7 @@ module PageObjectModel
           [
               parent_panel.selector,
               "* id:'textview_title' text:'Do you want to read the free sample now or download it to your device'",
-              "* id:'textview_message' text:'(You will need to sign in or register to download)'",
+              "* id:'textview_message' text:'(You will need to sign in or register and signin to download)'",
               read_now_button.selector,
               download_button.selector
           ],:timeout => timeout_short)

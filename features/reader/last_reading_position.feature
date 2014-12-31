@@ -18,7 +18,7 @@ Feature: Last reading position
   Scenario: Verify last reading position from My bookmarks page
     Given I have bookmarked a page
     And I continue reading turning 4 pages forward
-    And I visit the "My bookmarks" page from the Reader option menu
+    And I visit the "Your bookmarks & highlights" page from the Reader option menu
     And I tap on bookmark link
     And I save last reading position from my bookmarks page
     And I am on bookmarked page
