@@ -5,17 +5,17 @@ Given(/^I choose to purchase a book from the "([^"]*)" section$/) do |arg|
 end
 
 And(/^I use my default card$/) do
-  wait_for{ expect(user_library_page).to have_saved_card_popup }
+  wait_for { expect(user_library_page).to have_saved_card_popup }
   tap_on_saved_card
 end
 
 When(/^I complete the purchase$/) do
-  wait_for{ expect(user_library_page).to have_payment_confirmation_popup }
+  wait_for { expect(user_library_page).to have_payment_confirmation_popup }
   tap_on_pay_now_button
 end
 
 And(/^I choose to go My Library$/) do
-  wait_for{ expect(user_library_page).to have_new_book_downloading_popup }
+  wait_for { expect(user_library_page).to have_new_book_downloading_popup }
   tap_on_goto_my_library_button
   expect(user_library_page)
 end
@@ -49,5 +49,5 @@ And(/^I choose to purchase a free book$/) do
 end
 
 Then(/^the add new card pop up is displayed$/) do
-  wait_for{ expect(shop_page).to have_add_new_card_popup }
+  wait_for { expect(shop_page).to have_add_new_card_popup }
 end
