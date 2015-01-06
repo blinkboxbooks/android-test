@@ -6,7 +6,7 @@ Feature: Register a new Blinkbox books user
   Background:
     Given I choose to register via the the Welcome Screen
 
-  @new_data
+  @smoke
   Scenario: Happy path-register user from the Welcome Screen
     When I enter valid registration details
     And I accept terms and conditions

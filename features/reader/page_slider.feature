@@ -18,6 +18,7 @@ Feature: Page slider
     And I close the reader slider
     Then I should see last reading position
 
+  @sanity
   Scenario: Move reader slider, verify last reading position after closing and opening the book
     When I exit the book
     And I open the book again
