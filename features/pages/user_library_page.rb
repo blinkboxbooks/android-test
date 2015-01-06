@@ -88,6 +88,11 @@ module PageObjectModel
       book_cover_first.wait_for_element_exists(timeout: timeout_short)
     end
 
+    def read_later_from_reading
+      from_options_menu_choose("Read later")
+      book_cover_first.wait_for_element_does_not_exist(timeout: timeout_short)
+    end
+
     def goto_shop
       user_library_top_nav.shop_button.touch
     end

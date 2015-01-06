@@ -123,3 +123,4 @@ end
 And(/^I close the reader slider$/) do
   book_reader_page.close_web_reader_header_and_footer
 end
+

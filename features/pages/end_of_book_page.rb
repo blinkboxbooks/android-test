@@ -1,12 +1,14 @@
 module PageObjectModel
   class EndOfBookPage < PageObjectModel::Page
-    trait "* id:'scrollview' TextView text:'Buy the full book to continue'"
+    trait "* id:'scrollview' TextView text:'More books we think you'll like'"
     element :buy_button, "* id:'button_buy_the_book_now'"
     element :shop_for_more_books, "* id:'button_shop_more_books'"
     element :remove_this_sample_button, "* id:'button_remove_sample'"
     element :go_to_library_button, "android.widget.Button text:'Go to your library'"
     element :book_cover, "* id:'bookcover' index:1"
     element :view_more_books_in_the_shop, "* id:'button_openshop'"
+    element :book_title_name, "* id:'textview_book_title'"
+    element :book_author_name, "* id:'textview_book_author'"
 
     #Delete sample book pop up
     element :cancel_button, "* id:'button2' text:'Cancel'"

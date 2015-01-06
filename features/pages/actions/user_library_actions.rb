@@ -16,6 +16,33 @@ module PageObjectModel
     def user_purchase_first_book
       user_library_page.from_options_menu_choose("Buy full ebook")
     end
+
+    def goto_user_library_tab(user_option)
+      case user_option
+        when "Reading"
+          user_library_page.goto_reading_tab
+        when "My Library"
+          user_library_page.goto_my_library_tab
+        else
+          fail "Unsupported button '#{negate}' in the User library area"
+      end
+    end
+
+    def open_first_book_in_user_library(library_section)
+      goto_user_library_tab(library_section)
+      user_library_page.open_first_book
+      wait_for_book_reader_page
+    end
+
+    def capture_book_details_on_about_this_book
+      user_library_page.from_options_menu_choose("About")
+      expect_page(about_this_book_page)
+      @book_title = about_this_book_page.book_title.text
+      puts "Captured book title...#{@book_title}"
+      @book_author = about_this_book_page.book_author.text
+      puts "Captured book author...#{@book_author}"
+    end
+
   end
 end
 

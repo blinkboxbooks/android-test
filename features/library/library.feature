@@ -39,24 +39,3 @@ Feature: Navigating the user library screen
       | Frequently asked questions     |
       | Contact us                     |
       | Info                           |
-
-  Scenario: Verify embedded book option menu
-    When I Sign out
-    And I go back to the My Library page
-    And I click on first embedded book options
-    Then I should see the following links
-      | Options        |
-      | Buy full ebook |
-      | About          |
-      | Contents       |
-      | Read           |
-      | Remove         |
-
-  Scenario: Verify embedded book option menu as a Signed in user (book not yet downloaded)
-    When I click on first embedded book options
-    Then I should see the following links
-      | Options        |
-      | Buy full ebook |
-      | Download       |
-      | About          |
-      | Remove         |

@@ -62,3 +62,11 @@ end
 Given(/^I am signed in as a newly created user$/) do
   sign_in_new_user_with_credit_card
 end
+
+Given(/^I am signed in as a user who has downloaded books$/) do
+  signin_with_type_of_account("has_downloaded_books")
+end
+
+Given(/^I signed in as user with existing account$/) do
+  signin_with_type_of_account("existing")
+end
