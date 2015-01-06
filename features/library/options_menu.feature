@@ -14,7 +14,7 @@ Feature: My Library Options Menu
       | Remove         |
 
   Scenario: Verify embedded book (not downloaded) option menu as a signed in user
-    Given I signed in as a user with existing account
+    Given I signed in as user with existing account
     When I click on first embedded book options
     Then I should see the following links
       | Options        |
@@ -23,18 +23,16 @@ Feature: My Library Options Menu
       | About          |
       | Remove         |
 
-  @pending
   Scenario: Verify option menu on book (not downloaded) as a signed in user on My Library tab
-    Given I signed in as a user with purchased account
+    Given I am signed in as a user who has downloaded books
     When I click on option menu on book not downloaded
     Then I should see the following links
       | Options        |
       | Download       |
       | About          |
 
-  @pending
   Scenario: Verify option menu on book (not downloaded) as a signed in user on Reading tab
-    Given I signed in as a user with purchased account
+    Given I am signed in as a user who has downloaded books
     When I click on Reading tab
     And I click on option menu on book not downloaded
     Then I should see the following links
@@ -60,7 +58,7 @@ Feature: My Library Options Menu
 
   @unstable @ALA-1874
   Scenario: Verify option menu on downloaded book as a signed in user on Reading tab
-    Given I signed in as a user with purchased account
+    Given I am signed in as a user who has downloaded books
     And I click on Reading tab
     When I download first book
     And I click on option menu on book not downloaded

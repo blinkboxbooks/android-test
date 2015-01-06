@@ -21,10 +21,6 @@ When(/^I submit valid sign in details$/) do
   sign_in_page.submit_sign_in_details(username, password)
 end
 
-When /^I signed in as a user with (existing|purchased) account$/ do |account_type|
-  signin_with_type_of_account(account_type)
-end
-
 Then(/^I use drawer menu to sign out$/) do
   user_library_page.sign_out
 end
@@ -65,4 +61,12 @@ end
 
 Given(/^I am signed in as a newly created user$/) do
   sign_in_new_user_with_credit_card
+end
+
+Given(/^I am signed in as a user who has downloaded books$/) do
+  signin_with_type_of_account("has_downloaded_books")
+end
+
+Given(/^I signed in as user with existing account$/) do
+  signin_with_type_of_account("existing")
 end
