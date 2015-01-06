@@ -21,6 +21,22 @@ When(/^I submit valid sign in details$/) do
   sign_in_page.submit_sign_in_details(username, password)
 end
 
+When(/^I submit valid purchased account on sign in page$/) do
+  my_library_page.open_menu_and_signin
+  sign_in_page.await
+  username = test_data['users']['purchased']['emailaddress']
+  password = test_data['users']['purchased']['password']
+  sign_in_page.submit_sign_in_details(username, password)
+end
+
+Given(/^I submit with existing account on sign in page$/) do
+  my_library_page.open_menu_and_signin
+  sign_in_page.await
+  username = test_data['users']['existing']['emailaddress']
+  password = test_data['users']['existing']['password']
+  sign_in_page.submit_sign_in_details(username, password)
+end
+
 Then(/^I use drawer menu to sign out$/) do
   user_library_page.sign_out
 end
