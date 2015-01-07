@@ -1,4 +1,4 @@
-@new_data @smoke
+@new_data
 Feature: I am able to exchange some earth pounds with BlinkBox and in exchange I will have an ebook!
 
   Background:
