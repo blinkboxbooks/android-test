@@ -8,7 +8,7 @@ Feature: Last reading position
     When I open the first book on the My Library page
     And turn 13 pages forward
 
-  @smoke
+  @sanity
   Scenario: Verify last reading position exiting the book and opening back
     Given I have read the book to certain position
     And I exit the book

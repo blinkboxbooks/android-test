@@ -13,7 +13,7 @@ Feature: Search results
     Then I should see search suggestions
     And I should see <query> in the search suggestions
 
-  @smoke
+  @sanity
   Examples:
     | query                   |
     | A Brief History Of Time |
@@ -23,7 +23,6 @@ Feature: Search results
     | Malcolm Gladwell        |
     | A Brief History Of Time |
 
-  @smoke
   Scenario: Entering some jibberish should show the empty search results page
     When I enter somejibberish as the search term
     And I press enter

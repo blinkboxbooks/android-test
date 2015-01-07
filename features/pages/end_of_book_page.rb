@@ -56,12 +56,12 @@ module PageObjectModel
     end
 
     def click_ok_button_to_remove_book
-      has_delete_sample_pop_up
+      has_delete_sample_pop_up?
       ok_button.touch
     end
 
     def click_to_cancel_removing_book
-      has_delete_sample_pop_up
+      has_delete_sample_pop_up?
       cancel_button.touch
     end
 
