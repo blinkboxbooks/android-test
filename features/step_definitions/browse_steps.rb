@@ -14,7 +14,7 @@ Then(/^The (.+) page loads$/) do |category|
   expect(shop_page.toolbar_title.text).to match(category)
 end
 
-Given(/^I navigate to the "([^"]*)" section$/) do |section|
+And(/^I navigate to the "([^"]*)" section$/) do |section|
   shop_page.goto_category(section)
   shop_page.category_is_selected(section)
 end
@@ -30,3 +30,4 @@ end
 Then(/^I can verify that the (.*) section has at least one book$/) do |featured_section|
   shop_page.verify_featured_section_contains_book(featured_section)
 end
+

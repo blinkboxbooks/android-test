@@ -106,6 +106,11 @@ module PageModels
       register_as_new_user
     end
 
+    def sign_in_via_create_bbb_account_pop_up
+      expect(shop_page).to have_register_and_signin_pop_up
+      sign_in_page.submit_sign_in_details(@email_address, @password)
+      puts @email_address, @password
+    end
   end
 end
 

@@ -1,7 +1,7 @@
 module PageObjectModel
   class ShopPage < PageObjectModel::Page
 
-    attr_accessor :page_book_titles_sorted, :page_book_titles_reversed, :page_book_prices_sorted, :page_book_prices_reversed
+    attr_accessor :page_book_titles_sorted, :page_book_titles_reversed, :page_book_prices_sorted, :page_book_prices_reversed, :book_label_text
 
     trait "* id:'toolbar' TextView text:'Shop'"
 
@@ -34,6 +34,8 @@ module PageObjectModel
     element :book_price_original, "* id:'textview_price_original'"
     element :book_buy_button, "* id:'button_buy' text:'BUY'"
     element :free_book_buy_button, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView text:'BUY' id:'button_buy' index:4"
+    element :paid_book_buy_button, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView text:'BUY' id:'button_buy' index:4"
+    element :book_label, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView id:'textview_title' index:4"
 
     #generic popup/common
     element :parent_panel, "* id:'parentPanel'"
@@ -64,9 +66,24 @@ module PageObjectModel
     element :sort_action, "* id:'action_sort'"
     element :sort_popup, "* id:'fragment_dialog_radio_options_title' text:'Sort by'"
 
+    #Register and sign in pop up
+    element :create_my_account, "* id:'button_register' text:'Create my account'"
+    element :email_field, "* id:'edittext_email'"
+    element :password_field, "* id:'edittext_password'"
+    element :signin_button, "* id:'button_signin' text:'Sign in'"
+    element :forgotten_password_link, "* id:'textview_forgotten_password'"
+
     #####
     section :shop_sliding_tabs, ShopSlidingTabsNavigationSection
     section :shop_highlights, ShopHighlightsSection
+
+    #payment card pop up
+    section :user_library_saved_card_popup, UserLibrarySavedCardPopupSection
+    section :user_library_payment_confirmation_popup, UserLibraryPaymentConfirmationPopupSection
+    section :new_book_downloading_popup, UserLibraryNewBookDownloadingPopupSection
+
+    section :enter_card_details_popup, ShopEnterCardDetailsPopupSection
+    section :welcome_to_blinkbox_books_popup, WelcomeToBlinkboxBooksPopupSection
 
     def has_pay_now_popup?
       assert_popup([
@@ -126,6 +143,46 @@ module PageObjectModel
                        view_terms_and_conditions.selector,
                        find_more_books_button.selector,
                        go_to_my_library_button.selector
+                   ])
+    end
+
+    def has_new_book_downloading_popup?
+      assert_popup([
+                       new_book_downloading_popup.new_book_downloading_text.selector,
+                       new_book_downloading_popup.goto_my_library_button.selector,
+                       new_book_downloading_popup.find_more_books_button.selector
+                   ])
+    end
+
+    def has_register_and_signin_pop_up?
+      assert_popup([
+                       "* id:'alert_dialog_container'",
+                       "android.widget.TextView text:'Create a free blinkbox Books account'",
+                       "android.widget.TextView text:'Ready to download books to this device? Simply create a free blinkbox Books account'",
+                       create_my_account.selector,
+                       "android.widget.TextView text:'Already using blinkbox Books? Sign in'",
+                       email_field.selector,
+                       password_field.selector,
+                       forgotten_password_link.selector,
+                       signin_button.selector
+                   ])
+    end
+
+    def has_enter_your_card_details_popup?
+      assert_popup([
+                       "* id:'customPanel'",
+                       enter_card_details_popup.card_number_field.selector,
+                       enter_card_details_popup.expiry_year_field.selector,
+                       enter_card_details_popup.security_code_field.selector
+                   ])
+    end
+
+    def has_welcome_to_blinkbox_books_popup?
+      assert_popup([
+                       "* id:'content'",
+                       welcome_to_blinkbox_books_popup.welcome_to_blinkbox_books_title.selector,
+                       welcome_to_blinkbox_books_popup.goto_my_library_button.selector,
+                       welcome_to_blinkbox_books_popup.find_more_books_button.selector
                    ])
     end
 
@@ -213,6 +270,22 @@ module PageObjectModel
       toolbar_title.wait_for_element_exists(timeout: timeout_short)
     end
 
+    def select_free_book_for_purchase
+      free_book_buy_button.wait_for_element_exists(timeout: timeout_short)
+      capture_book_title
+      free_book_buy_button.touch
+    end
+
+    def capture_book_title
+      @book_label_text = book_label.text
+    end
+
+    def select_book_for_purchase
+      paid_book_buy_button.wait_for_element_exists(timeout: timeout_short)
+      capture_book_title
+      paid_book_buy_button.touch
+    end
+
     def assert_book_exists
       wait_for_elements_exist(
           [
@@ -286,8 +359,32 @@ module PageObjectModel
       assert_section([shop_highlights.title.selector,shop_highlights.carousel.selector])
     end
 
+    def submit_sign_in_details(user_name, password)
+      email_field.scroll_to
+      email_field.set user_name
+      password_field.scroll_to
+      password_field.set password
+      signin_button.scroll_to
+      signin_button.touch
+    end
+
     def number_of_books
       query(bookcover.selector).size
+    end
+
+    def fill_in_card_details(card_number, expiry_month, expiry_year, security_code, name_on_card)
+      enter_card_details_popup.card_number_field.set card_number
+      enter_card_details_popup.expiry_month_field.set expiry_month
+      enter_card_details_popup.expiry_year_field.set expiry_year
+      enter_card_details_popup.security_code_field.set security_code
+      enter_card_details_popup.name_on_card_field.set name_on_card
+    end
+
+    def fill_in_address_details(address_line_one, address_line_two, town_or_city, postcode)
+      enter_card_details_popup.address_line_one_field.set address_line_one
+      enter_card_details_popup.address_line_two_field.set address_line_two
+      enter_card_details_popup.town_or_city_field.set town_or_city
+      enter_card_details_popup.postcode_field.set postcode
     end
   end
 end
