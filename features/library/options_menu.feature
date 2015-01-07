@@ -24,6 +24,7 @@ Feature: My Library Options Menu
       | About          |
       | Remove         |
 
+  @production @ALA-1869
   Scenario: Verify option menu on book (not downloaded) as a signed in user on My Library tab
     Given I am signed in as a user who has downloaded books
     When I click on option menu on book not downloaded
@@ -32,6 +33,7 @@ Feature: My Library Options Menu
       | Download       |
       | About          |
 
+  @production @ALA-1869
   Scenario: Verify option menu on book (not downloaded) as a signed in user on Reading tab
     Given I am signed in as a user who has downloaded books
     When I click on Reading tab
