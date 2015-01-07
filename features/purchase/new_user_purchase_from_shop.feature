@@ -1,8 +1,8 @@
+@new_data
 Feature: Existing user purchase book from blinkbox books app shop
   As a guest user of blinkbox books
   I want to be able to register and purchase a book
 
-  @new_data
   Scenario: Guest user purchases a book and saves payment details
     Given I navigate to shop
     And I navigate to the "Fiction top 100" section
