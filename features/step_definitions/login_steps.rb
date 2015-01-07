@@ -62,3 +62,7 @@ end
 Given(/^I am signed in as a newly created user$/) do
   sign_in_new_user_with_credit_card
 end
+
+And(/^I sign in with an existing account$/) do
+  sign_in_via_create_bbb_account_pop_up
+end

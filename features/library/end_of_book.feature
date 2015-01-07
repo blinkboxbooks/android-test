@@ -10,7 +10,6 @@ Feature: End of book screen
   Scenario: After reaching end of the book, you decide to purchase and are prompted with create new account pop up
     When I choose to purchase the book
     And I am prompted to register and proceed
-    #Then how would like to pay pop up is displayed
     Then the add new card pop up is displayed
 
   Scenario: Click on shop for more books and verify goes to shop screen

@@ -73,3 +73,9 @@ end
 Then(/^the page contains (.*) in the toolbar header$/) do |toolbar_title|
   expect_toolbar_title_to_equal(toolbar_title)
 end
+
+And(/^I navigate to shop$/) do
+  enter_app_as_anonymous_user
+  user_library_page.goto_shop
+  expect_page(shop_page)
+end
