@@ -72,6 +72,12 @@ module PageModels
       puts "Details used for user registration: #{@email_address}, #{@first_name} #{@last_name}"
     end
 
+    def signin_with_type_of_account(account_type)
+      my_library_page.open_menu_and_signin
+      sign_in_page.await
+      submit_sign_in_details(test_data['users']["#{account_type}"]['emailaddress'], test_data['users']["#{account_type}"]['password'])
+    end
+
     def register_as_new_user
       @email_address, @first_name, @last_name = enter_personal_details
       enter_password(test_data['passwords']['valid_password'])

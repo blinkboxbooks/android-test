@@ -10,12 +10,12 @@ And(/^I use my default card$/) do
 end
 
 When(/^I complete the purchase$/) do
-  wait_for{ expect(user_library_page).to have_payment_confirmation_popup }
+  wait_for { expect(user_library_page).to have_payment_confirmation_popup }
   tap_on_pay_now_button
 end
 
 And(/^I choose to go My Library$/) do
-  wait_for{ expect(user_library_page).to have_new_book_downloading_popup }
+  wait_for { expect(user_library_page).to have_new_book_downloading_popup }
   tap_on_goto_my_library_button
   expect(user_library_page)
 end

@@ -1,4 +1,3 @@
-@pending
 Feature: Existing user purchase book from blinkbox books app shop
   As an existing user of blinkbox books
   I want to be able to sign in and purchase a book
@@ -14,6 +13,7 @@ Feature: Existing user purchase book from blinkbox books app shop
     Then I should see the Your new book is downloading popup
     And I can see the newly purchased book added to My Library
 
+  @new_data
   Scenario: Existing user purchases a book with saved payment card and signs in during the purchase
     When I navigate to the "New releases" section
     And I choose to purchase a paid book
