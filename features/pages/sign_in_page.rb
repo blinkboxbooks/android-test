@@ -75,6 +75,7 @@ module PageObjectModel
     end
 
     def register
+      button_register.scroll_to
       button_register.touch
     end
   end
