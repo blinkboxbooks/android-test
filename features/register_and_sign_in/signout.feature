@@ -8,7 +8,7 @@ Feature: Sign out from blinkbox books
     When I use drawer menu to sign out
     Then the sign in page should be displayed
 
-  @new_data
+  @new_data @smoke
   Scenario: New user successfully signs out
     Given the My Library screen is displayed
     When I have registered and signed in as new user
