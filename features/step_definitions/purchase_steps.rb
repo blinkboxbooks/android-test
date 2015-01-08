@@ -49,15 +49,15 @@ And(/^I choose to purchase a (free|paid) book$/) do |book_type|
 end
 
 Then(/^the add new card pop up is displayed$/) do
-  wait_for{ expect(shop_page).to have_add_new_card_popup }
+  wait_for { expect(shop_page).to have_add_new_card_popup }
 end
 
 Then(/^I should see the Your new book is downloading popup$/) do
-  wait_for{ expect(shop_page).to have_new_book_downloading_popup }
+  wait_for { expect(shop_page).to have_new_book_downloading_popup }
 end
 
 Then(/^I should see the Welcome to blinkbox books popup$/) do
-  wait_for{ expect(shop_page).to have_welcome_to_blinkbox_books_popup }
+  wait_for { expect(shop_page).to have_welcome_to_blinkbox_books_popup }
 end
 
 And(/^I pay with a new (.*?) card$/) do |card_type|
