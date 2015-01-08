@@ -381,9 +381,12 @@ module PageObjectModel
     end
 
     def fill_in_address_details(address_line_one, address_line_two, town_or_city, postcode)
+      enter_card_details_popup.address_line_one_field.scroll_to
       enter_card_details_popup.address_line_one_field.set address_line_one
       enter_card_details_popup.address_line_two_field.set address_line_two
+      enter_card_details_popup.town_or_city_field.scroll_to
       enter_card_details_popup.town_or_city_field.set town_or_city
+      enter_card_details_popup.postcode_field.scroll_to
       enter_card_details_popup.postcode_field.set postcode
     end
   end

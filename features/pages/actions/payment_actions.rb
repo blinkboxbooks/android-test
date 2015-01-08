@@ -20,6 +20,7 @@ module PageObjectModel
       choose_to_purchase_with_new_card
       wait_for{ expect(shop_page).to have_enter_your_card_details_popup }
       enter_card_details(card_type)
+      shop_page.enter_card_details_popup.next_button.scroll_to
       shop_page.enter_card_details_popup.next_button.touch
     end
 
