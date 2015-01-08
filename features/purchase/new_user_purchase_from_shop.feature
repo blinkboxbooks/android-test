@@ -38,4 +38,5 @@ Feature: Existing user purchase book from blinkbox books app shop
     | Mastercard |
     | VISA Debit |
 
+
   #Scenario: Guest user buys a book but does not save payment details
