@@ -4,7 +4,8 @@ Feature: Definitions!
   Background:
     Given the My Library screen is displayed
     When I open the first book on the My Library page
-    And turn 13 pages forward
+    And I set the book slider position to 50
+    And turn 2 pages forward
 
   @sanity
   Scenario: I want to know the definition of a word so I look smart!

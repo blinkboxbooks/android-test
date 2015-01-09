@@ -39,9 +39,9 @@ module PageObjectModel
 
     def has_reset_your_password_popup?
       assert_popup([
-                       "* id:'parentPanel'",
+                       "* id:'alert_dialog_container'",
                        "android.widget.TextView text:'Reset your password'",
-                       "android.widget.TextView text:'Enter the email you used to register and signin, and we\\'ll email you a reset link.'",
+                       "android.widget.TextView text:'Enter the email you used to register, and we\\'ll email you a reset link.'",
                        reset_email_field.selector,
                        i_cant_remember_my_email_address_link.selector,
                        send_reset_button.selector

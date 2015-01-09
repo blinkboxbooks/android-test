@@ -41,11 +41,13 @@ Feature: Shop Navigation
     | Food & Drink      |
     | Travel & Holiday  |
 
+  @unstable
   Scenario: Verify that all the books in the free ebooks section are FREE!
     Given I navigate to the "Free ebooks" section
     Then there is at least one book present
     And all the prices should be FREE
 
+  @unstable
   Scenario Outline: Verify that there is at least one book present beneath each of the sections in the 'Featured' area
     Given I navigate to the "Featured" section
     Then I can verify that the <featured_section> section has at least one book
@@ -57,7 +59,7 @@ Feature: Shop Navigation
   # | Romance Books of the Year |
   # This is constantly changing and causes failures unnecessarily..need to work with content team to get a solution
 
-  @runme
+  @runme @ALA-1870 @production
   Scenario: Verify that there is a Highlights section in the Shop > Featured area
     Given I navigate to the "Featured" section
     Then I can verify that the there is a Highlights area

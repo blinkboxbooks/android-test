@@ -1,3 +1,4 @@
+@production @qa @ALA-1869
 Feature: Sign out from blinkbox books
 
   Background: Deregister devices for an existing user
