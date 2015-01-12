@@ -111,6 +111,10 @@ module PageModels
       sign_in_page.submit_sign_in_details(@email_address, @password)
       #puts @email_address, @password
     end
+
+    def sign_in_with_existing_user_with_saved_card
+      enter_app_as(@email_address, @password)
+    end
   end
 end
 
