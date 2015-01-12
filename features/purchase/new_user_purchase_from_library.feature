@@ -4,6 +4,7 @@ Feature: I am able to exchange some earth pounds with BlinkBox and in exchange I
   Background:
     Given I sign in as a new user with a credit card
 
+  @sanity-dev
   Scenario: New user purchases full book from sample in library
     When I choose to purchase first book using options button
     And I use my default card

@@ -24,6 +24,7 @@ Feature: Search results
     | Malcolm Gladwell        |
     | A Brief History Of Time |
 
+  @sanity-all
   Scenario: Entering some jibberish should show the empty search results page
     When I enter somejibberish as the search term
     And I press enter

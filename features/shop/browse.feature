@@ -12,7 +12,7 @@ Feature: Shop Navigation
     Then I should be taken to the <tab> page
     And there is at least one book present
 
-  @smoke-all
+  @sanity-all
   Examples:
     | tab                 |
     | New releases        |
@@ -29,7 +29,7 @@ Feature: Shop Navigation
     Then The <category> page loads
     And there is at least one book present
 
-  @smoke-all
+  @sanity-all
   Examples:
     | category          |
     | Art & Photography |
