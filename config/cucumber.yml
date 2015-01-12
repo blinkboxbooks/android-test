@@ -3,17 +3,17 @@
 #default: -p local_debug
 #local_debug: -r features --tags ~@wip environment=production debug=true --format pretty --color
 
-ci-smoke-dev-debug:             <%= ci_opts %> --tags @smoke,@new_data,@dev environment=dev-debug
-ci-smoke-qa-debug:              <%= ci_opts %> --tags @smoke,@new_data,@qa environment=qa-debug
-ci-smoke-production-debug:      <%= ci_opts %> --tags @smoke environment=production-debug
+ci-smoke-dev-debug:             <%= ci_opts %> --tags @smoke-all,@smoke-dev,@new_data environment=dev-debug
+ci-smoke-qa-debug:              <%= ci_opts %> --tags @smoke-all,@smoke-qa,@new_data environment=qa-debug
+ci-smoke-production-debug:      <%= ci_opts %> --tags @smoke_all environment=production-debug
 
-ci-sanity-dev-debug:            <%= ci_opts %> --tags @sanity,@smoke,@new_data,@dev environment=dev-debug
-ci-sanity-qa-debug:             <%= ci_opts %> --tags @sanity,@smoke,@new_data,@qa environment=qa-debug
-ci-sanity-production-debug:     <%= ci_opts %> --tags @sanity,@smoke environment=production-debug
+ci-sanity-dev-debug:            <%= ci_opts %> --tags @sanity-all,@sanity-dev,@smoke-all,@smoke-dev,@new_data environment=dev-debug
+ci-sanity-qa-debug:             <%= ci_opts %> --tags @sanity-all,@sanity-qa,@smoke-all,@smoke-qa,@new_data environment=qa-debug
+ci-sanity-production-debug:     <%= ci_opts %> --tags @sanity-all,@smoke-all environment=production-debug
 
-ci-regression-dev-debug:        <%= ci_opts %> --tags ~@qa environment=dev-debug
-ci-regression-qa-debug:         <%= ci_opts %> --tags ~@dev environment=qa-debug
-ci-regression-production-debug: <%= ci_opts %> --tags ~@new_data,~@dev,~@qa environment=production-debug
+ci-regression-dev-debug:        <%= ci_opts %> --tags ~@qa,~@production,~@smoke-qa,~@sanity-qa environment=dev-debug
+ci-regression-qa-debug:         <%= ci_opts %> --tags ~@dev,~@production,~@smoke-dev,~@sanity-dev environment=qa-debug
+ci-regression-production-debug: <%= ci_opts %> --tags ~@new_data,~@dev,~@qa,~@sanity-dev,~@smoke-dev,~@smoke-qa,~@sanity-qa environment=production-debug
 
 
 

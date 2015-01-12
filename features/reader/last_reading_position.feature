@@ -9,7 +9,7 @@ Feature: Last reading position
     And I set the book slider position to 30
     And turn 2 pages forward
 
-  @sanity
+  @sanity-all
   Scenario: Verify last reading position exiting the book and opening back
     Given I have read the book to certain position
     And I exit the book

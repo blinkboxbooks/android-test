@@ -1,4 +1,4 @@
-@dev @sanity
+@dev @sanity-qa @sanity-dev
 Feature: Download a sample book and verify it is shown in both device and cloud and labelled 'Sample'
 
   Background:

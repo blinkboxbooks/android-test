@@ -14,7 +14,7 @@ Feature: Search results
     Then I should see search suggestions
     And I should see <query> in the search suggestions
 
-  @sanity
+  @sanity-all
   Examples:
     | query                   |
     | A Brief History Of Time |

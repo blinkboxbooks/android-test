@@ -3,7 +3,7 @@ Feature: My Library Options Menu
   Background:
     Given the My Library screen is displayed
 
-  @sanity
+  @sanity-all
   Scenario: As a guest user, verify embedded book option menu on library tab
     When I click on first embedded book options
     Then I should see the following links
@@ -73,13 +73,13 @@ Feature: My Library Options Menu
       | Read later     |
       | Remove         |
 
-  @sanity
+  @sanity-all
   Scenario: As a guest user, I can remove a book from My library
     Given I capture the current number of books in My Library
     When I choose to Remove a book from my Library
     Then the number of books in My Library should decrease by one
 
-  @sanity
+  @sanity-all
   Scenario: As a guest user, I can view the Table of contents of a book from My library
     Given I capture the current Books' details via the About option
     And I navigate back until I get to the My Library page

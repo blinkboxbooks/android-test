@@ -15,7 +15,7 @@ Feature: Navigating the user library screen
     Given I touch the shop icon
     Then the shop should be displayed
 
-  @smoke
+  @smoke-all
   Scenario: Verify drawer menu links present when user signed in
     When I open the drawer menu
     Then I should see the following links

@@ -7,7 +7,7 @@ Feature: Definitions!
     And I set the book slider position to 50
     And turn 2 pages forward
 
-  @sanity
+  @sanity-all
   Scenario: I want to know the definition of a word so I look smart!
     Given I invoke the definition functionality on the reader
     Then I should be shown a definition
