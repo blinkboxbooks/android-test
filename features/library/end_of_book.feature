@@ -7,11 +7,13 @@ Feature: End of book screen
     When I open the first book on the My Library page
     And I go to end of the book
 
+  @production @dev @ALA-1894
   Scenario: After reaching end of the book, you decide to purchase and are prompted with create new account pop up
     When I choose to purchase the book
     And I am prompted to register and proceed
     Then the add new card pop up is displayed
 
+  @production @dev @ALA-1870
   Scenario: Click on shop for more books and verify goes to shop screen
     When I click on shop for more books button
     Then shop screen is displayed
@@ -24,10 +26,12 @@ Feature: End of book screen
     When I click to go back to library screen
     Then library screen is displayed
 
+  @production @dev @ALA-1870
   Scenario: When clicking on any book cover, I am taken to search results
     When I click on book that I like to see
     Then goes to search result screen
 
+  @production @dev @ALA-1870
   Scenario: When I choose to view more books, I am taken to the shop page
     When I click on to view more books
     Then shop screen is displayed

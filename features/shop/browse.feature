@@ -12,7 +12,7 @@ Feature: Shop Navigation
     Then I should be taken to the <tab> page
     And there is at least one book present
 
-  @smoke
+  @sanity-all
   Examples:
     | tab                 |
     | New releases        |
@@ -29,7 +29,7 @@ Feature: Shop Navigation
     Then The <category> page loads
     And there is at least one book present
 
-  @smoke
+  @sanity-all
   Examples:
     | category          |
     | Art & Photography |
@@ -41,11 +41,13 @@ Feature: Shop Navigation
     | Food & Drink      |
     | Travel & Holiday  |
 
+  @production @dev @ALA-1913
   Scenario: Verify that all the books in the free ebooks section are FREE!
     Given I navigate to the "Free ebooks" section
     Then there is at least one book present
     And all the prices should be FREE
 
+  @production @ALA-1869 @ALA-1870
   Scenario Outline: Verify that there is at least one book present beneath each of the sections in the 'Featured' area
     Given I navigate to the "Featured" section
     Then I can verify that the <featured_section> section has at least one book
@@ -57,7 +59,7 @@ Feature: Shop Navigation
   # | Romance Books of the Year |
   # This is constantly changing and causes failures unnecessarily..need to work with content team to get a solution
 
-  @runme
+  @ALA-1870 @production
   Scenario: Verify that there is a Highlights section in the Shop > Featured area
     Given I navigate to the "Featured" section
     Then I can verify that the there is a Highlights area

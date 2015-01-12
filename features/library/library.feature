@@ -5,15 +5,17 @@ Feature: Navigating the user library screen
     When I sign in
     Then the my library should be displayed
 
+  @production @dev @ALA-1870
   Scenario: User navigates to the Shop from Library
     Given I touch the shop icon
     Then the Shop page should be displayed
 
+  @production @dev @ALA-1870
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
     Then the shop should be displayed
 
-  @smoke
+  @smoke-all
   Scenario: Verify drawer menu links present when user signed in
     When I open the drawer menu
     Then I should see the following links

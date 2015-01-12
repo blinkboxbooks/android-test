@@ -1,7 +1,6 @@
 module PageObjectModel
   class EmptyReadingPage < PageObjectModel::Page
-    trait "FrameLayout id:'book_frame' android.widget.TextView text:'Find more\nebooks'"
-    trait "TextView {text BEGINSWITH 'Reading (0)'}"
+    trait "* id:'text1' BBBTextView {text BEGINSWITH 'Reading (0)'}"
   end
 end
 

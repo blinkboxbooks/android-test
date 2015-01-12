@@ -10,7 +10,7 @@ Feature: Shop Sorting
     When I sort books by "<order>" order
     Then the book titles should be sorted by <expectation>
 
-  @smoke
+  @smoke-all
   Examples:
     | section      | order               | expectation                 |
     | New releases | Price: (High - Low) | Price: (High - Low)         |

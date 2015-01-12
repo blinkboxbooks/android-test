@@ -1,9 +1,10 @@
+@production @qa @ALA-1869
 Feature: Sign in into blinkbox books
 
   Background: Deregister devices for an existing user
     Given a valid user account ready for use on a new device
 
-  @smoke
+  @smoke-qa
   Scenario: Existing user successfully signs in
     Given the My Library screen is displayed
     When I navigate to the Sign in page
@@ -26,7 +27,7 @@ Feature: Sign in into blinkbox books
     And I see the Oops! and invalid email address and password error messages
     And the Reset password button is displayed
 
-  @smoke
+  @smoke-all
   Examples:
     | invalid_credentials        |
     | unregistered email address |

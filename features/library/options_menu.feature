@@ -3,7 +3,7 @@ Feature: My Library Options Menu
   Background:
     Given the My Library screen is displayed
 
-  @sanity
+  @sanity-all
   Scenario: As a guest user, verify embedded book option menu on library tab
     When I click on first embedded book options
     Then I should see the following links
@@ -24,7 +24,7 @@ Feature: My Library Options Menu
       | About          |
       | Remove         |
 
-  @production @ALA-1869
+  @production @dev
   Scenario: Verify option menu on book (not downloaded) as a signed in user on My Library tab
     Given I am signed in as a user who has downloaded books
     When I click on option menu on book not downloaded
@@ -33,7 +33,7 @@ Feature: My Library Options Menu
       | Download       |
       | About          |
 
-  @production @ALA-1869
+  @production @ALA-1896
   Scenario: Verify option menu on book (not downloaded) as a signed in user on Reading tab
     Given I am signed in as a user who has downloaded books
     When I click on Reading tab
@@ -73,13 +73,13 @@ Feature: My Library Options Menu
       | Read later     |
       | Remove         |
 
-  @sanity
+  @sanity-all
   Scenario: As a guest user, I can remove a book from My library
     Given I capture the current number of books in My Library
     When I choose to Remove a book from my Library
     Then the number of books in My Library should decrease by one
 
-  @sanity
+  @sanity-all
   Scenario: As a guest user, I can view the Table of contents of a book from My library
     Given I capture the current Books' details via the About option
     And I navigate back until I get to the My Library page

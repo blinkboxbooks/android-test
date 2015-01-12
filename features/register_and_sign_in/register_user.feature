@@ -6,7 +6,7 @@ Feature: Register a new Blinkbox books user
   Background:
     Given I choose to register via the the Welcome Screen
 
-  @new_data @smoke
+  @ALA-1869 @ALA-1900 @smoke-qa
   Scenario: Happy path-register user from the Welcome Screen
     When I enter valid registration details
     And I accept terms and conditions
@@ -15,6 +15,7 @@ Feature: Register a new Blinkbox books user
     When I open the drawer menu
     Then I can see my name in the menu
 
+  @production @ALA-1869 @ALA-1900
   Scenario: Happy path register user with a valid club card number
     When I enter personal details with a valid clubcard number
     And I choose a valid password

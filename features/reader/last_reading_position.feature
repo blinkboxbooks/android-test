@@ -6,9 +6,10 @@ Feature: Last reading position
   Background:
     Given the My Library screen is displayed
     When I open the first book on the My Library page
-    And turn 13 pages forward
+    And I set the book slider position to 30
+    And turn 2 pages forward
 
-  @sanity
+  @sanity-all
   Scenario: Verify last reading position exiting the book and opening back
     Given I have read the book to certain position
     And I exit the book
