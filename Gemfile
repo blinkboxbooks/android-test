@@ -22,7 +22,7 @@ group :api do
   gem 'json'
   gem 'httparty'
   gem 'httpclient'
-  gem 'blinkbox-user'
+  gem 'blinkbox-user', '0.3.3'
 end
 
 group :dev_tools do
