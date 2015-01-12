@@ -59,7 +59,7 @@ Feature: Shop Navigation
   # | Romance Books of the Year |
   # This is constantly changing and causes failures unnecessarily..need to work with content team to get a solution
 
-  @runme @ALA-1870 @production
+  @ALA-1870 @production
   Scenario: Verify that there is a Highlights section in the Shop > Featured area
     Given I navigate to the "Featured" section
     Then I can verify that the there is a Highlights area

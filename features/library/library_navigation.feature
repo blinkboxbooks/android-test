@@ -8,18 +8,12 @@ Feature: Navigating the user library screen
     When I navigate to <drawer_menu_item> in the user library drawer menu
     Then the <page> should be displayed
 
-  @smoke-all
-  Examples:
-    | drawer_menu_item           | page          |
-  # | Frequently asked questions | FAQ page      | #ALA-1859
-    | Info                       | Info page     |
-
   Examples:
     | drawer_menu_item           | page          |
     | Register                   | Register page |
     | Sign in                    | Sign in page  |
     | Shop for more books        | Shop page     |
-  # | Frequently asked questions | FAQ page      |
+  # | Frequently asked questions | FAQ page      |#ALA-1859
   # | Contact us                 | ????          |
     | Info                       | Info page     |
 
