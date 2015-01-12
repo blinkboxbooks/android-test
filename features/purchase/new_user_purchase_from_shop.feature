@@ -17,7 +17,7 @@ Feature: Existing user purchase book from blinkbox books app shop
     When I choose to purchase a paid book
     And I am prompted to register and proceed
     And the add new card pop up is displayed
-    And I pay with a new VISA card
+    And I pay with a new VISA card and choose to save card details
     And I complete the purchase
     Then I should see the Welcome to blinkbox books popup
     And I can see the newly purchased book added to My Library
@@ -28,7 +28,7 @@ Feature: Existing user purchase book from blinkbox books app shop
     When I choose to purchase a paid book
     And I am prompted to register and proceed
     And the add new card pop up is displayed
-    And I pay with a new <card_type> card
+    And I pay with a new <card_type> card and choose to save card details
     And I complete the purchase
     Then I should see the Welcome to blinkbox books popup
     And I can see the newly purchased book added to My Library
@@ -38,5 +38,18 @@ Feature: Existing user purchase book from blinkbox books app shop
     | Mastercard |
     | VISA Debit |
 
+  Scenario Outline: Guest user buys a book but does not save payment details
+    Given I navigate to shop
+    And I navigate to the "New releases" section
+    When I choose to purchase a paid book
+    And I am prompted to register and proceed
+    And the add new card pop up is displayed
+    And I pay with a new <card_type> card and choose not to save card details
+    And I complete the purchase
+    Then I should see the Welcome to blinkbox books popup
+    And I can see the newly purchased book added to My Library
 
-  #Scenario: Guest user buys a book but does not save payment details
+  Examples: card types
+    | card_type  |
+    | Mastercard |
+    | VISA Debit |

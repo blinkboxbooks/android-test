@@ -60,6 +60,6 @@ Then(/^I should see the Welcome to blinkbox books popup$/) do
   wait_for { expect(shop_page).to have_welcome_to_blinkbox_books_popup }
 end
 
-And(/^I pay with a new (.*?) card$/) do |card_type|
-  pay_with_a_new_card(card_type)
+And(/^I pay with a new (.*?) card and choose (to|not to) save card details$/) do |card_type, card_details_storage|
+  pay_with_a_new_card(card_type, card_details_storage)
 end

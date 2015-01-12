@@ -16,9 +16,14 @@ module PageObjectModel
       shop_page.add_new_card_button.touch
     end
 
-    def pay_with_a_new_card(card_type)
+    def choose_not_save_card
+       shop_page.enter_card_details_popup.save_details_switch.touch
+    end
+
+    def pay_with_a_new_card(card_type, card_details_storage)
       choose_to_purchase_with_new_card
       wait_for{ expect(shop_page).to have_enter_your_card_details_popup }
+      choose_not_save_card if card_details_storage.include?('not')
       enter_card_details(card_type)
       shop_page.enter_card_details_popup.next_button.scroll_to
       shop_page.enter_card_details_popup.next_button.touch
