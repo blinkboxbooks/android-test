@@ -1,4 +1,4 @@
-@new_data @production @qa @ALA-1869
+@new_data  @qa @ALA-1869
 Feature: Existing user purchase book from blinkbox books app shop
   As an existing user of blinkbox books
   I want to be able to sign in and purchase a book
@@ -13,7 +13,6 @@ Feature: Existing user purchase book from blinkbox books app shop
     And I sign in with an existing account
     Then I should see the Your new book is downloading popup
     And I can see the newly purchased book added to My Library
-
 
   Scenario: Existing user purchases a book with saved payment card and signs in during the purchase
     When I navigate to the "New releases" section
