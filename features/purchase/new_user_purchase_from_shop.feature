@@ -1,4 +1,4 @@
-@new_data
+@new_data @production @qa @ALA-1869
 Feature: Existing user purchase book from blinkbox books app shop
   As a guest user of blinkbox books
   I want to be able to register and purchase a book

@@ -44,6 +44,7 @@ Then(/^I choose to read the first book$/) do
 end
 
 Then(/^number of books I am reading should equal (\d+)$/) do |books_reading|
+  puts "Total of reading books is #{reading_page.current_number_of_books_in_reading}"
   wait_for(:timeout => 5) { expect(reading_page.current_number_of_books_in_reading).to eql(books_reading.to_i)}
 end
 
@@ -124,3 +125,7 @@ And(/^I close the reader slider$/) do
   book_reader_page.close_web_reader_header_and_footer
 end
 
+
+When(/^I download first book$/) do
+  pending
+end
