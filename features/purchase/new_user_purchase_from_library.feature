@@ -1,4 +1,4 @@
-@new_data @dev @ALA-1910
+@dev @ALA-1910
 Feature: I am able to exchange some earth pounds with BlinkBox and in exchange I will have an ebook!
 
   Background:

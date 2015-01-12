@@ -1,4 +1,4 @@
-@production @qa @ALA-1869
+@qa @ALA-1869
 Feature: Sign in into blinkbox books
 
   Background: Deregister devices for an existing user
@@ -19,6 +19,7 @@ Feature: Sign in into blinkbox books
     Then the my library page should be displayed
     And I should see sign out option in the drawer menu
 
+  @production
   Scenario Outline: Sign in with invalid email or password
     Given the My Library screen is displayed
     When I navigate to the Sign in page
