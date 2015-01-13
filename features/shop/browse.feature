@@ -30,13 +30,7 @@ Feature: Shop Navigation
     And I click on author link on book description screen
     When I click on see other books written by author
     Then search result page is displayed
-
-  Scenario: Tap on book cover on author screen and verify match on book description screen
-    Given I navigate to the "Non-fiction top 100" section
-    When I click on author link on book description screen
-    And I capture first book cover
-    When I tap on first book cover
-    Then book cover is shown on book description screen
+    And search result heading matches author name
 
   Scenario Outline: Navigating through the shop categories
     Given I touch the <tab> category

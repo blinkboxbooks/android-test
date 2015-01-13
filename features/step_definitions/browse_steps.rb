@@ -33,8 +33,7 @@ end
 
 When(/^I see correct author name on the screen$/) do
   expect_page(shop_author_details_page)
-  expect(shop_author_details_page.author_name.text).to match(@author_title_book_description)
-  puts "author name is #{shop_author_details_page.author_name.text}"
+  expect(shop_author_details_page.author_name.text).to match(shop_book_description_page.book_description_author_name)
 end
 
 And(/^I capture book details via book description screen$/) do
@@ -46,14 +45,13 @@ When(/^I click on have a look inside link$/) do
 end
 
 Then(/^I see correct book details on reader screen$/) do
-  expect_page(reading_page)
+  expect_page(book_reader_page)
   go_to_end_of_sample_book
-  expect(end_of_sample_book.book_title.text).to match(@book_description_book_name)
-  expect(end_of_sample_book.book_author.text).to match(@book_description_author_name)
+  expect(end_of_sample_book.book_title.text).to match(shop_book_description_page.book_description_book_name)
+  expect(end_of_sample_book.book_author.text).to match(shop_book_description_page.book_description_author_name)
 end
 
 And(/^I click on see other books written by author$/) do
-  expect_page(shop_author_details_page)
   shop_author_details_page.click_on_all_books_by_this_author
 end
 
@@ -62,7 +60,7 @@ Then(/^search result page is displayed$/) do
 end
 
 And(/^I capture author name on book description screen$/) do
-  capture_author_name_from_book_description_screen
+  capture_book_details_on_book_description_screen
 end
 
 When(/^I click on author title link$/) do
@@ -70,22 +68,13 @@ When(/^I click on author title link$/) do
 end
 
 When(/^I click on author link on book description screen$/) do
-  shop_book_description_page.open_book_and_click_on_author_link
-end
-
-And(/^I capture first book cover$/) do
-  shop_author_details_page.capture_first_book_cover
-end
-
-When(/^I tap on first book cover$/) do
-  shop_author_details_page.click_on_author_book_cover
-end
-
-Then(/^book cover is shown on book description screen$/) do
-  expect_page(shop_book_description_page)
-  expect(shop_book_description_page.book_cover.image).to match(@first_book_cover)
+  open_book_and_click_on_author_link
 end
 
 When(/^I swipe to go to author screen$/) do
   pan_left
+end
+
+And(/^search result heading matches author name$/) do
+  expect(search_results_page.search_result_heading.text).to match(shop_book_description_page.book_description_author_name)
 end

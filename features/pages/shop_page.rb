@@ -14,19 +14,6 @@ module PageObjectModel
     element :book_title_text, "* id:'title_text'"
     element :author_name_text, "* id:'author_name'"
 
-    # ###pop up
-    # element :pop_up_container, "* id:'container'"
-    # element :close_button, "* id:'button_close'"
-    # element :pop_up_book_title_text, "* id:'textview_title'"
-    # element :pop_up_book_author_text, "* id:'textview_author'"
-    # element :buy_now_button, "* id:'button_buy'"
-    # element :get_free_sample_button, "* id:'button_add_sample'"
-    # element :have_a_look_inside, "* id:'textview_open_sample'"
-
-    # ##pop up dialog
-    # element :read_now_button, "* id:'button2' text:'Read now'"
-    # element :download_button, "* id:'button1' text:'Download'"
-
     ##spinner
     element :sort_spinner, "android.widget.Spinner id:'spinner'"
 
@@ -253,17 +240,6 @@ module PageObjectModel
       end
       tap_mark(category)
     end
-
-    # def assert_do_you_want_to_read_popup
-    #   wait_for_elements_exist(
-    #       [
-    #           parent_panel.selector,
-    #           "* id:'textview_title' text:'Do you want to read the free sample now or download it to your device'",
-    #           "* id:'textview_message' text:'(You will need to sign in or register and signin to download)'",
-    #           read_now_button.selector,
-    #           download_button.selector
-    #       ],:timeout => timeout_short)
-    # end
 
     def goto_category_named(category_name)
       #"* id:'category_image' sibling android.widget.TextView id:'category_name' text:'Art & Photography'"

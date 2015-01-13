@@ -11,15 +11,6 @@ module PageObjectModel
       see_all_books_by_this_author.scroll_to
       see_all_books_by_this_author.touch
     end
-
-    def click_on_author_book_cover
-      book_cover_first.scroll_to
-      book_cover_first.touch
-    end
-
-    def capture_first_book_cover
-      @first_book_cover = book_cover_first.image
-    end
   end
 end
 

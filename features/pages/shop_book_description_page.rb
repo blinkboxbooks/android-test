@@ -1,5 +1,8 @@
 module PageObjectModel
   class ShopBookDescriptionPage < PageObjectModel::Page
+
+    attr_accessor :book_description_book_name, :book_description_author_name
+
     trait "* id:'toolbar' android.widget.TextView text:'Book description'"
     element :book_cover, "* id:'bookcover'"
     element :book_title, "* id:'textview_title'"
@@ -34,6 +37,12 @@ module PageObjectModel
       have_a_look_inside.scroll_to
       have_a_look_inside.touch
     end
+
+    def get_book_and_author_details
+      @book_description_book_name = book_title.text
+      @book_description_author_name = author_link.text
+    end
+
   end
 end
 

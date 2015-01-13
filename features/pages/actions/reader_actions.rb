@@ -19,18 +19,20 @@ module PageObjectModel
       expect(prev_progress).to match(book_reader_page.book_progress)
     end
 
-    def go_to_end_of_the_book
-      book_reader_page.move_slider_to_position(100)
-      book_reader_page.close_web_reader_header_and_footer
-      book_reader_page.turn_pages(1)
+    def go_to_end_of_the_embedded_book
+      go_to_end_of_book
       assert_end_of_book
     end
 
     def go_to_end_of_sample_book
+      go_to_end_of_book
+      assert_end_of_sample_book
+    end
+
+    def go_to_end_of_book
       book_reader_page.move_slider_to_position(100)
       book_reader_page.close_web_reader_header_and_footer
       book_reader_page.turn_pages(1)
-      assert_end_of_sample_book
     end
 
     def verify_last_reading_position_on_reader_slider
