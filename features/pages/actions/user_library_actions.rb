@@ -54,9 +54,7 @@ module PageObjectModel
       user_library_page.from_options_menu_choose("About")
       expect_page(about_this_book_page)
       @book_title = about_this_book_page.book_title.text
-      puts "Captured book title...#{@book_title}"
       @book_author = about_this_book_page.book_author.text
-      puts "Captured book author...#{@book_author}"
     end
   end
 end

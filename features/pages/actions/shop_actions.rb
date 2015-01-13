@@ -11,6 +11,23 @@ module PageObjectModel
       shop_page.get_free_sample_button.touch
       shop_page.download_button.tap_when_element_exists(timeout: 5)
     end
+
+    def open_the_first_bookcover_from_shop
+      shop_page.bookcover_first.tap_when_element_exists(timeout: 5)
+    end
+
+    def capture_book_details_on_book_description_screen
+      open_the_first_bookcover_from_shop
+      expect_page(shop_book_description_page)
+      shop_book_description_page.get_book_and_author_details
+    end
+
+    def open_book_and_click_on_author_link
+      capture_book_details_on_book_description_screen
+      shop_book_description_page.author_link.touch
+      expect_page(shop_author_details_page)
+    end
+
   end
 end
 

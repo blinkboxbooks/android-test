@@ -70,7 +70,7 @@ And(/^I set the book slider position back to (\d+)$/) do |position|
 end
 
 And(/^I go to end of the book$/) do
-  go_to_end_of_the_book
+  go_to_end_of_the_embedded_book
 end
 
 When(/^I choose to purchase the book$/) do
