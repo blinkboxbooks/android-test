@@ -100,9 +100,7 @@ Then(/^the page contains (.*) in the toolbar header$/) do |toolbar_title|
 end
 
 And(/^I navigate to shop$/) do
-  enter_app_as_anonymous_user
-  user_library_page.goto_shop
-  expect_page(shop_page)
+  navigate_to_shop_as_anon_user
 end
 
 Then(/^I see book details on about this book page$/) do

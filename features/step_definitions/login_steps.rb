@@ -75,3 +75,6 @@ Given(/^I signed in as user with existing account$/) do
   signin_with_type_of_account("existing")
 end
 
+Given(/^I sign in as an existing user with a saved payment card$/) do
+  sign_in_with_existing_user_with_saved_card
+end
