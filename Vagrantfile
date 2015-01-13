@@ -15,7 +15,6 @@ config.vm.box_url = "http://kernick.blinkbox.local/Android/android-dev-141159169
 config.vm.synced_folder ".","/android-test"
 # The url from where the 'config.vm.box' box will be fetched if it
 # doesn't already exist on the user's system.
-
 # Create a forwarded port mapping which allows access to a specific port
 # within the machine from a port on the host machine. In the example below,
 # accessing "localhost:8080" will access port 80 on the guest machine.

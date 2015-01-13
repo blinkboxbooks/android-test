@@ -6,12 +6,8 @@ When(/^I sign in$/) do
   enter_app_as_existing_user
 end
 
-Given(/^I am on the User Library page$/) do
-  expect_page(user_library_page)
-end
-
 When(/^I navigate to the Sign in page$/) do
-  anonymous_library_page.open_menu_and_signin
+  my_library_page.open_menu_and_signin
   sign_in_page.await
 end
 
@@ -36,11 +32,31 @@ end
 
 Then(/^I should see sign out option in the drawer menu$/) do
   user_library_page.open_menu
-  expect(user_library_page.signout_button).to exist
+  expect(user_library_page.user_library_drawer_menu.signout_button).to exist
 end
 
-When(/^I go back to the Anonymous Library page$/) do
-  sign_in_page.await
-  sign_in_page.go_back_to_library
-  anonymous_library_page.await
+And(/^I see the Oops! and invalid email address and password error messages$/) do
+  expect(sign_in_page).to have_incorrect_credentials_popup
+end
+
+And(/^the Reset password button is displayed$/) do
+  expect(sign_in_page.send_reset_link_button).to exist
+end
+
+And(/^I go back to the My Library page$/) do
+  go_back_to_my_library_page_from_signin_page
+end
+
+And(/^I am on the My Library page$/) do
+  expect_page(my_library_page)
+end
+
+Given(/^I am signed in as a user who has a credit card$/) do
+  pending
+  @email_address, @password = api_helper.create_new_user!
+  @name_on_card = api_helper.add_credit_card
+  @card_type = 'VISA'
+  @card_count = 1
+  #sign in as a user with the cc
+  #await the my library screen
 end

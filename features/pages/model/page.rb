@@ -1,8 +1,11 @@
 module PageObjectModel
   require 'calabash-android/abase'
+  require_relative '../../../features/pages/actions/common_actions'
 
   class Page < Calabash::ABase
     include PageOperations
+    include UtilityObjects
+    include PageObjectModel::PageActions
 
     def initialize(world, transition_duration = 0.5)
       logger.debug "Initializing page => #{self.class}"
@@ -23,6 +26,14 @@ module PageObjectModel
           @_#{identity} ||= Element.new("#{selector}")
         end
       }
+    end
+
+    def self.section(identity, classname)
+      class_eval %Q{
+       def #{identity}
+         @_#{identity} ||= page(#{classname})
+       end
+     }
     end
 
     def timeout_short
