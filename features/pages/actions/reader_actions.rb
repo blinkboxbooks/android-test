@@ -26,6 +26,13 @@ module PageObjectModel
       assert_end_of_book
     end
 
+    def go_to_end_of_sample_book
+      book_reader_page.move_slider_to_position(100)
+      book_reader_page.close_web_reader_header_and_footer
+      book_reader_page.turn_pages(1)
+      assert_end_of_sample_book
+    end
+
     def verify_last_reading_position_on_reader_slider
       expect_page(book_reader_page)
       book_reader_page.invoke_web_reader_header_and_footer

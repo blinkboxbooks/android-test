@@ -7,6 +7,37 @@ Feature: Shop Navigation
     And I am on the My Library page
     When I touch the shop icon
 
+  Scenario: Verify user go to author page when clicking on link on book details pop up
+    Given I navigate to the "Non-fiction top 100" section
+    And I capture author name on book description screen
+    When I click on author title link
+    Then I see correct author name on the screen
+
+  Scenario: Verify user go to author page by swiping
+    Given I navigate to the "Non-fiction top 100" section
+    And I capture author name on book description screen
+    When I swipe to go to author screen
+    Then I see correct author name on the screen
+
+  Scenario: Verify sample reader screen is shown after clicking on 'have a look inside' link from book description screen
+    Given I navigate to the "Non-fiction top 100" section
+    And I capture book details via book description screen
+    When I click on have a look inside link
+    Then I see correct book details on reader screen
+
+  Scenario: Verify search result page is displayed when viewing more books from author's screen
+    Given I navigate to the "Non-fiction top 100" section
+    And I click on author link on book description screen
+    When I click on see other books written by author
+    Then search result page is displayed
+
+  Scenario: Tap on book cover on author screen and verify match on book description screen
+    Given I navigate to the "Non-fiction top 100" section
+    When I click on author link on book description screen
+    And I capture first book cover
+    When I tap on first book cover
+    Then book cover is shown on book description screen
+
   Scenario Outline: Navigating through the shop categories
     Given I touch the <tab> category
     Then I should be taken to the <tab> page
