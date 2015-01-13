@@ -276,7 +276,7 @@ module PageObjectModel
     end
 
     def select_free_book_for_purchase
-      free_book_buy_button.wait_for_element_exists(timeout: timeout_short)
+      free_book_buy_button.wait_for_element_exists(timeout: timeout_long)
       capture_book_title
       free_book_buy_button.touch
     end
@@ -286,7 +286,7 @@ module PageObjectModel
     end
 
     def select_book_for_purchase
-      paid_book_buy_button.wait_for_element_exists(timeout: timeout_short)
+      paid_book_buy_button.wait_for_element_exists(timeout: timeout_long)
       capture_book_title
       paid_book_buy_button.touch
     end

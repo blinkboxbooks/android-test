@@ -15,6 +15,12 @@ module PageObjectModel
       navigate_back_to_user_library("Reading")
     end
 
+    def navigate_to_shop_as_anon_user
+      enter_app_as_anonymous_user
+      user_library_page.goto_shop
+      expect_page(shop_page)
+    end
+
     def navigate_back_to_user_library(text)
       wait_poll(until_exists: "* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH '#{text}'} isSelected:true", :retry_frequency => 10, timeout: 30) do
         up_button = "android.widget.ImageButton contentDescription:'Navigate up'"
