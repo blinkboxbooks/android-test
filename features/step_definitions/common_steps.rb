@@ -14,5 +14,4 @@ end
 Given(/^the My Library screen is displayed$/) do
   enter_app_as_anonymous_user
   expect_page(my_library_page)
-  my_library_page.dismiss_info_panel
 end

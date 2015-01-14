@@ -44,7 +44,8 @@ Then(/^I choose to read the first book$/) do
 end
 
 Then(/^number of books I am reading should equal (\d+)$/) do |books_reading|
-  expect(reading_page.current_number_of_books_in_reading).to eql(books_reading.to_i)
+  puts "Total of reading books is #{reading_page.current_number_of_books_in_reading}"
+  wait_for(:timeout => 5) { expect(reading_page.current_number_of_books_in_reading).to eql(books_reading.to_i)}
 end
 
 When(/^I go to the Reading page$/) do
@@ -58,4 +59,73 @@ end
 
 And(/^I should see the Empty Reading Page$/) do
   expect_page(empty_reading_page)
+end
+
+And(/^I set the book slider position to (\d+)$/) do |position|
+  book_reader_page.move_slider_to_position(position)
+end
+
+And(/^I set the book slider position back to (\d+)$/) do |position|
+  book_reader_page.move_slider_to_position(position, :left)
+end
+
+And(/^I go to end of the book$/) do
+  go_to_end_of_the_embedded_book
+end
+
+When(/^I choose to purchase the book$/) do
+  end_of_book_page.click_on_buy_button
+end
+
+When(/^I click on shop for more books button$/) do
+  end_of_book_page.click_on_shop_for_more_books_button
+end
+
+When(/^I click to go back to library screen$/) do
+  end_of_book_page.click_on_go_to_library_button
+end
+
+When(/^I click on to view more books$/) do
+  end_of_book_page.click_on_view_more_books_in_the_shop
+end
+
+When(/^I click on book that I like to see$/) do
+  end_of_book_page.click_on_more_books_you_like_book_cover
+end
+
+Then(/^shop screen is displayed$/) do
+  expect_page(shop_page)
+end
+
+Then(/^library screen is displayed$/) do
+  expect_page(my_library_page)
+end
+
+Then(/^goes to search result screen$/) do
+  expect_activity("SearchActivity")
+end
+
+And(/^I remove the book$/) do
+  end_of_book_page.remove_sample
+end
+
+And(/^I am prompted to register and proceed$/) do
+  register_via_create_bbb_account_pop_up
+end
+
+And(/^how would like to pay pop up is displayed$/) do
+  expect(shop_page).to have_would_you_like_to_pay_popup
+end
+
+And(/^I capture progress and chapter$/) do
+  book_reader_page.get_header_and_footer_text
+end
+
+And(/^I close the reader slider$/) do
+  book_reader_page.close_web_reader_header_and_footer
+end
+
+
+When(/^I download first book$/) do
+  pending
 end

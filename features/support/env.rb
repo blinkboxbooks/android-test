@@ -13,6 +13,7 @@ World(RSpec::Matchers)
 
 require_all File.expand_path('hooks', File.dirname(__FILE__))
 require_all File.expand_path('modules', File.dirname(__FILE__))
+require_all File.expand_path('utils', File.dirname(__FILE__))
 
 World(Logging)
 World(DeviceLogging)
@@ -28,4 +29,3 @@ require_all File.expand_path('../pages/asserts', File.dirname(__FILE__))
 
 World(PageObjectModel)
 World(PageObjectModel::PageActions)
-World(PageObjectModel::PageAsserts)

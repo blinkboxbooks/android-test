@@ -1,8 +1,10 @@
 module PageObjectModel
   class BookReaderPageHeaderSection < PageObjectModel::Page
-    element :header_bar, "* id:'_layout_header_bar'"
-    element :back_button, "* id:'layout_back' android.widget.ImageView"
-    element :button_options, "* id:'button_options'"
-    element :title_label, "* id:'textview_title'"
+    element :header_bar, "* id:'toolbar'"
+    element :back_button, "* id:'toolbar' android.widget.ImageButton contentDescription:'Navigate up'"
+    element :button_options, "android.widget.ImageView contentDescription:'More options'"
+    element :add_bookmark_button, "* id:'action_add_bookmark'"
+    element :remove_bookmark_button, "* id:'action_remove_bookmark'"
+    element :settings_button, "* id:'action_settings'"
   end
 end

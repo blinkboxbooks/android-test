@@ -11,6 +11,10 @@ When(/^I navigate to the Sign in page$/) do
   sign_in_page.await
 end
 
+And(/^I register with new account$/) do
+  register_page.register_new_user
+end
+
 When(/^I submit valid sign in details$/) do
   username = test_data['users']['existing']['emailaddress']
   password = test_data['users']['existing']['password']
@@ -52,11 +56,25 @@ And(/^I am on the My Library page$/) do
 end
 
 Given(/^I am signed in as a user who has a credit card$/) do
-  pending
-  @email_address, @password = api_helper.create_new_user!
-  @name_on_card = api_helper.add_credit_card
-  @card_type = 'VISA'
-  @card_count = 1
-  #sign in as a user with the cc
-  #await the my library screen
+  enter_app_as_existing_user_with_a_card
+end
+
+Given(/^I am signed in as a newly created user$/) do
+  sign_in_new_user_with_credit_card
+end
+
+And(/^I sign in with an existing account$/) do
+  sign_in_via_create_bbb_account_pop_up
+end
+
+Given(/^I am signed in as a user who has downloaded books$/) do
+  signin_with_type_of_account("has_downloaded_books")
+end
+
+Given(/^I signed in as user with existing account$/) do
+  signin_with_type_of_account("existing")
+end
+
+Given(/^I sign in as an existing user with a saved payment card$/) do
+  sign_in_with_existing_user_with_saved_card
 end

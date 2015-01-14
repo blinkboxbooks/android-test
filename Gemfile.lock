@@ -101,11 +101,12 @@ DEPENDENCIES
   activesupport
   blinkbox-rubocop
   blinkbox-user
-  calabash-android (~> 0.5.0)
+  calabash-android (= 0.5.2)
   cucumber
   cucumber-blinkbox
   cuporter
   httparty
+  httpclient
   json
   multi_json
   rake

@@ -13,7 +13,7 @@ Feature: Navigating the user library screen
     | Register                   | Register page |
     | Sign in                    | Sign in page  |
     | Shop for more books        | Shop page     |
-    | Frequently asked questions | FAQ page      |
+  # | Frequently asked questions | FAQ page      |#ALA-1859
   # | Contact us                 | ????          |
     | Info                       | Info page     |
 
@@ -30,6 +30,6 @@ Feature: Navigating the user library screen
     | My library                 | my library page |
     | Sign out                   | Sign in page    |
     | Shop for more books        | Shop page       |
-    | Frequently asked questions | FAQ page        |
+  # | Frequently asked questions | FAQ page        |
   # | Contact us                 | ????            |
     | Info                       | Info page       |

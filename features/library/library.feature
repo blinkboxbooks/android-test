@@ -5,17 +5,17 @@ Feature: Navigating the user library screen
     When I sign in
     Then the my library should be displayed
 
-  @smoke @signed_in
+  @production @dev @ALA-1870
   Scenario: User navigates to the Shop from Library
     Given I touch the shop icon
     Then the Shop page should be displayed
 
-  @smoke @production
+  @production @dev @ALA-1870
   Scenario: I am able to validate the shop link
     Given I touch the shop icon
     Then the shop should be displayed
 
-  @smoke
+  @smoke-all
   Scenario: Verify drawer menu links present when user signed in
     When I open the drawer menu
     Then I should see the following links
@@ -29,7 +29,6 @@ Feature: Navigating the user library screen
       | Contact us                    |
       | Info                          |
 
-  @smoke
   Scenario: Verify drawer menu links when user signed out
     When I Sign out
     Given I go back to the My Library page
@@ -42,25 +41,3 @@ Feature: Navigating the user library screen
       | Frequently asked questions     |
       | Contact us                     |
       | Info                           |
-
-  @smoke @reinstall
-  Scenario: Verify embedded book option menu
-    When I Sign out
-    And I go back to the My Library page
-    And I click on first embedded book options
-    Then I should see the following links
-      | Options        |
-      | Buy full ebook |
-      | About          |
-      | Contents       |
-      | Read           |
-      | Remove         |
-
-  Scenario: Verify embedded book option menu as a Signed in user (book not yet downloaded)
-    When I click on first embedded book options
-    Then I should see the following links
-      | Options        |
-      | Buy full ebook |
-      | Download       |
-      | About          |
-      | Remove         |

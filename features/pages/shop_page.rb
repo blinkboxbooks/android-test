@@ -1,7 +1,7 @@
 module PageObjectModel
   class ShopPage < PageObjectModel::Page
 
-    attr_accessor :page_book_titles_sorted, :page_book_titles_reversed, :page_book_prices_sorted, :page_book_prices_reversed
+    attr_accessor :page_book_titles_sorted, :page_book_titles_reversed, :page_book_prices_sorted, :page_book_prices_reversed, :book_label_text
 
     trait "* id:'toolbar' TextView text:'Shop'"
 
@@ -13,26 +13,21 @@ module PageObjectModel
     #Book specific (featured page)
     element :book_title_text, "* id:'title_text'"
     element :author_name_text, "* id:'author_name'"
-    ###pop up
-    element :pop_up_container, "* id:'container'"
-    element :close_button, "* id:'button_close'"
-    element :pop_up_book_title_text, "* id:'textview_title'"
-    element :pop_up_book_author_text, "* id:'textview_author'"
-    element :buy_now_button, "* id:'button_buy'"
-    element :get_free_sample_button, "* id:'button_add_sample'"
-    element :have_a_look_inside, "* id:'textview_open_sample'"
-    ##pop up dialog
-    element :read_now_button, "* id:'button2' text:'Read now'"
-    element :download_button, "* id:'button1' text:'Download'"
+
     ##spinner
     element :sort_spinner, "android.widget.Spinner id:'spinner'"
+
     ##each shop details
     element :bookcover, "* id:'bookcover'"
+    element :bookcover_first, "* id:'bookcover' index:0"
     element :book_title, "* id:'textview_title'"
     element :book_author, "* id:'textview_author'"
     element :book_price, "* id:'textview_price'"
     element :book_price_original, "* id:'textview_price_original'"
     element :book_buy_button, "* id:'button_buy' text:'BUY'"
+    element :free_book_buy_button, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView text:'BUY' id:'button_buy' index:4"
+    element :paid_book_buy_button, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView text:'BUY' id:'button_buy' index:4"
+    element :book_label, "* id:'listview' descendant android.widget.LinearLayout descendant android.widget.TextView id:'textview_title' index:4"
 
     #generic popup/common
     element :parent_panel, "* id:'parentPanel'"
@@ -43,6 +38,7 @@ module PageObjectModel
     #How would you like to pay popup
     element :add_new_card_button, "* id:'button_add_new_card' text:'Add a new card'"
     element :how_would_you_like_to_pay_make_selection, "android.widget.RelativeLayout"
+    element :add_new_card_popup_title, "android.widget.TextView text:'How would you like to pay?'"
 
     #pay now popup
     element :change_card, "* id:'button_change' text:'Change'"
@@ -58,11 +54,30 @@ module PageObjectModel
     element :i_need_a_new_password, "* id:'textview_forgotten_password' text:'I need a new password'"
     element :confirm_password, "* id:'button_sign_in' text:'Confirm password'"
 
+    #shop sort pop-up (from action bar)
+    element :sort_action, "* id:'action_sort'"
+    element :sort_popup, "* id:'fragment_dialog_radio_options_title' text:'Sort by'"
+
+    #Register and sign in pop up
+    element :create_my_account, "* id:'button_register' text:'Create my account'"
+    element :email_field, "* id:'edittext_email'"
+    element :password_field, "* id:'edittext_password'"
+    element :signin_button, "* id:'button_signin' text:'Sign in'"
+    element :forgotten_password_link, "* id:'textview_forgotten_password'"
+
     #####
     section :shop_sliding_tabs, ShopSlidingTabsNavigationSection
     section :shop_highlights, ShopHighlightsSection
 
-    def has_pay_now_popup
+    #payment card pop up
+    section :user_library_saved_card_popup, UserLibrarySavedCardPopupSection
+    section :user_library_payment_confirmation_popup, UserLibraryPaymentConfirmationPopupSection
+    section :new_book_downloading_popup, UserLibraryNewBookDownloadingPopupSection
+
+    section :enter_card_details_popup, ShopEnterCardDetailsPopupSection
+    section :welcome_to_blinkbox_books_popup, WelcomeToBlinkboxBooksPopupSection
+
+    def has_pay_now_popup?
       assert_popup([
                        parent_panel.selector,
                        bookcover.selector,
@@ -79,7 +94,7 @@ module PageObjectModel
                    ])
     end
 
-    def has_re_enter_your_password_popup
+    def has_re_enter_your_password_popup?
       assert_popup([
                        parent_panel.selector,
                        "* id:'textview_title' text:'Please re-enter your password'",
@@ -91,7 +106,7 @@ module PageObjectModel
     end
 
 
-    def has_would_you_like_to_pay_popup
+    def has_would_you_like_to_pay_popup?
       assert_popup([
                       "android.widget.TextView text:'How would you like to pay?'",
                       "* id:'textview_subtext' {text BEGINSWITH 'Here is the saved payment info for'}",
@@ -104,7 +119,15 @@ module PageObjectModel
                    ])
     end
 
-    def has_your_new_book_is_downloading_popup
+    def has_add_new_card_popup?
+      assert_popup([
+                    "* id:'customPanel'",
+                    add_new_card_popup_title.selector,
+                    add_new_card_button.selector
+                   ])
+    end
+
+    def has_your_new_book_is_downloading_popup?
       assert_popup([
                        parent_panel.selector,
                        "* id:'textview_header' text:'Your new book is downloading'",
@@ -115,8 +138,48 @@ module PageObjectModel
                    ])
     end
 
+    def has_new_book_downloading_popup?
+      assert_popup([
+                       new_book_downloading_popup.new_book_downloading_text.selector,
+                       new_book_downloading_popup.goto_my_library_button.selector,
+                       new_book_downloading_popup.find_more_books_button.selector
+                   ])
+    end
+
+    def has_register_and_signin_pop_up?
+      assert_popup([
+                       "* id:'alert_dialog_container'",
+                       "android.widget.TextView text:'Create a free blinkbox Books account'",
+                       "android.widget.TextView text:'Ready to download books to this device? Simply create a free blinkbox Books account'",
+                       create_my_account.selector,
+                       "android.widget.TextView text:'Already using blinkbox Books? Sign in'",
+                       email_field.selector,
+                       password_field.selector,
+                       forgotten_password_link.selector,
+                       signin_button.selector
+                   ])
+    end
+
+    def has_enter_your_card_details_popup?
+      assert_popup([
+                       "* id:'customPanel'",
+                       enter_card_details_popup.card_number_field.selector,
+                       enter_card_details_popup.expiry_year_field.selector,
+                       enter_card_details_popup.security_code_field.selector
+                   ])
+    end
+
+    def has_welcome_to_blinkbox_books_popup?
+      assert_popup([
+                       "* id:'content'",
+                       welcome_to_blinkbox_books_popup.welcome_to_blinkbox_books_title.selector,
+                       welcome_to_blinkbox_books_popup.goto_my_library_button.selector,
+                       welcome_to_blinkbox_books_popup.find_more_books_button.selector
+                   ])
+    end
+
     def category_is_selected(category)
-      wait_for_element_exists("* id:'sliding_tabs' TextView {text BEGINSWITH '#{category}'} isSelected:true", timeout: timeout_short)
+      wait_for_element_exists("* id:'sliding_tabs' android.widget.TextView {text BEGINSWITH '#{category}'} isSelected:true", timeout: timeout_short)
     end
 
     def go_to_the_category
@@ -129,7 +192,10 @@ module PageObjectModel
     end
 
     def search_suggestions_for(string)
-      search_button.touch
+      if search_button.exists?
+        search_button.touch
+      end
+      search_field.wait_for_element_exists(timeout: timeout_short)
       search_field.set string
       search_field.touch
     end
@@ -147,6 +213,7 @@ module PageObjectModel
     end
 
     def search_results
+      search_suggestions.wait_for_element_exists(timeout: timeout_short)
       search_suggestions.get_text
     end
 
@@ -168,21 +235,10 @@ module PageObjectModel
 
     def goto_category(category)
       shop_sliding_tabs.sliding_tabs.wait_for_element_exists(timeout: timeout_short)
-      wait_poll(:until_exists => "* id:'sliding_tabs' TextView text:'#{category}'", :timeout => 10) do
+      wait_poll(:until_exists => "* id:'sliding_tabs' android.widget.TextView text:'#{category}'", :timeout => 10) do
         pan(shop_sliding_tabs.sliding_tabs.selector, :right, from: {x: 0, y: 0}, to: {x: -25, y:0})
       end
       tap_mark(category)
-    end
-
-    def assert_do_you_want_to_read_popup
-      wait_for_elements_exist(
-          [
-              parent_panel.selector,
-              "* id:'textview_title' text:'Do you want to read the free sample now or download it to your device'",
-              "* id:'textview_message' text:'(You will need to sign in or register to download)'",
-              read_now_button.selector,
-              download_button.selector
-          ],:timeout => timeout_short)
     end
 
     def goto_category_named(category_name)
@@ -193,6 +249,22 @@ module PageObjectModel
       end
       touch("* marked:'#{category_name}'")
       toolbar_title.wait_for_element_exists(timeout: timeout_short)
+    end
+
+    def select_free_book_for_purchase
+      free_book_buy_button.wait_for_element_exists(timeout: timeout_long)
+      capture_book_title
+      free_book_buy_button.touch
+    end
+
+    def capture_book_title
+      @book_label_text = book_label.text
+    end
+
+    def select_book_for_purchase
+      paid_book_buy_button.wait_for_element_exists(timeout: timeout_long)
+      capture_book_title
+      paid_book_buy_button.touch
     end
 
     def assert_book_exists
@@ -207,8 +279,12 @@ module PageObjectModel
     end
 
     def sort_books_by(sort_option)
-      sort_spinner.wait_for_element_exists(timeout: timeout_long)
-      select_item_from_spinner("* text:'#{sort_option}'")
+      sort_action.tap_when_element_exists(timeout: timeout_long)
+      sort_popup.wait_for_element_exists(timeout: timeout_short)
+      #sort_spinner.wait_for_element_exists(timeout: timeout_long)
+      touch("* id:'list_item_radio_button' text:'#{sort_option}'")
+      #sort_spinner.wait_for_element_exists(timeout: timeout_long)
+      #select_item_from_spinner("* text:'#{sort_option}'")
       book_buy_button.wait_for_element_exists(timeout: timeout_long)
       sleep 1
     end
@@ -259,8 +335,45 @@ module PageObjectModel
         pan("* id:'viewpager'", :up, from: {x: 0, y: 0}, to: {x: 0, y:-25})
       end
     end
+
+    def has_highlights_section?
+      assert_section([shop_highlights.title.selector,shop_highlights.carousel.selector])
+    end
+
+    def submit_sign_in_details(user_name, password)
+      email_field.scroll_to
+      email_field.set user_name
+      password_field.scroll_to
+      password_field.set password
+      signin_button.scroll_to
+      signin_button.touch
+    end
+
+    def number_of_books
+      query(bookcover.selector).size
+    end
+
+    def fill_in_card_details(card_number, expiry_month, expiry_year, security_code, name_on_card)
+      enter_card_details_popup.card_number_field.set card_number
+      enter_card_details_popup.expiry_month_field.set expiry_month
+      enter_card_details_popup.expiry_year_field.set expiry_year
+      enter_card_details_popup.security_code_field.set security_code
+      enter_card_details_popup.name_on_card_field.set name_on_card
+    end
+
+    def fill_in_address_details(address_line_one, address_line_two, town_or_city, postcode)
+      enter_card_details_popup.address_line_one_field.scroll_to
+      enter_card_details_popup.address_line_one_field.set address_line_one
+      enter_card_details_popup.address_line_two_field.set address_line_two
+      enter_card_details_popup.town_or_city_field.scroll_to
+      enter_card_details_popup.town_or_city_field.set town_or_city
+      enter_card_details_popup.postcode_field.scroll_to
+      enter_card_details_popup.postcode_field.set postcode
+    end
+
   end
 end
+
 
 module PageObjectModel
   def shop_page

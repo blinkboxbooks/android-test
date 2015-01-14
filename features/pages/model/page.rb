@@ -40,6 +40,14 @@ module PageObjectModel
       5
     end
 
+    def timeout_medium
+      timeout_page_transition
+    end
+
+    def timeout_page_transition
+      10
+    end
+
     def timeout_long
       Calabash::Android::WaitHelpers.const_get(:DEFAULT_OPTS)[:timeout]
     end

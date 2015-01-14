@@ -15,6 +15,8 @@ end
 After do |scenario|
   if scenario.failed?
     screenshot_embed(:prefix => conf_data['project']['log_screenshot_folder'])
+    #TODO:if the tags being passed into the profile include the environment production, then implement this...
+    #Cucumber.wants_to_quit = true if scenario.failed?
   end
   shutdown_test_server
 end
