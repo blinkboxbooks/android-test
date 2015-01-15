@@ -1,4 +1,3 @@
-@production @ALA-1870 @ALA-1869
 Feature: Search results
   Search valid book name, author name and verify search result is displayed
 
