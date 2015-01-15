@@ -1,4 +1,4 @@
-@production @demo @sanity-all @ALA-1870 @ALA-1869
+@demo @sanity-all
 Feature: I want to demonstrate what an automation framework looks like in operation
 
   Background:

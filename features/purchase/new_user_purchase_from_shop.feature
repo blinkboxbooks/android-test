@@ -1,4 +1,4 @@
-@qa @ALA-1869
+@qa @dev
 Feature: Existing user purchase book from blinkbox books app shop
   As a guest user of blinkbox books
   I want to be able to register and purchase a book
@@ -11,7 +11,7 @@ Feature: Existing user purchase book from blinkbox books app shop
     Then I should see the Welcome to blinkbox books popup
     And I can see the newly purchased book added to My Library
 
-  @smoke-qa
+  @smoke-qa @smoke-dev
   Scenario: Guest user purchases a book and saves payment details
     Given I navigate to shop
     And I navigate to the "Fiction top 100" section

@@ -7,7 +7,6 @@ Feature: End of book screen
     When I open the first book on the My Library page
     And I go to end of the book
 
-  @production @dev @ALA-1894
   Scenario: After reaching end of the book, you decide to purchase and are prompted with create new account pop up
     When I choose to purchase the book
     And I am prompted to register and proceed

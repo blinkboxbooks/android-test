@@ -72,7 +72,6 @@ Feature: Shop Navigation
     Then there is at least one book present
     And all the prices should be FREE
 
-  @production @ALA-1869 @ALA-1870
   Scenario Outline: Verify that there is at least one book present beneath each of the sections in the 'Featured' area
     Given I navigate to the "Featured" section
     Then I can verify that the <featured_section> section has at least one book

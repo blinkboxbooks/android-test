@@ -1,4 +1,4 @@
-@new_data @qa @ALA-1869
+@new_data @qa @dev
 Feature: Existing user purchase book from blinkbox books app shop
   As an existing user of blinkbox books
   I want to be able to sign in and purchase a book
