@@ -8,8 +8,8 @@ Feature: End of book screen
     And I go to end of the book
 
   @production @ALA-1946
-  Scenario: After reaching end of the book, you decide to purchase and are prompted with create new account pop up
-    When I choose to purchase the book
+  Scenario: After reaching end of the sample book, you decide to purchase and are prompted with create new account pop up
+    When I choose to purchase full copy book
     And I am prompted to register and proceed
     Then the add new card pop up is displayed
 

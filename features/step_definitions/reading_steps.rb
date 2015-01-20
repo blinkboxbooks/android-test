@@ -73,7 +73,7 @@ And(/^I go to end of the book$/) do
   go_to_end_of_the_embedded_book
 end
 
-When(/^I choose to purchase the book$/) do
+When(/^I choose to purchase full copy book$/) do
   end_of_book_page.click_on_buy_button
 end
 
