@@ -53,8 +53,7 @@ module PageObjectModel
     def capture_book_details_on_about_this_book
       user_library_page.from_options_menu_choose("About")
       expect_page(about_this_book_page)
-      @book_title = about_this_book_page.book_title.text
-      @book_author = about_this_book_page.book_author.text
+      about_this_book_page.get_book_details_on_about_this_book
     end
   end
 end
