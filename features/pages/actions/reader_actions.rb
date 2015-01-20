@@ -24,9 +24,9 @@ module PageObjectModel
       assert_end_of_sample_book
     end
 
-    def go_to_end_of_sample_book
+    def go_to_end_of_full_book
       go_to_end_of_book
-      assert_end_of_sample_book
+      assert_end_of_book
     end
 
     def go_to_end_of_book

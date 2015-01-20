@@ -69,16 +69,21 @@ And(/^I set the book slider position back to (\d+)$/) do |position|
   book_reader_page.move_slider_to_position(position, :left)
 end
 
-And(/^I go to end of the book$/) do
+And(/^I go to end of the sample book$/) do
   go_to_end_of_the_embedded_book
 end
 
+And(/^I go to end of the full book$/) do
+  go_to_end_of_full_book
+end
+
+
 When(/^I choose to purchase full copy book$/) do
-  end_of_book_page.click_on_buy_button
+  end_of_sample_book_page.click_on_buy_button
 end
 
 When(/^I click on shop for more books button$/) do
-  end_of_book_page.click_on_shop_for_more_books_button
+  end_of_sample_book_page.click_on_shop_for_more_books_button
 end
 
 Then(/^shop screen is displayed$/) do
@@ -108,4 +113,12 @@ end
 
 When(/^I download first book$/) do
   pending
+end
+
+When(/^I click on book cover that I like to see$/) do
+  end_of_full_book_page.click_on_book_cover
+end
+
+When(/^I click on view more books in the shop button$/) do
+  end_of_full_book_page.click_on_view_more_ebooks_in_the_shop_button
 end

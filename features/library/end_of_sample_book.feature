@@ -1,13 +1,11 @@
-Feature: End of book screen
-  As a reader, I want to explore more books when I reach end of book
+Feature: End of the sample book screen
+  As a reader, I want to either buy the book or view more books in shop
 
   Background:
     Given the My Library screen is displayed
-    And I capture the current number of books in My Library
     When I open the first book on the My Library page
-    And I go to end of the book
+    And I go to end of the sample book
 
-  @production @ALA-1946
   Scenario: After reaching end of the sample book, you decide to purchase and are prompted with create new account pop up
     When I choose to purchase full copy book
     And I am prompted to register and proceed
