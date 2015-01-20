@@ -31,7 +31,7 @@ module PageObjectModel
 
     def attributes
       query = calabash_proxy.query(selector)
-      raise "Unable to locate element \##{selector}" if query.empty?
+      fail "Unable to locate element \##{selector}" if query.empty?
       query.first
     end
 
@@ -68,10 +68,10 @@ module PageObjectModel
       query.size
     end
 
-    alias :count :size
+    alias_method :count, :size
 
     def with_text(text)
-      puts "#{selector.to_s} text:'#{text}'"
+      puts "#{selector} text:'#{text}'"
     end
 
     #I would prefer this over the exists? for elements as there is a built in 'small' delay which caters for cases
@@ -80,11 +80,9 @@ module PageObjectModel
     #drawer_menu.should_not be_visible , but it reads a lot better than drawer_memu.should_not exist.
     #it can be used with Rspec now as it returns true and false (and not nil or exception)
     def visible?
-      begin
-        calabash_proxy.when_element_exists(selector, timeout: 5, action: lambda {return true})
-      rescue
-        false
-      end
+      calabash_proxy.when_element_exists(selector, timeout: 5, action: lambda { return true })
+    rescue
+      false
     end
 
     def exists? #a change to existing calabash operations API as well, but I am happy with extensions like this for the sake of proper ruby paradigm behind method names
