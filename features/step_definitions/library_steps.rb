@@ -65,18 +65,12 @@ end
 Given(/^I capture book details via the Content option$/) do
   user_library_page.from_options_menu_choose("Contents")
   expect_page(book_reader_table_of_contents_page)
-  @book_details = book_reader_table_of_contents_page.title.text
+  book_reader_table_of_contents_page.get_content_title
 end
 
 Then(/^I should see the correct Contents shown$/) do
   expect_page(book_reader_table_of_contents_page)
-  expect(book_reader_table_of_contents_page.title.text).to start_with(@book_title).and end_with(@book_author)
-end
-
-Then(/^I see book details on about this about from reader screen$/) do
-  expect_page(about_this_book_page)
-  expect(about_this_book_page.book_title.text).to match(@book_title)
-  expect(about_this_book_page.book_author.text).to match(@book_author)
+  expect(book_reader_table_of_contents_page.title.text).to start_with(about_this_book_page.about_this_book_title).and end_with(about_this_book_page.about_this_book_author)
 end
 
 And(/^I open the first book on the (My Library|Reading) page$/) do |negate|
@@ -105,6 +99,6 @@ end
 
 Then(/^I see book details on about this book page$/) do
   expect_page(about_this_book_page)
-  expect(@book_details).to start_with(about_this_book_page.book_title.text).and end_with(about_this_book_page.book_author.text)
+  expect(book_reader_table_of_contents_page.content_title).to start_with(about_this_book_page.book_title.text).and end_with(about_this_book_page.book_author.text)
 end
 
