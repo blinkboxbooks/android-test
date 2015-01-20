@@ -21,7 +21,7 @@ module PageObjectModel
 
     def go_to_end_of_the_embedded_book
       go_to_end_of_book
-      assert_end_of_book
+      assert_end_of_sample_book
     end
 
     def go_to_end_of_sample_book

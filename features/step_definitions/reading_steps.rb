@@ -81,32 +81,12 @@ When(/^I click on shop for more books button$/) do
   end_of_book_page.click_on_shop_for_more_books_button
 end
 
-When(/^I click to go back to library screen$/) do
-  end_of_book_page.click_on_go_to_library_button
-end
-
-When(/^I click on to view more books$/) do
-  end_of_book_page.click_on_view_more_books_in_the_shop
-end
-
-When(/^I click on book that I like to see$/) do
-  end_of_book_page.click_on_more_books_you_like_book_cover
-end
-
 Then(/^shop screen is displayed$/) do
   expect_page(shop_page)
 end
 
-Then(/^library screen is displayed$/) do
-  expect_page(my_library_page)
-end
-
 Then(/^goes to search result screen$/) do
   expect_activity("SearchActivity")
-end
-
-And(/^I remove the book$/) do
-  end_of_book_page.remove_sample
 end
 
 And(/^I am prompted to register and proceed$/) do
