@@ -73,7 +73,7 @@ Feature: My Library Options Menu
       | Read later     |
       | Remove         |
 
-  @sanity-all
+  @unstable @ALA-1948 #@sanity-all
   Scenario: As a guest user, I can remove a book from My library
     Given I capture the current number of books in My Library
     When I choose to Remove a book from my Library
