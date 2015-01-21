@@ -28,6 +28,19 @@ module PageObjectModel
       expect_page(shop_author_details_page)
     end
 
+    def goto_shop_and_navigate_to_tab(category)
+      navigate_to_shop_as_anon_user
+      shop_page.goto_category(category)
+      shop_page.category_is_selected(category)
+    end
+
+    def register_and_buy_free_book(category)
+      goto_shop_and_navigate_to_tab(category)
+      shop_page.select_free_book_for_purchase
+      register_via_create_bbb_account_pop_up
+      wait_for { expect(shop_page).to have_welcome_to_blinkbox_books_popup }
+    end
+
   end
 end
 
