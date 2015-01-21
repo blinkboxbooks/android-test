@@ -37,7 +37,7 @@ end
 
 Then(/^the number of books in My Library should decrease by one$/) do
    expect_page(my_library_page)
-   pending("ALA-1498: On removing embedded sample, it is not removed until user re-launches the app") do
+   pending("ALA-1948: On removing embedded sample, it is not removed until user re-launches the app") do
      wait_for(:timeout => 5) { expect(my_library_page.current_number_of_books_in_my_library).to be < @my_lib_book_count }
    end
 end
