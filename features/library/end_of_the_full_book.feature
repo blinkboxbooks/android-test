@@ -2,7 +2,7 @@ Feature: End of the full book screen
   As a reader, I want to either browse for more books in shop
 
   Background:
-    Given I navigate to shop and buy "Free ebooks"
+    Given I navigate to shop and buy one of the "Free ebooks"
     And I can see the newly purchased book added to My Library
     And I navigate back until I get to the My Library page
     When I open the first book on the My Library page

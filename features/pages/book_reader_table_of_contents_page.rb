@@ -23,7 +23,6 @@ module PageObjectModel
     def get_content_title
       @content_title = title.text
     end
-
   end
 end
 

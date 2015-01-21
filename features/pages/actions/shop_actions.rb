@@ -40,7 +40,6 @@ module PageObjectModel
       register_via_create_bbb_account_pop_up
       wait_for { expect(shop_page).to have_welcome_to_blinkbox_books_popup }
     end
-
   end
 end
 
