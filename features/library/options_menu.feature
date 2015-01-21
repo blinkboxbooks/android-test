@@ -96,8 +96,8 @@ Feature: My Library Options Menu
     Given I capture the current Books' details via the About option
     And I navigate back until I get to the My Library page
     When I select Read from Option menu
-    And I visit the "About this book" page from the Reader option menu
-    Then I see book details on about this about from reader screen
+    And I visit the "Table of contents" page from the Reader option menu
+    Then I should see the correct Contents shown
 
   Scenario: As a guest user, I want to read later from Option menu
     Given I open the first book on the My Library page
@@ -112,5 +112,3 @@ Feature: My Library Options Menu
     Given I choose "Buy full ebook" from the Options menu
     When I am prompted to register and proceed
     Then the add new card pop up is displayed
-
-  #TODO: The options menu has numerous contexts..anonymous user, signed-in user, reading page specific, my library page specific

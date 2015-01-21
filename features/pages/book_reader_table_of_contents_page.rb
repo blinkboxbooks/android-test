@@ -1,5 +1,8 @@
 module PageObjectModel
   class BookReaderTableOfContentsPage < PageObjectModel::Page
+
+    attr_accessor :content_title
+
     trait "* id:'toolbar' android.widget.TextView text:'Table of contents'"
     element :cover_link, "* id:'text1' text:'Cover'"
     element :title_page_link, "android.widget.TextView text:'Title page'"
@@ -15,6 +18,10 @@ module PageObjectModel
     def tap_on_save_reading_position_button
       save_reading_position.wait_for_element_exists(timeout: timeout_short)
       save_button.touch
+    end
+
+    def get_content_title
+      @content_title = title.text
     end
   end
 end

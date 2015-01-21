@@ -47,8 +47,8 @@ end
 Then(/^I see correct book details on reader screen$/) do
   expect_page(book_reader_page)
   go_to_end_of_sample_book
-  expect(end_of_sample_book.book_title.text).to match(shop_book_description_page.book_description_book_name)
-  expect(end_of_sample_book.book_author.text).to match(shop_book_description_page.book_description_author_name)
+  expect(end_of_sample_book_page.book_title.text).to match(shop_book_description_page.book_description_book_name)
+  expect(end_of_sample_book_page.book_author.text).to match(shop_book_description_page.book_description_author_name)
 end
 
 And(/^I click on see other books written by author$/) do
@@ -77,4 +77,8 @@ end
 
 And(/^search result heading matches author name$/) do
   expect(search_results_page.search_result_heading.text).to match(shop_book_description_page.book_description_author_name)
+end
+
+Given(/^I navigate to shop and buy one of the "([^"]*)"$/) do |category|
+  register_and_buy_free_book(category)
 end

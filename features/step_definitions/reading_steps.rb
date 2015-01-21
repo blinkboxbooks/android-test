@@ -69,44 +69,29 @@ And(/^I set the book slider position back to (\d+)$/) do |position|
   book_reader_page.move_slider_to_position(position, :left)
 end
 
-And(/^I go to end of the book$/) do
+And(/^I go to end of the sample book$/) do
   go_to_end_of_the_embedded_book
 end
 
-When(/^I choose to purchase the book$/) do
-  end_of_book_page.click_on_buy_button
+And(/^I go to end of the full book$/) do
+  go_to_end_of_full_book
+end
+
+
+When(/^I choose to purchase full copy book$/) do
+  end_of_sample_book_page.click_on_buy_button
 end
 
 When(/^I click on shop for more books button$/) do
-  end_of_book_page.click_on_shop_for_more_books_button
-end
-
-When(/^I click to go back to library screen$/) do
-  end_of_book_page.click_on_go_to_library_button
-end
-
-When(/^I click on to view more books$/) do
-  end_of_book_page.click_on_view_more_books_in_the_shop
-end
-
-When(/^I click on book that I like to see$/) do
-  end_of_book_page.click_on_more_books_you_like_book_cover
+  end_of_sample_book_page.click_on_shop_for_more_books_button
 end
 
 Then(/^shop screen is displayed$/) do
   expect_page(shop_page)
 end
 
-Then(/^library screen is displayed$/) do
-  expect_page(my_library_page)
-end
-
 Then(/^goes to search result screen$/) do
   expect_activity("SearchActivity")
-end
-
-And(/^I remove the book$/) do
-  end_of_book_page.remove_sample
 end
 
 And(/^I am prompted to register and proceed$/) do
@@ -128,4 +113,12 @@ end
 
 When(/^I download first book$/) do
   pending
+end
+
+When(/^I click on book cover that I like to see$/) do
+  end_of_full_book_page.click_on_book_cover
+end
+
+When(/^I click on view more books in the shop button$/) do
+  end_of_full_book_page.click_on_view_more_ebooks_in_the_shop_button
 end
