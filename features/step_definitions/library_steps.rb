@@ -36,10 +36,10 @@ When(/^I capture number of books in Reading tab$/) do
 end
 
 Then(/^the number of books in My Library should decrease by one$/) do
-   expect_page(my_library_page)
-   pending("ALA-1948: On removing embedded sample, it is not removed until user re-launches the app") do
-     wait_for(:timeout => 5) { expect(my_library_page.current_number_of_books_in_my_library).to be < @my_lib_book_count }
-   end
+  expect_page(my_library_page)
+  pending("ALA-1948: On removing embedded sample, it is not removed until user re-launches the app") do
+    wait_for(:timeout => 5) { expect(my_library_page.current_number_of_books_in_my_library).to be < @my_lib_book_count }
+  end
 end
 
 Then(/^the number of books in Reading should decrease by one$/) do
@@ -103,4 +103,3 @@ Then(/^I see book details on about this book page$/) do
   expect_page(about_this_book_page)
   expect(book_reader_table_of_contents_page.content_title).to start_with(about_this_book_page.book_title.text).and end_with(about_this_book_page.book_author.text)
 end
-
