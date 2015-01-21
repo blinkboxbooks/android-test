@@ -79,6 +79,6 @@ And(/^search result heading matches author name$/) do
   expect(search_results_page.search_result_heading.text).to match(shop_book_description_page.book_description_author_name)
 end
 
-Given(/^navigate to shop and buy "([^"]*)"$/) do |category|
+Given(/^I navigate to shop and buy "([^"]*)"$/) do |category|
   register_and_buy_free_book(category)
 end
