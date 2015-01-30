@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 group :automation do
   gem 'cucumber'
-  gem 'calabash-android', '0.5.2'
+  gem 'calabash-android', '~> 0.5', ">= 0.5.2"
   gem 'rspec'
 end
 
@@ -21,7 +21,7 @@ group :api do
   gem 'json'
   gem 'httparty'
   gem 'httpclient'
-  gem 'blinkbox-user', '0.3.3'
+  gem 'blinkbox-user', '~> 0.3'
 end
 
 group :dev_tools do
