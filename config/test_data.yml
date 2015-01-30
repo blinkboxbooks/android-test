@@ -1,0 +1,87 @@
+ users:
+   existing:
+     emailaddress: 
+     password: 
+   withcard:
+     emailaddress: 
+     password: 
+   has_downloaded_books:
+     emailaddress: 
+     password: 
+
+ samples_books:
+   - 9781451685336
+   - 9780062210272
+   - 9781135818944
+   - 9781136254017
+   - 9781135015541
+
+ passwords:
+   valid_password: test1234
+   not_matching_password: test2345
+
+ clubcards:
+   valid_clubcard_number:
+   invalid_clubcard_number:
+
+ payment:
+   visa: 4111111111111111
+   security_code: 123
+   mastercard: 5555555555554444
+   visadebit: 4012000033330125
+   jcb: 6011111111111117
+   expiry_month: 12
+   expiry_year: 2022
+   name_on_card: Steven Smith
+   address_line_one: address line one
+   address_line_two: address line two
+   town_or_city: town
+   postcode: WC18AQ
+   cvv_does_not_match: 200
+
+ emails:
+   valid: 
+   happypath_user: 
+   dummy_email: 
+
+ errors:
+   oops_signin: Oops! There are some things below that you need to address
+   invalid_email_or_password: Your email address or password is invalid
+   already_registered: This email is already registered.
+   invalid_clubcard: Invalid Clubcard number
+   accept_term_and_condition: Please accept our T&C's
+   password_dont_match: Your passwords don't match
+   invalid_password: Invalid password
+
+ options_menu:
+   cloud_delete: Delete sample from your cloud
+   device_delete: Remove sample from your device
+
+ random_search_keywords:
+   - Winter
+   - Summer
+   - Autumn
+   - Football
+   - Music
+   - Autobiography
+   - Biography
+   - Health
+   - Business
+   - Children
+   - Disney
+   - Murder
+   - War
+   - Kids
+   - Royal
+   - Cookery
+   - Dummies
+   - Romance
+   - Government
+   - Lonely Planet
+   - Mills and boon
+   - History
+   - Spanish
+   - Doctor
+   - Holiday
+   - Travel
+   - New
