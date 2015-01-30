@@ -1,7 +1,6 @@
 ruby '2.1.2'
 
-source "http://artifactory.blinkbox.local/artifactory/api/gems/bbb-gems/"
-source "http://artifactory.blinkbox.local/artifactory/api/gems/rubygems/"
+source "https://rubygems.org"
 
 group :automation do
   gem 'cucumber'
