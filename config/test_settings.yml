@@ -1,0 +1,45 @@
+#TEST CONFIGURATION
+environment: "production-debug"
+
+environments:
+ production-debug:
+  web: https://www.blinkboxbooks.com
+  auth_url: https://auth.blinkboxbooks.com
+  api_url: https://api.blinkboxbooks.com
+ qa-debug:
+  web: https://www.qa.bbbtest1.com
+  auth_url: https://auth.qa.bbbtest2.com
+  api_url: https://api.qa.bbbtest2.com
+ dev-debug:
+  web: www.test.bbbtest1.com
+  auth_url: https://auth.dev.bbbtest2.com
+  api_url: https://api.dev.bbbtest2.com
+
+# braintree card details
+dev-debug:
+ encrypted_card_details:
+  default:
+  number:
+  cvv:
+  expirationMonth:
+  expirationYear:
+  cardholderName:
+  billingAddress:
+   line1:
+   line2:
+   locality:
+   postcode:
+
+qa-debug:
+ encrypted_card_details:
+  default:
+  number:
+  cvv:
+  expirationMonth:
+  expirationYear:
+  cardholderName:
+  billingAddress:
+   line1:
+   line2:
+   locality:
+   postcode:
