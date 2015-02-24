@@ -105,3 +105,14 @@ Cucumber tagging convention
 Please refer to common convention in [confluence](http://jira.blinkbox.local/confluence/display/TEST/Cucumber+Tags+Convention)
 - *@clear_app_data* - clear_app_data before the tagged scenario
 NOTE: right now we do clear_app_data before every scenario
+
+
+## Copyright
+2015 blinkbox books Ltd. See LICENCE for details.
+
+## Key Contributors
+* [Sher Bhachu](https://github.com/sherbhachu)
+* [Alex Jones](https://github.com/AlexsJones)
+* [Alex Ikhelis](https://github.com/aikhelis)
+* [Ankur Gamit](https://github.com/ankurgamit)
+* [Jagdeep Kalsi](https://github.com/jkalsi)
